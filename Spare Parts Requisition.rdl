@@ -1,0 +1,1847 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>16c16cad-fb9f-47a0-afb7-bac655c230ec</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>0.67361in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.11806in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.78472in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.1875in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.11806in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.63194in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.52083in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.09722in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.125in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.77901in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>DATE</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>VEHICLE/EQUIPMENT NO.</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>LOCATION</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>MAINTENANCE REQUEST FORM NO.</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox17">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>JOB CARD NO.</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox17</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>DETAILS</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>QTY</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>PRIORITY</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>REQUESTED BY</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>APPROVED BY</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.23958in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NFL_Requisition_Header__Order_Date_">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NFL_Requisition_Header__Order_Date_.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>dd/MM/yy</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NFL_Requisition_Header__Order_Date_</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="EquipmentNo_NFLRequisitionHeader">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!EquipmentNo_NFLRequisitionHeader.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>EquipmentNo_NFLRequisitionHeader</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Location_Code">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Location_Code.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Location_Code</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="MaintenanceRequestNo_NFLRequisitionHeader">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!MaintenanceRequestNo_NFLRequisitionHeader.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>MaintenanceRequestNo_NFLRequisitionHeader</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="JobCardNo_NFLRequisitionHeader">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!JobCardNo_NFLRequisitionHeader.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>JobCardNo_NFLRequisitionHeader</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NFL_Requisition_Line_Description">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NFL_Requisition_Line_Description.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NFL_Requisition_Line_Description</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NFL_Requisition_Line_Quantity">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NFL_Requisition_Line_Quantity.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>#,0.00</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NFL_Requisition_Line_Quantity</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PriorityRanking_NFLRequisitionLine">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PriorityRanking_NFLRequisitionLine.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>PriorityRanking_NFLRequisitionLine</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NFL_Requisition_Header__Request_By_Name_">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NFL_Requisition_Header__Request_By_Name_.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NFL_Requisition_Header__Request_By_Name_</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ApprovedByName">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ApprovedByName.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ApprovedByName</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                  <Visibility>
+                    <Hidden>=IIF(Fields!NFL_Requisition_Line_Quantity.Value = 0, true,false)</Hidden>
+                  </Visibility>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet_Result</DataSetName>
+            <Top>0.13417in</Top>
+            <Left>0.08556in</Left>
+            <Height>1.01859in</Height>
+            <Width>10.25694in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Requested By</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox18">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=First(Fields!User_ID.Value, "DataSet_Result")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox16">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Approver By</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox16</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox20">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=First(Fields!Signaturey.Value, "DataSet_Result")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox20</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details1" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <Top>1.64111in</Top>
+            <Left>0.08556in</Left>
+            <Height>0.5in</Height>
+            <Width>3in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>2.21056in</Height>
+        <Style />
+      </Body>
+      <Width>10.82167in</Width>
+      <Page>
+        <PageHeader>
+          <Height>2.0625in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Image Name="Image1">
+              <Source>Database</Source>
+              <Value>=First(Fields!CompanyInfo_Picture.Value, "DataSet_Result")</Value>
+              <MIMEType>image/jpeg</MIMEType>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.28in</Top>
+              <Left>0.08556in</Left>
+              <Height>1.18056in</Height>
+              <Width>2.14583in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox19">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>SPARE PARTS REQUISITION FORM</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox19</rd:DefaultName>
+              <Top>1.59944in</Top>
+              <Left>0.08556in</Left>
+              <Height>0.25in</Height>
+              <Width>10.73611in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BottomBorder>
+                  <Style>Solid</Style>
+                </BottomBorder>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=User!UserID</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>1.21056in</Top>
+              <Left>7.87028in</Left>
+              <Height>0.25in</Height>
+              <Width>2.95139in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox4">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Today()</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Format>dd/MM/yy</Format>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.96056in</Top>
+              <Left>7.87028in</Left>
+              <Height>0.25in</Height>
+              <Width>2.95139in</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox6">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!NFL_Requisition_Header__No__.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.71056in</Top>
+              <Left>7.87028in</Left>
+              <Height>0.25in</Height>
+              <Width>2.95139in</Width>
+              <ZIndex>4</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox10">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!CompanyInfo__Phone_No__.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.46056in</Top>
+              <Left>7.87028in</Left>
+              <Height>0.25in</Height>
+              <Width>2.95139in</Width>
+              <ZIndex>5</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox12">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!CompanyInfo_Name.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.21056in</Top>
+              <Left>7.87028in</Left>
+              <Height>0.25in</Height>
+              <Width>2.95139in</Width>
+              <ZIndex>6</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>1.20139in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Line Name="Line1">
+              <Top>0.17584in</Top>
+              <Left>0.04389in</Left>
+              <Height>0in</Height>
+              <Width>10.77778in</Width>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+              </Style>
+            </Line>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="AccountingPeriod_NFLRequisitionHeader">
+          <DataField>AccountingPeriod_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="AccountingPeriodEndDate_NFLRequisitionHeader">
+          <DataField>AccountingPeriodEndDate_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="FiscalYear_NFLRequisitionHeader">
+          <DataField>FiscalYear_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="FiscalYearEndDate_NFLRequisitionHeader">
+          <DataField>FiscalYearEndDate_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="PageConst_________FORMAT_CurrReport_PAGENO_">
+          <DataField>PageConst_________FORMAT_CurrReport_PAGENO_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__No__">
+          <DataField>NFL_Requisition_Header__No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Requestor_ID_">
+          <DataField>NFL_Requisition_Header__Requestor_ID_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header_Status">
+          <DataField>NFL_Requisition_Header_Status</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Store_Requisition_No__">
+          <DataField>NFL_Requisition_Header__Store_Requisition_No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Request_By_No__">
+          <DataField>NFL_Requisition_Header__Request_By_No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Request_By_Name_">
+          <DataField>NFL_Requisition_Header__Request_By_Name_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Order_Date_">
+          <DataField>NFL_Requisition_Header__Order_Date_</DataField>
+        </Field>
+        <Field Name="Requested_Receipt_Date">
+          <DataField>Requested_Receipt_Date</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Expected_Receipt_Date_">
+          <DataField>NFL_Requisition_Header__Expected_Receipt_Date_</DataField>
+        </Field>
+        <Field Name="Shortcut_Dimension_2_Code">
+          <DataField>Shortcut_Dimension_2_Code</DataField>
+        </Field>
+        <Field Name="Purchase_RequisitionCaption">
+          <DataField>Purchase_RequisitionCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__No__Caption">
+          <DataField>NFL_Requisition_Header__No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Requestor_ID_Caption">
+          <DataField>NFL_Requisition_Header__Requestor_ID_Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header_StatusCaption">
+          <DataField>NFL_Requisition_Header_StatusCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Store_Requisition_No__Caption">
+          <DataField>NFL_Requisition_Header__Store_Requisition_No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Request_By_No__Caption">
+          <DataField>NFL_Requisition_Header__Request_By_No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Request_By_Name_Caption">
+          <DataField>NFL_Requisition_Header__Request_By_Name_Caption</DataField>
+        </Field>
+        <Field Name="Request_DateCaption">
+          <DataField>Request_DateCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Expected_Receipt_Date_Caption">
+          <DataField>NFL_Requisition_Header__Expected_Receipt_Date_Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header_Document_Type">
+          <DataField>NFL_Requisition_Header_Document_Type</DataField>
+        </Field>
+        <Field Name="Currency_Code">
+          <DataField>Currency_Code</DataField>
+        </Field>
+        <Field Name="Posting_Description">
+          <DataField>Posting_Description</DataField>
+        </Field>
+        <Field Name="Location_Code">
+          <DataField>Location_Code</DataField>
+        </Field>
+        <Field Name="LocationCode">
+          <DataField>LocationCode</DataField>
+        </Field>
+        <Field Name="FirstApprover">
+          <DataField>FirstApprover</DataField>
+        </Field>
+        <Field Name="SecondApprover">
+          <DataField>SecondApprover</DataField>
+        </Field>
+        <Field Name="ThirdApprover">
+          <DataField>ThirdApprover</DataField>
+        </Field>
+        <Field Name="FourthApprover">
+          <DataField>FourthApprover</DataField>
+        </Field>
+        <Field Name="FirstDateOfApproval">
+          <DataField>FirstDateOfApproval</DataField>
+        </Field>
+        <Field Name="SecondDateOfApproval">
+          <DataField>SecondDateOfApproval</DataField>
+        </Field>
+        <Field Name="ThirdDateOfApproval">
+          <DataField>ThirdDateOfApproval</DataField>
+        </Field>
+        <Field Name="FourthDateOfApproval">
+          <DataField>FourthDateOfApproval</DataField>
+        </Field>
+        <Field Name="AppPositionOne">
+          <DataField>AppPositionOne</DataField>
+        </Field>
+        <Field Name="AppPositionTwo">
+          <DataField>AppPositionTwo</DataField>
+        </Field>
+        <Field Name="AppPositionThree">
+          <DataField>AppPositionThree</DataField>
+        </Field>
+        <Field Name="AppPositionFour">
+          <DataField>AppPositionFour</DataField>
+        </Field>
+        <Field Name="PDEntity_NFLRequisitionHeader">
+          <DataField>PDEntity_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="WrksServSup">
+          <DataField>WrksServSup</DataField>
+        </Field>
+        <Field Name="ITB">
+          <DataField>ITB</DataField>
+        </Field>
+        <Field Name="ContractNo">
+          <DataField>ContractNo</DataField>
+        </Field>
+        <Field Name="ProcumentPlanReference_NFLRequisitionHeader">
+          <DataField>ProcumentPlanReference_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="RequestByName">
+          <DataField>RequestByName</DataField>
+        </Field>
+        <Field Name="EmployeePostion">
+          <DataField>EmployeePostion</DataField>
+        </Field>
+        <Field Name="RequestDate">
+          <DataField>RequestDate</DataField>
+        </Field>
+        <Field Name="Approver1Comment">
+          <DataField>Approver1Comment</DataField>
+        </Field>
+        <Field Name="Approver2Comment">
+          <DataField>Approver2Comment</DataField>
+        </Field>
+        <Field Name="Approver3Comment">
+          <DataField>Approver3Comment</DataField>
+        </Field>
+        <Field Name="Approver4Comment">
+          <DataField>Approver4Comment</DataField>
+        </Field>
+        <Field Name="ShortcutDimValueName1">
+          <DataField>ShortcutDimValueName1</DataField>
+        </Field>
+        <Field Name="ShortcutDimValueName2">
+          <DataField>ShortcutDimValueName2</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Name">
+          <DataField>CompanyInfo_Name</DataField>
+        </Field>
+        <Field Name="CompanyInfo_PostCode_">
+          <DataField>CompanyInfo_PostCode_</DataField>
+        </Field>
+        <Field Name="CompanyInfo__Home_Page_">
+          <DataField>CompanyInfo__Home_Page_</DataField>
+        </Field>
+        <Field Name="CompanyInfo_VATRegNo_">
+          <DataField>CompanyInfo_VATRegNo_</DataField>
+        </Field>
+        <Field Name="Company_City_">
+          <DataField>Company_City_</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Country_">
+          <DataField>CompanyInfo_Country_</DataField>
+        </Field>
+        <Field Name="CompanyInfo__Phone_No__">
+          <DataField>CompanyInfo__Phone_No__</DataField>
+        </Field>
+        <Field Name="CompanyInfo__Fax_No__">
+          <DataField>CompanyInfo__Fax_No__</DataField>
+        </Field>
+        <Field Name="CompanyInfo__E_Mail_">
+          <DataField>CompanyInfo__E_Mail_</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Picture">
+          <DataField>CompanyInfo_Picture</DataField>
+        </Field>
+        <Field Name="EquipmentNo_NFLRequisitionHeader">
+          <DataField>EquipmentNo_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="EquipmentType_NFLRequisitionHeader">
+          <DataField>EquipmentType_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="EquipmentRegNo_NFLRequisitionHeader">
+          <DataField>EquipmentRegNo_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="MaintenanceRequestNo_NFLRequisitionHeader">
+          <DataField>MaintenanceRequestNo_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="JobCardNo_NFLRequisitionHeader">
+          <DataField>JobCardNo_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="ApprovedByName">
+          <DataField>ApprovedByName</DataField>
+        </Field>
+        <Field Name="Header_Label_">
+          <DataField>Header_Label_</DataField>
+        </Field>
+        <Field Name="Procurement_Category_">
+          <DataField>Procurement_Category_</DataField>
+        </Field>
+        <Field Name="LocationCode_NFLRequisitionHeader">
+          <DataField>LocationCode_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="ShortcutDimension1Code_NFLRequisitionHeader">
+          <DataField>ShortcutDimension1Code_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="ShortcutDimension2Code_NFLRequisitionHeader">
+          <DataField>ShortcutDimension2Code_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="PostingDescription_NFLRequisitionHeader">
+          <DataField>PostingDescription_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="ProcurementCategory_NFLRequisitionHeader">
+          <DataField>ProcurementCategory_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="SpecialInstructionProgram_NFLRequisitionHeader">
+          <DataField>SpecialInstructionProgram_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="DeliveryPeriod_NFLRequisitionHeader">
+          <DataField>DeliveryPeriod_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="Label1">
+          <DataField>Label1</DataField>
+        </Field>
+        <Field Name="Label2">
+          <DataField>Label2</DataField>
+        </Field>
+        <Field Name="Label3">
+          <DataField>Label3</DataField>
+        </Field>
+        <Field Name="Label4">
+          <DataField>Label4</DataField>
+        </Field>
+        <Field Name="Label5">
+          <DataField>Label5</DataField>
+        </Field>
+        <Field Name="Label6">
+          <DataField>Label6</DataField>
+        </Field>
+        <Field Name="Label7">
+          <DataField>Label7</DataField>
+        </Field>
+        <Field Name="Label8">
+          <DataField>Label8</DataField>
+        </Field>
+        <Field Name="Name1">
+          <DataField>Name1</DataField>
+        </Field>
+        <Field Name="Name2">
+          <DataField>Name2</DataField>
+        </Field>
+        <Field Name="Name3">
+          <DataField>Name3</DataField>
+        </Field>
+        <Field Name="Name4">
+          <DataField>Name4</DataField>
+        </Field>
+        <Field Name="Name5">
+          <DataField>Name5</DataField>
+        </Field>
+        <Field Name="Name6">
+          <DataField>Name6</DataField>
+        </Field>
+        <Field Name="Name7">
+          <DataField>Name7</DataField>
+        </Field>
+        <Field Name="Name8">
+          <DataField>Name8</DataField>
+        </Field>
+        <Field Name="Code1">
+          <DataField>Code1</DataField>
+        </Field>
+        <Field Name="Code2">
+          <DataField>Code2</DataField>
+        </Field>
+        <Field Name="Code3">
+          <DataField>Code3</DataField>
+        </Field>
+        <Field Name="Code8">
+          <DataField>Code8</DataField>
+        </Field>
+        <Field Name="To_NFLRequisitionHeader">
+          <DataField>To_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="BudgetCode_NFLRequisitionHeader">
+          <DataField>BudgetCode_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="TotalAmount_NFLRequisitionHeader">
+          <DataField>TotalAmount_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="TotalAmount_NFLRequisitionHeaderFormat">
+          <DataField>TotalAmount_NFLRequisitionHeaderFormat</DataField>
+        </Field>
+        <Field Name="RequestByName_NFLRequisitionHeader">
+          <DataField>RequestByName_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="OrderDate_NFLRequisitionHeader">
+          <DataField>OrderDate_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="FirstApp">
+          <DataField>FirstApp</DataField>
+        </Field>
+        <Field Name="SecondApp">
+          <DataField>SecondApp</DataField>
+        </Field>
+        <Field Name="ThirdApp">
+          <DataField>ThirdApp</DataField>
+        </Field>
+        <Field Name="FourthApp">
+          <DataField>FourthApp</DataField>
+        </Field>
+        <Field Name="FifthApp">
+          <DataField>FifthApp</DataField>
+        </Field>
+        <Field Name="FirstApproverDesignation">
+          <DataField>FirstApproverDesignation</DataField>
+        </Field>
+        <Field Name="SecondApproverDesignation">
+          <DataField>SecondApproverDesignation</DataField>
+        </Field>
+        <Field Name="ThirdApproverDesignation">
+          <DataField>ThirdApproverDesignation</DataField>
+        </Field>
+        <Field Name="FouthApproverDesignation">
+          <DataField>FouthApproverDesignation</DataField>
+        </Field>
+        <Field Name="FiftyApproverDesignation">
+          <DataField>FiftyApproverDesignation</DataField>
+        </Field>
+        <Field Name="Approver1Date">
+          <DataField>Approver1Date</DataField>
+        </Field>
+        <Field Name="Approver2Date">
+          <DataField>Approver2Date</DataField>
+        </Field>
+        <Field Name="Approver3Date">
+          <DataField>Approver3Date</DataField>
+        </Field>
+        <Field Name="Approver4Date">
+          <DataField>Approver4Date</DataField>
+        </Field>
+        <Field Name="Approver5Date">
+          <DataField>Approver5Date</DataField>
+        </Field>
+        <Field Name="RequestorDesignation">
+          <DataField>RequestorDesignation</DataField>
+        </Field>
+        <Field Name="Signaturey">
+          <DataField>Signaturey</DataField>
+        </Field>
+        <Field Name="User_ID">
+          <DataField>User_ID</DataField>
+        </Field>
+        <Field Name="BudgetComment_NFLRequisitionLine">
+          <DataField>BudgetComment_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="BuyfromVendorNo_NFLRequisitionLine">
+          <DataField>BuyfromVendorNo_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="ShortcutDimension1Code_NFLRequisitionLine">
+          <DataField>ShortcutDimension1Code_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="BudgetAmountasatDate_NFLRequisitionLine">
+          <DataField>BudgetAmountasatDate_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="BudgetAmountasatDate_NFLRequisitionLineFormat">
+          <DataField>BudgetAmountasatDate_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="BudgetAmountfortheYear_NFLRequisitionLine">
+          <DataField>BudgetAmountfortheYear_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="BudgetAmountfortheYear_NFLRequisitionLineFormat">
+          <DataField>BudgetAmountfortheYear_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="ActualAmountasatDate_NFLRequisitionLine">
+          <DataField>ActualAmountasatDate_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="ActualAmountasatDate_NFLRequisitionLineFormat">
+          <DataField>ActualAmountasatDate_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="ActualAmountfortheYear_NFLRequisitionLine">
+          <DataField>ActualAmountfortheYear_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="ActualAmountfortheYear_NFLRequisitionLineFormat">
+          <DataField>ActualAmountfortheYear_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="BalanceonBudgetasatDate_NFLRequisitionLine">
+          <DataField>BalanceonBudgetasatDate_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="BalanceonBudgetfortheYear_NFLRequisitionLine">
+          <DataField>BalanceonBudgetfortheYear_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="BalanceonBudgetfortheYear_NFLRequisitionLineFormat">
+          <DataField>BalanceonBudgetfortheYear_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="BudgetCommentasatDate_NFLRequisitionLine">
+          <DataField>BudgetCommentasatDate_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="BudgetCommentfortheYear_NFLRequisitionLine">
+          <DataField>BudgetCommentfortheYear_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="CommitmentAmountfortheYear_NFLRequisitionLine">
+          <DataField>CommitmentAmountfortheYear_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="CommitmentAmountfortheYear_NFLRequisitionLineFormat">
+          <DataField>CommitmentAmountfortheYear_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Type">
+          <DataField>NFL_Requisition_Line_Type</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__No__">
+          <DataField>NFL_Requisition_Line__No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Location_Code_">
+          <DataField>NFL_Requisition_Line__Location_Code_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Description">
+          <DataField>NFL_Requisition_Line_Description</DataField>
+        </Field>
+        <Field Name="Description2_NFLRequisitionLine">
+          <DataField>Description2_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_of_Measure_">
+          <DataField>NFL_Requisition_Line__Unit_of_Measure_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Quantity">
+          <DataField>NFL_Requisition_Line_Quantity</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_QuantityFormat">
+          <DataField>NFL_Requisition_Line_QuantityFormat</DataField>
+        </Field>
+        <Field Name="PriorityRanking_NFLRequisitionLine">
+          <DataField>PriorityRanking_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Amount">
+          <DataField>NFL_Requisition_Line_Amount</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_AmountFormat">
+          <DataField>NFL_Requisition_Line_AmountFormat</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Buy_from_Vendor_No__">
+          <DataField>NFL_Requisition_Line__Buy_from_Vendor_No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_Cost__LCY__">
+          <DataField>NFL_Requisition_Line__Unit_Cost__LCY__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_Cost__LCY__Format">
+          <DataField>NFL_Requisition_Line__Unit_Cost__LCY__Format</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_TypeCaption">
+          <DataField>NFL_Requisition_Line_TypeCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__No__Caption">
+          <DataField>NFL_Requisition_Line__No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Location_Code_Caption">
+          <DataField>NFL_Requisition_Line__Location_Code_Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_DescriptionCaption">
+          <DataField>NFL_Requisition_Line_DescriptionCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_of_Measure_Caption">
+          <DataField>NFL_Requisition_Line__Unit_of_Measure_Caption</DataField>
+        </Field>
+        <Field Name="QtyCaption">
+          <DataField>QtyCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_AmountCaption">
+          <DataField>NFL_Requisition_Line_AmountCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Buy_from_Vendor_No__Caption">
+          <DataField>NFL_Requisition_Line__Buy_from_Vendor_No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_Cost__LCY__Caption">
+          <DataField>NFL_Requisition_Line__Unit_Cost__LCY__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Document_Type">
+          <DataField>NFL_Requisition_Line_Document_Type</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Document_No_">
+          <DataField>NFL_Requisition_Line_Document_No_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Line_No_">
+          <DataField>NFL_Requisition_Line_Line_No_</DataField>
+        </Field>
+        <Field Name="on">
+          <DataField>on</DataField>
+        </Field>
+        <Field Name="Quantity_NFLRequisitionLine">
+          <DataField>Quantity_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="Quantity_NFLRequisitionLineFormat">
+          <DataField>Quantity_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="DirectUnitCost_NFLRequisitionLine">
+          <DataField>DirectUnitCost_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="DirectUnitCost_NFLRequisitionLineFormat">
+          <DataField>DirectUnitCost_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="TotalAmount">
+          <DataField>TotalAmount</DataField>
+        </Field>
+        <Field Name="TotalAmountFormat">
+          <DataField>TotalAmountFormat</DataField>
+        </Field>
+        <Field Name="DimName1">
+          <DataField>DimName1</DataField>
+        </Field>
+        <Field Name="DimName2">
+          <DataField>DimName2</DataField>
+        </Field>
+        <Field Name="DimName3">
+          <DataField>DimName3</DataField>
+        </Field>
+        <Field Name="DimName4">
+          <DataField>DimName4</DataField>
+        </Field>
+        <Field Name="DimName5">
+          <DataField>DimName5</DataField>
+        </Field>
+        <Field Name="DimName6">
+          <DataField>DimName6</DataField>
+        </Field>
+        <Field Name="DimName7">
+          <DataField>DimName7</DataField>
+        </Field>
+        <Field Name="DimName8">
+          <DataField>DimName8</DataField>
+        </Field>
+        <Field Name="DimCode1">
+          <DataField>DimCode1</DataField>
+        </Field>
+        <Field Name="DimCode2">
+          <DataField>DimCode2</DataField>
+        </Field>
+        <Field Name="DimCode3">
+          <DataField>DimCode3</DataField>
+        </Field>
+        <Field Name="DimCode4">
+          <DataField>DimCode4</DataField>
+        </Field>
+        <Field Name="DimCode5">
+          <DataField>DimCode5</DataField>
+        </Field>
+        <Field Name="DimCode6">
+          <DataField>DimCode6</DataField>
+        </Field>
+        <Field Name="DimCode7">
+          <DataField>DimCode7</DataField>
+        </Field>
+        <Field Name="DimCode8">
+          <DataField>DimCode8</DataField>
+        </Field>
+        <Field Name="CurrencyCode">
+          <DataField>CurrencyCode</DataField>
+        </Field>
+        <Field Name="Approver_Id">
+          <DataField>Approver_Id</DataField>
+        </Field>
+        <Field Name="Escalated_Id">
+          <DataField>Escalated_Id</DataField>
+        </Field>
+        <Field Name="LastDateTimeModified">
+          <DataField>LastDateTimeModified</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

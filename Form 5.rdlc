@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="PageConst_________FORMAT_CurrReport_PAGENO_">
+          <DataField>PageConst_________FORMAT_CurrReport_PAGENO_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="AccountingPeriodEndDate_NFLRequisitionHeader">
+          <DataField>AccountingPeriodEndDate_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="AccountingPeriodStartDate_NFLRequisitionHeader">
+          <DataField>AccountingPeriodStartDate_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="FiscalYearEndDate_NFLRequisitionHeader">
+          <DataField>FiscalYearEndDate_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="FiscalYearStartDate_NFLRequisitionHeader">
+          <DataField>FiscalYearStartDate_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__No__">
+          <DataField>NFL_Requisition_Header__No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Requestor_ID_">
+          <DataField>NFL_Requisition_Header__Requestor_ID_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header_Status">
+          <DataField>NFL_Requisition_Header_Status</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Store_Requisition_No__">
+          <DataField>NFL_Requisition_Header__Store_Requisition_No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Request_By_No__">
+          <DataField>NFL_Requisition_Header__Request_By_No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Request_By_Name_">
+          <DataField>NFL_Requisition_Header__Request_By_Name_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Order_Date_">
+          <DataField>NFL_Requisition_Header__Order_Date_</DataField>
+        </Field>
+        <Field Name="Requested_Receipt_Date">
+          <DataField>Requested_Receipt_Date</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Expected_Receipt_Date_">
+          <DataField>NFL_Requisition_Header__Expected_Receipt_Date_</DataField>
+        </Field>
+        <Field Name="Purchase_RequisitionCaption">
+          <DataField>Purchase_RequisitionCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__No__Caption">
+          <DataField>NFL_Requisition_Header__No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Requestor_ID_Caption">
+          <DataField>NFL_Requisition_Header__Requestor_ID_Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header_StatusCaption">
+          <DataField>NFL_Requisition_Header_StatusCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Store_Requisition_No__Caption">
+          <DataField>NFL_Requisition_Header__Store_Requisition_No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Request_By_No__Caption">
+          <DataField>NFL_Requisition_Header__Request_By_No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Request_By_Name_Caption">
+          <DataField>NFL_Requisition_Header__Request_By_Name_Caption</DataField>
+        </Field>
+        <Field Name="Request_DateCaption">
+          <DataField>Request_DateCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header__Expected_Receipt_Date_Caption">
+          <DataField>NFL_Requisition_Header__Expected_Receipt_Date_Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Header_Document_Type">
+          <DataField>NFL_Requisition_Header_Document_Type</DataField>
+        </Field>
+        <Field Name="Currency_Code">
+          <DataField>Currency_Code</DataField>
+        </Field>
+        <Field Name="Posting_Description">
+          <DataField>Posting_Description</DataField>
+        </Field>
+        <Field Name="Location_Code">
+          <DataField>Location_Code</DataField>
+        </Field>
+        <Field Name="LocationCode">
+          <DataField>LocationCode</DataField>
+        </Field>
+        <Field Name="SignatureOne">
+          <DataField>SignatureOne</DataField>
+        </Field>
+        <Field Name="SignatureTwo">
+          <DataField>SignatureTwo</DataField>
+        </Field>
+        <Field Name="SignatureThree">
+          <DataField>SignatureThree</DataField>
+        </Field>
+        <Field Name="SignatureFour">
+          <DataField>SignatureFour</DataField>
+        </Field>
+        <Field Name="FirstApprover">
+          <DataField>FirstApprover</DataField>
+        </Field>
+        <Field Name="SecondApprover">
+          <DataField>SecondApprover</DataField>
+        </Field>
+        <Field Name="ThirdApprover">
+          <DataField>ThirdApprover</DataField>
+        </Field>
+        <Field Name="FourthApprover">
+          <DataField>FourthApprover</DataField>
+        </Field>
+        <Field Name="FirstDateOfApproval">
+          <DataField>FirstDateOfApproval</DataField>
+        </Field>
+        <Field Name="SecondDateOfApproval">
+          <DataField>SecondDateOfApproval</DataField>
+        </Field>
+        <Field Name="ThirdDateOfApproval">
+          <DataField>ThirdDateOfApproval</DataField>
+        </Field>
+        <Field Name="FourthDateOfApproval">
+          <DataField>FourthDateOfApproval</DataField>
+        </Field>
+        <Field Name="AppPositionOne">
+          <DataField>AppPositionOne</DataField>
+        </Field>
+        <Field Name="AppPositionTwo">
+          <DataField>AppPositionTwo</DataField>
+        </Field>
+        <Field Name="AppPositionThree">
+          <DataField>AppPositionThree</DataField>
+        </Field>
+        <Field Name="AppPositionFour">
+          <DataField>AppPositionFour</DataField>
+        </Field>
+        <Field Name="PDEntity_NFLRequisitionHeader">
+          <DataField>PDEntity_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="WrksSrvcsSup_NFLRequisitionHeader">
+          <DataField>WrksSrvcsSup_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="ITB">
+          <DataField>ITB</DataField>
+        </Field>
+        <Field Name="ContractNo">
+          <DataField>ContractNo</DataField>
+        </Field>
+        <Field Name="ProcumentPlanReference_NFLRequisitionHeader">
+          <DataField>ProcumentPlanReference_NFLRequisitionHeader</DataField>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="StartYear">
+          <DataField>StartYear</DataField>
+        </Field>
+        <Field Name="EndYear">
+          <DataField>EndYear</DataField>
+        </Field>
+        <Field Name="user1">
+          <DataField>user1</DataField>
+        </Field>
+        <Field Name="user2">
+          <DataField>user2</DataField>
+        </Field>
+        <Field Name="user3">
+          <DataField>user3</DataField>
+        </Field>
+        <Field Name="date1">
+          <DataField>date1</DataField>
+        </Field>
+        <Field Name="date2">
+          <DataField>date2</DataField>
+        </Field>
+        <Field Name="date3">
+          <DataField>date3</DataField>
+        </Field>
+        <Field Name="JobTitle1">
+          <DataField>JobTitle1</DataField>
+        </Field>
+        <Field Name="JobTitle2">
+          <DataField>JobTitle2</DataField>
+        </Field>
+        <Field Name="JobTitle3">
+          <DataField>JobTitle3</DataField>
+        </Field>
+        <Field Name="LineAmount_NFLRequisitionLine">
+          <DataField>LineAmount_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="LineAmount_NFLRequisitionLineFormat">
+          <DataField>LineAmount_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT_NFLRequisitionLine">
+          <DataField>AmountIncludingVAT_NFLRequisitionLine</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT_NFLRequisitionLineFormat">
+          <DataField>AmountIncludingVAT_NFLRequisitionLineFormat</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Type">
+          <DataField>NFL_Requisition_Line_Type</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__No__">
+          <DataField>NFL_Requisition_Line__No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Location_Code_">
+          <DataField>NFL_Requisition_Line__Location_Code_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Description">
+          <DataField>NFL_Requisition_Line_Description</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_of_Measure_">
+          <DataField>NFL_Requisition_Line__Unit_of_Measure_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Quantity">
+          <DataField>NFL_Requisition_Line_Quantity</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_QuantityFormat">
+          <DataField>NFL_Requisition_Line_QuantityFormat</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Amount">
+          <DataField>NFL_Requisition_Line_Amount</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_AmountFormat">
+          <DataField>NFL_Requisition_Line_AmountFormat</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Buy_from_Vendor_No__">
+          <DataField>NFL_Requisition_Line__Buy_from_Vendor_No__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_Cost__LCY__">
+          <DataField>NFL_Requisition_Line__Unit_Cost__LCY__</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_Cost__LCY__Format">
+          <DataField>NFL_Requisition_Line__Unit_Cost__LCY__Format</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_TypeCaption">
+          <DataField>NFL_Requisition_Line_TypeCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__No__Caption">
+          <DataField>NFL_Requisition_Line__No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Location_Code_Caption">
+          <DataField>NFL_Requisition_Line__Location_Code_Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_DescriptionCaption">
+          <DataField>NFL_Requisition_Line_DescriptionCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_of_Measure_Caption">
+          <DataField>NFL_Requisition_Line__Unit_of_Measure_Caption</DataField>
+        </Field>
+        <Field Name="QtyCaption">
+          <DataField>QtyCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_AmountCaption">
+          <DataField>NFL_Requisition_Line_AmountCaption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Buy_from_Vendor_No__Caption">
+          <DataField>NFL_Requisition_Line__Buy_from_Vendor_No__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line__Unit_Cost__LCY__Caption">
+          <DataField>NFL_Requisition_Line__Unit_Cost__LCY__Caption</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Document_Type">
+          <DataField>NFL_Requisition_Line_Document_Type</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Document_No_">
+          <DataField>NFL_Requisition_Line_Document_No_</DataField>
+        </Field>
+        <Field Name="NFL_Requisition_Line_Line_No_">
+          <DataField>NFL_Requisition_Line_Line_No_</DataField>
+        </Field>
+        <Field Name="on">
+          <DataField>on</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

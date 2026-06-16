@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2016/01/componentdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <Internal>true</Internal>
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="ReportTitle">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Trips Report</Value>
+                    <Style>
+                      <FontSize>18pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>Black</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.5cm</Top>
+            <Left>1cm</Left>
+            <Height>1cm</Height>
+            <Width>10cm</Width>
+          </Textbox>
+
+          <Table Name="TripsTable">
+            <DataSetName>Form_Header</DataSetName>
+            <Top>2cm</Top>
+            <Left>0.5cm</Left>
+            <Width>19cm</Width>
+            <Details>
+              <DetailRows>
+                <DetailRow>
+                  <Height>0.8cm</Height>
+                  <Cells>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="JMPNo">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!No_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="EquipmentNo">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!EquipmentNo_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="EquipmentRegNo">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!EquipmentRegNo_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="EquipmentName">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!EquipmentName_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="EquipmentType">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!EquipmentType_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="Distance">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Distance_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="Hours">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Hours_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="Days">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Days_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                    <Cell>
+                      <CellContents>
+                        <Textbox Name="DriverName">
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DriverName_.Value</Value>
+                        </Textbox>
+                      </CellContents>
+                    </Cell>
+                  </Cells>
+                </DetailRow>
+              </DetailRows>
+            </Details>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Form_Header</DataSetName>
+          </Table>
+
+          <Textbox Name="SummaryBox">
+            <Top>12cm</Top>
+            <Left>0.5cm</Left>
+            <Width>19cm</Width>
+            <Height>2cm</Height>
+            <CanGrow>true</CanGrow>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Total Trips: </Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Globals!TripsCount</Value>
+                  </TextRun>
+                </TextRuns>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Total KM Covered: </Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Globals!TotalKMCovered</Value>
+                  </TextRun>
+                </TextRuns>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Total Hours Driven: </Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Globals!TotalHoursDriven</Value>
+                  </TextRun>
+                </TextRuns>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Total Days Worked: </Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Globals!TotalDaysWorked</Value>
+                  </TextRun>
+                </TextRuns>
+              </Paragraph>
+            </Paragraphs>
+          </Textbox>
+        </ReportItems>
+      </Body>
+      <Width>21cm</Width>
+      <Height>29.7cm</Height>
+      <Style>
+        <BackgroundColor>White</BackgroundColor>
+      </Style>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="EquipmentNoFilter">
+      <DataType>String</DataType>
+      <Prompt>Equipment No.</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="FromDateFilter">
+      <DataType>DateTime</DataType>
+      <Prompt>From Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ToDateFilter">
+      <DataType>DateTime</DataType>
+      <Prompt>To Date</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+</Report>
