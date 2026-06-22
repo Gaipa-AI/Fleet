@@ -37,6 +37,7 @@ table 50002 "ADT Requisition Line"
         field(5; Type; Enum "Purchase Line Type")
         {
             Caption = 'Type';
+           
             // OptionCaption = ' ,G/L Account,Item,Fixed Asset,Charge (Item)';
             // OptionMembers = " ","G/L Account",Item,"Fixed Asset","Charge (Item)";
 
@@ -2698,6 +2699,7 @@ table 50002 "ADT Requisition Line"
             begin
                 ReqnHeader2.GET("Document Type", "Request Type", "Document No.");
                // Rec."Request Type"::"Spare Parts"
+
                 //if current approver is editing allow it
                 if not (Rec."Document Type" = Rec."Document Type"::"Store Requisition") then begin
                     // If header is not Open, allow only when current user is the current approver
@@ -2712,18 +2714,6 @@ table 50002 "ADT Requisition Line"
                     end;
                 end;
 
-                // if not (Rec."Document Type" = Rec."Document Type"::"Purchase Requisition") then begin
-                //     // If header is not Open, allow only when current user is the current approver
-                //     if ReqnHeader2.Status = ReqnHeader2.Status::"Pending Approval" then begin
-                //         ApprovalEntry.RESET();
-                //         ApprovalEntry.SETRANGE("Table ID", DATABASE::"ADT Requisition Header");
-                //         ApprovalEntry.SETRANGE("Document No.", ReqnHeader2."No.");
-                //         ApprovalEntry.SETRANGE("Approver ID", USERID);
-                //         ApprovalEntry.SETFILTER(Status, '%1|%2', ApprovalEntry.Status::Open, ApprovalEntry.Status::Created);
-                //         if not ApprovalEntry.FINDFIRST then
-                //             ReqnHeader2.TESTFIELD(Status, ReqnHeader2.Status::"Pending Approval");
-                //     end;
-                // end;
                 
                 // if ReqnHeader2."Document Type" = ReqnHeader2."Document Type"::"Store Requisition" then
                      
@@ -3549,9 +3539,11 @@ table 50002 "ADT Requisition Line"
         lvItem: Record Item;
         RequisitionHeader: Record "ADT Requisition Header";
     begin
+
         TestStatusOpen;
         TestOpen();
         ReqnHeader."No." := '';
+        Rec.Type := Rec.Type::Item;
     end;
 
     trigger OnModify();
@@ -5940,8 +5932,11 @@ table 50002 "ADT Requisition Line"
         RequisitionHeader.GET("Document Type", "Request Type", "Document No.");
         //original
         //RequisitionHeader.TESTFIELD(Status, RequisitionHeader.Status::Open);
-        if RequisitionHeader.Status <> RequisitionHeader.Status::Open then ERROR('Status for the document must be open')
-        else begin
+        if RequisitionHeader.Status <> RequisitionHeader.Status::Open then 
+        //ERROR('Status for the document must be open')
+        //else 
+        begin
+            //todayissues
                     // If header is not Open, allow only when current user is the current approver
                     if RequisitionHeader.Status = RequisitionHeader.Status::"Pending Approval" then begin
                         ApprovalEntry.RESET();
@@ -5952,11 +5947,9 @@ table 50002 "ADT Requisition Line"
                         if not ApprovalEntry.FINDFIRST then
                             ERROR('Document is pending approval and can only be modified by the current approver');
 
-                            //RequisitionHeader.TESTFIELD(Status, RequisitionHeader.Status::"Pending Approval");
-                           // else 
                     end 
                     else RequisitionHeader.TESTFIELD(Status, RequisitionHeader.Status::Open);
-                end;
+         end;
 
     end;
 

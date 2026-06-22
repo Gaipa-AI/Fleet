@@ -19,12 +19,9 @@ page 50008 "Fuel Requisition Subform"
             {
                 field(Type; Rec.Type)
                 {
-                    Editable = RequisitionOpen;
-
-                    trigger OnValidate()
-                    begin
-                        Rec.Type := Rec.Type::Item;
-                    end;
+                    //Editable = RequisitionOpen;
+                    Editable = false;
+                   
                 }
                 field("No."; Rec."No.")
                 {
@@ -79,22 +76,48 @@ page 50008 "Fuel Requisition Subform"
 
                         lvADTheader.GET(Rec."Document Type", Rec."Request Type", Rec."Document No.");
 
-                        IF lvADTheader.Status = lvADTheader.Status::Released THEN ERROR('Status for the document must be open damn')
-                        //recently added
-                        else begin
-                            if lvADTheader.Status = lvADTheader.Status::"Pending Approval" then begin
+                        // //IF lvADTheader.Status = lvADTheader.Status::Released THEN ERROR('Status for the document must be open damn')
+                        // IF lvADTheader.Status <> lvADTheader.Status::Open THEN ERROR('Status for the document must be open damn')
+                        // //recently added
+                        // else 
+                        //    // begin
+                        //     if lvADTheader.Status = lvADTheader.Status::"Pending Approval" then begin
+                        //         ApprovalEntry.RESET();
+                        //         ApprovalEntry.SETRANGE("Table ID", DATABASE::"ADT Requisition Header");
+                        //         ApprovalEntry.SETRANGE("Document Type", lvADTheader."Document Type");
+                        //         ApprovalEntry.SETRANGE("Document No.", lvADTheader."No.");
+                        //         ApprovalEntry.SETFILTER(Status, '%1|%2', ApprovalEntry.Status::Open, ApprovalEntry.Status::Created);
+                        //         IF not ApprovalEntry.FINDFIRST THEN
+                        //             ERROR('Document is pending approval and can only be modified by the current approver')
+
+                        //     end ;
+                        //    // else lvADTheader.TestField(Status, lvADTheader.Status::Open);
+                  
+                        // //end;
+                        // lvADTheader.TestField(Status, lvADTheader.Status::Open);
+                         //THEN ERROR('Status for the document must be open damn')
+
+                       // IF lvADTheader.Status = lvADTheader.Status::Released THEN ERROR('Status for the document must be open damn');
+                       
+                       
+                        if lvADTheader.Status <> lvADTheader.Status::"Open" then
+                            begin
+                                if lvADTheader.Status = lvADTheader.Status::"Pending Approval" then begin
                                 ApprovalEntry.RESET();
                                 ApprovalEntry.SETRANGE("Table ID", DATABASE::"ADT Requisition Header");
-                                ApprovalEntry.SETRANGE("Document Type", lvADTheader."Document Type");
+                                //ApprovalEntry.SETRANGE("Document Type", lvADTheader."Document Type");
                                 ApprovalEntry.SETRANGE("Document No.", lvADTheader."No.");
+                                ApprovalEntry.SETRANGE("Approver ID", USERID);
                                 ApprovalEntry.SETFILTER(Status, '%1|%2', ApprovalEntry.Status::Open, ApprovalEntry.Status::Created);
-                                IF not ApprovalEntry.FINDFIRST THEN
+                                IF not ApprovalEntry.FINDFIRST() THEN 
                                     ERROR('Document is pending approval and can only be modified by the current approver');
-                            end 
-                            //else lvADTheader.TestField(Status, lvADTheader.Status::Open);
-                            
-                        end;
-
+                               
+                                end
+                            else lvADTheader.TestField(Status, lvADTheader.Status::Open);
+                            end;
+                        
+    
+                        //if lvADTheader.Status = lvADTheader.Status::Open THEN
                         RequisitionLine.Reset();
                         RequisitionLine.SetRange("No.", Rec."No.");
                         RequisitionLine.SetRange("Location Code", Rec."Location Code");
@@ -233,10 +256,12 @@ page 50008 "Fuel Requisition Subform"
                 }
                 field("Unit Cost"; Rec."Unit Cost")
                 {
+                    Visible = false;
                 }
                 field("Total Cost"; Rec."Total Cost")
                 {
                     Editable = false;
+                    Visible = false;
                 }
                 field("Equipment No."; Rec."Equipment No.")
                 {
@@ -527,12 +552,14 @@ page 50008 "Fuel Requisition Subform"
             if UserSetup."Requisition Admin" or UserSetup."Edit Requisition Line" then
                 CanEditRequisition := true;
         end;
+
     end;
 
     trigger OnAfterGetRecord();
     begin
         Rec.ShowShortcutDimCode(ShortcutDimCode);
         OnAfterGetCurrRecord;
+        
     end;
 
     trigger OnDeleteRecord(): Boolean;
@@ -553,7 +580,8 @@ page 50008 "Fuel Requisition Subform"
     var
         PurchHeader: Record "Purchase Header";
     begin
-        Rec.Type := xRec.Type;
+        //Rec.Type := xRec.Type;
+        Rec.Type := Rec.Type::Item;
         CLEAR(ShortcutDimCode);
         //CMM DEFAULTING LOCATION ON HEADER
         PurchHeader.SETRANGE("Document Type", Rec."Document Type");
@@ -562,6 +590,11 @@ page 50008 "Fuel Requisition Subform"
             Rec."Location Code" := PurchHeader."Location Code";
         //END;
         OnAfterGetCurrRecord;
+    end;
+
+    trigger OnInsertRecord(BelowxRec: Boolean): Boolean
+    begin
+        
     end;
 
     var

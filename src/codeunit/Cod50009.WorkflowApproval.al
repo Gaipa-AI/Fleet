@@ -263,6 +263,7 @@ codeunit 50009 "Workflow_Approval"
        
         end;
     end;
+    
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Approvals Mgmt.", 'OnBeforeMakeApprovalEntry', '', false, false)]
     local procedure OnBeforeMakeApprovalEntry(var ApprovalEntry: Record "Approval Entry";
     ApprovalEntryArgument: Record "Approval Entry";

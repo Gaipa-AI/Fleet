@@ -77,10 +77,10 @@ page 50007 "Fuel Requisition"
                 {
                     ApplicationArea = All;
                 }
-                field("Request Type"; Rec."Request Type")
-                {
-                    ApplicationArea = All;
-                }
+                // field("Request Type"; Rec."Request Type")
+                // {
+                //     ApplicationArea = All;
+                // }
                 field("Posting Description"; Rec."Posting Description")
                 {
                     Caption = 'Purpose of Travel';
@@ -120,12 +120,12 @@ page 50007 "Fuel Requisition"
                     ToolTip = 'Specifies the value of the Requisition Total Cost field.';
                     Editable = false;
                 }
-                field("Requisition Lines Total"; Rec."Requisition Lines Total")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Requisition Lines Total field.';
-                    Visible = true;
-                }
+                // field("Requisition Lines Total"; Rec."Requisition Lines Total")
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies the value of the Requisition Lines Total field.';
+                //     Visible = true;
+                // }
                 // field("Approvals Entry"; Rec."Approvals Entry")
                 // {
                 //     ApplicationArea = All;
@@ -688,6 +688,7 @@ page 50007 "Fuel Requisition"
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
                             ApprovalComments.Reset();
+                            ApprovalComments."No." := Rec."No.";
                             ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
                             ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
                             if ApprovalComments.FindFirst() then begin

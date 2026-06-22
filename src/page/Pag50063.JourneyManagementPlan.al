@@ -491,6 +491,10 @@ page 50063 "Journey Management Plan"
                         Rec.TestField(Status, Rec.Status::Open);
                         Rec.TestField("JMP User No.");
                         Rec.TestField("From Date");
+                        Rec.TestField("Point Of Departure");
+                        Rec.TestField("Destination");
+                        Rec.TestField("Departure Time");
+
 
                         IF Rec."Prepared by" <> USERID THEN
                             ERROR('The selected request can only be sent for approval by the initiator %1', Rec."Prepared by");
@@ -661,24 +665,28 @@ page 50063 "Journey Management Plan"
 
                         if Confirm('Are you sure you want to Reject this Plan ?', true) then begin
                             
+                            ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
+                            customFunction.RejectApprovalRequestFM(Rec);
+                            Rec.SendRejectEmail(Rec);
                             //Checking for comments before rejecting
-                            ApprovalComments.Reset();
-                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Journey Management Plan");
-                            if ApprovalComments.FindFirst() then begin
-                                ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
-                                Rec.Status := Rec.Status::Rejected;
-                                customFunction.RejectApprovalRequestFM(Rec);
-                                Rec.SendRejectEmail(Rec);
-                            end else begin
-                                ApprovalComments2.Reset();
-                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Journey Management Plan");
-                                ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
-                                ApprovalComments2.SetRange("Document Line No.", 0);
-                                approvalComment.SetTableView(ApprovalComments2);
-                                approvalComment.Run();
-                            end;
-                            Rec.Status := Rec.Status::Rejected;
+                            // ApprovalComments.Reset();
+                            // ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            // ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Journey Management Plan");
+                            // if ApprovalComments.FindFirst() then begin
+                            //     ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
+                            //     Rec.Status := Rec.Status::Rejected;
+                            //     customFunction.RejectApprovalRequestFM(Rec);
+                            //     Rec.SendRejectEmail(Rec);
+                            // end else begin
+                            //     ApprovalComments2.Reset();
+                            //     ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Journey Management Plan");
+                            //     ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
+                            //     ApprovalComments2.SetRange("Document Line No.", 0);
+                            //     approvalComment.SetTableView(ApprovalComments2);
+                            //     approvalComment.Run();
+                            // end;
+                            
+                            //Rec.Status := Rec.Status::Rejected;
                         end;
                     end;
                 }
@@ -726,6 +734,9 @@ page 50063 "Journey Management Plan"
         else IsEditable:=false;         
         
         //IsEditable := not Rec."Journey Ended";
+
+        // ensure the last inspection date is populated for the current equipment
+        UpdateLastVehicleInspection();
         
     end;
 
@@ -775,7 +786,7 @@ page 50063 "Journey Management Plan"
             exit;
 
         PrevChecklist.Reset();
-        PrevChecklist.SetRange("Document Type", PrevChecklist."Document Type"::"Journey Management Plan");
+        PrevChecklist.SetRange("Document Type", PrevChecklist."Document Type"::"Equipment Inspection");
         PrevChecklist.SetRange("Equipment No.", Rec."Equipment No.");
         if Rec."No." <> '' then
             PrevChecklist.SetFilter("No.", '<>%1', Rec."No.");

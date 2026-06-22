@@ -167,13 +167,18 @@ tableextension 50001 "Employee FL" extends Employee
         {
             trigger OnValidate()
             begin
-                if Rec."Driver Status" = Rec."Driver Status"::Inactive then begin
-                    Rec.Validate(Status, Status::Inactive);
-                end else if Rec."Driver Status" = Rec."Driver Status"::Active then begin
+                // if Rec."Driver Status" = Rec."Driver Status"::Inactive then begin
+                //     Rec.Validate(Status, Status::Inactive);
+                //end
+                //else 
+                if Rec."Driver Status" = Rec."Driver Status"::Active then begin
                     Rec.Validate(Status, Status::Active);
-                end else if Rec."Driver Status" = Rec."Driver Status"::Terminated then begin
-                    Rec.Validate(Status, Status::Terminated);
-                end else if Rec."Driver Status" = Rec."Driver Status"::OnLeave then begin
+                end 
+                //else if Rec."Driver Status" = Rec."Driver Status"::Terminated then begin
+                //     Rec.Validate(Status, Status::Terminated);
+                //end 
+                else 
+                if Rec."Driver Status" = Rec."Driver Status"::OnLeave then begin
                     Rec.Validate(Status, Status::Active);
                 end;
             end;

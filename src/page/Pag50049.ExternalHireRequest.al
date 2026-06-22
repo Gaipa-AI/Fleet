@@ -430,7 +430,7 @@ page 50049 "External Hire Request"
             {
                 ApplicationArea = All;
                 Caption = 'Calculate Cost';
-                Image = CreateDocument;
+                Image = Check;
                 Promoted = true;
                 PromotedCategory = Process;
                 trigger OnAction()
@@ -438,6 +438,7 @@ page 50049 "External Hire Request"
                     Rec."Line To Invoice Type" := Rec."Line To Invoice Type"::"G/L Account";
                     Rec."Line To Invoice No." := '15110';
                     Rec."Unit of Measure Code" := 'EACH';
+                    Rec.Description := 'Hire Invoice for '+Rec."Client Name";
                     Rec."Posting Date" := Today();
                    GetTermsOfHireText();
                    Rec.EstimatedHireCost := CalculateEstimatedCost();

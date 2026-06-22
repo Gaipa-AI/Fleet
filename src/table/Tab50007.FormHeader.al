@@ -216,19 +216,17 @@ table 50007 "Form Header"
 
             
         }
-        field(16; "Any Dents"; Option)
+        field(16; "Any Dents"; Enum "Any Dents")
         {
-            OptionMembers = NO,SLIGHT,MODERATE,MAJOR;
-            OptionCaption = 'No,Slight,Moderate,Major';
+           DataClassification = ToBeClassified;
         }
         field(17; "Dents Description"; Text[250])
         {
 
         }
-        field(18; "Any Scratches"; Option)
+        field(18; "Any Scratches"; Enum "Any Scratches")
         {
-            OptionMembers = NO,SLIGHT,MODERATE,MAJOR;
-            OptionCaption = 'NO,Slight,Moderate,Major';
+            DataClassification = ToBeClassified;
         }
         field(19; "Scratches Description"; Text[250])
         {
@@ -2151,12 +2149,14 @@ table 50007 "Form Header"
         SalesLines.VALIDATE("Sell-to Customer No.", Rec."Client No.");
         SalesLines.Type := Rec."Line To Invoice Type";
         SalesLines.VALIDATE("No.", Rec."Line To Invoice No.");
-        SalesLines."Description 2" := Rec.Description;
+        //SalesLines."Description 2" := Rec.Description;
+        SalesLines."Description 2" := 'Invoice for vehicle hire';
         SalesLines.VALIDATE("Currency Code", Rec.Currency);
         SalesLines.VALIDATE(Quantity, Rec.Quantity);
         SalesLines.validate("Unit of Measure", Rec."Unit of Measure Code");
         // SalesLines.validate("Unit Price", Rec."Hire Rate");
         SalesLines.validate("Unit Price", Rec."EstimatedHireCost");
+        SalesLines.Description := Rec.Description;
         SalesLines.INSERT(TRUE);
 
         FormHeader.Reset();

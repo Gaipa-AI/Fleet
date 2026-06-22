@@ -14,7 +14,7 @@ report 50014 "Routine Maintenance"
         dataitem("Form Line"; "Form Line")
         {
             DataItemTableView = where("Document Type" = const("Routine Service Tracker"));
-            RequestFilterFields= "Equipment No.","Equipment Type", "Vehicle/Equipment Location";
+            RequestFilterFields= "Equipment No.", "Equipment Type", "Vehicle/Equipment Location";
             column(CompanyInfo_Name; CompanyInfo.Name) { }
             column(CompanyInfo_Address; CompanyInfo.Address) { }
             column(CompanyImage; CompanyInfo.Picture) { }

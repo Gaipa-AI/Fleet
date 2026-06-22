@@ -11,76 +11,6 @@
       <rd:DataSourceID>a4aa5d21-7c50-4c83-a437-52005d213774</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="EquipmentNo">
-          <DataField>EquipmentNo</DataField>
-        </Field>
-        <Field Name="EquipmentRegNo">
-          <DataField>EquipmentRegNo</DataField>
-        </Field>
-        <Field Name="EquipmentType">
-          <DataField>EquipmentType</DataField>
-        </Field>
-        <Field Name="EquipmentName">
-          <DataField>EquipmentName</DataField>
-        </Field>
-        <Field Name="CompanyInfo_Picture">
-          <DataField>CompanyInfo_Picture</DataField>
-        </Field>
-        <Field Name="CompanyInfo_Name">
-          <DataField>CompanyInfo_Name</DataField>
-        </Field>
-        <Field Name="CompanyInfo_Address">
-          <DataField>CompanyInfo_Address</DataField>
-        </Field>
-        <Field Name="ReportTitle">
-          <DataField>ReportTitle</DataField>
-        </Field>
-        <Field Name="JobLocation">
-          <DataField>JobLocation</DataField>
-        </Field>
-        <Field Name="DocumentNo">
-          <DataField>DocumentNo</DataField>
-        </Field>
-        <Field Name="DocumentDate">
-          <DataField>DocumentDate</DataField>
-        </Field>
-        <Field Name="HireRate">
-          <DataField>HireRate</DataField>
-        </Field>
-        <Field Name="HireRateFormat">
-          <DataField>HireRateFormat</DataField>
-        </Field>
-        <Field Name="Quantity">
-          <DataField>Quantity</DataField>
-        </Field>
-        <Field Name="QuantityFormat">
-          <DataField>QuantityFormat</DataField>
-        </Field>
-        <Field Name="TermsOfHire">
-          <DataField>TermsOfHire</DataField>
-        </Field>
-        <Field Name="EstimatedCost">
-          <DataField>EstimatedCost</DataField>
-        </Field>
-        <Field Name="EstimatedCostFormat">
-          <DataField>EstimatedCostFormat</DataField>
-        </Field>
-        <Field Name="HireDays">
-          <DataField>HireDays</DataField>
-        </Field>
-        <Field Name="User">
-          <DataField>User</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1071,12 +1001,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1116,4 +1040,74 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="EquipmentNo">
+          <DataField>EquipmentNo</DataField>
+        </Field>
+        <Field Name="EquipmentRegNo">
+          <DataField>EquipmentRegNo</DataField>
+        </Field>
+        <Field Name="EquipmentType">
+          <DataField>EquipmentType</DataField>
+        </Field>
+        <Field Name="EquipmentName">
+          <DataField>EquipmentName</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Picture">
+          <DataField>CompanyInfo_Picture</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Name">
+          <DataField>CompanyInfo_Name</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Address">
+          <DataField>CompanyInfo_Address</DataField>
+        </Field>
+        <Field Name="ReportTitle">
+          <DataField>ReportTitle</DataField>
+        </Field>
+        <Field Name="JobLocation">
+          <DataField>JobLocation</DataField>
+        </Field>
+        <Field Name="DocumentNo">
+          <DataField>DocumentNo</DataField>
+        </Field>
+        <Field Name="DocumentDate">
+          <DataField>DocumentDate</DataField>
+        </Field>
+        <Field Name="HireRate">
+          <DataField>HireRate</DataField>
+        </Field>
+        <Field Name="HireRateFormat">
+          <DataField>HireRateFormat</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
+        </Field>
+        <Field Name="TermsOfHire">
+          <DataField>TermsOfHire</DataField>
+        </Field>
+        <Field Name="EstimatedCost">
+          <DataField>EstimatedCost</DataField>
+        </Field>
+        <Field Name="EstimatedCostFormat">
+          <DataField>EstimatedCostFormat</DataField>
+        </Field>
+        <Field Name="HireDays">
+          <DataField>HireDays</DataField>
+        </Field>
+        <Field Name="User">
+          <DataField>User</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

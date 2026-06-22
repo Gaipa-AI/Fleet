@@ -74,7 +74,7 @@ table 50008 "Form Line"
                     Rec."Equipment RegNo" := FixedAsset."Registration No.";
 
                     Rec."Equipment Type" := FixedAsset."Equipment Type";
-                    Rec."Vehicle/Equipment Location" := FixedAsset."FA Location Code";
+                    Rec."Vehicle/Equipment Location" := FixedAsset."Location Code";
                     Rec."Next Service Date" := FixedAsset."Next Service Date";
                     Rec."Current Mileage" := FixedAsset."Vehicle Mileage";
                     Rec."Next Service KM" := FixedAsset."Next Service At Mileage";
@@ -260,8 +260,8 @@ table 50008 "Form Line"
         }
         field(41; "Vehicle/Equipment Location"; Code[20])
         {
-            // TableRelation = "General value".Code where(Type = const(Location));
-            TableRelation = "Fixed Asset"."FA Location Code";
+            TableRelation = "General value".Code where(Type = const(Location));
+            //TableRelation = "Fixed Asset"."Location Code";
         }
         field(42; "Service KM"; Decimal)
         {

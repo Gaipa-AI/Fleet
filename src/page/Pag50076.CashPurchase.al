@@ -818,11 +818,10 @@ page 50076"Cash Purchase"
                     ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                     AppMgt: Codeunit "Workflow EventHandling Ext";
                     begin
-                     Rec.Status := Rec.Status::Rejected;
+                     //Rec.Status := Rec.Status::Rejected;
                      ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RECORDID);
+                     customApp.RejectApprovalRequestCP(Rec);
                      
-                        
-
                     end;
                 }
                 action(Delegate)
@@ -949,5 +948,7 @@ page 50076"Cash Purchase"
     cashl: Record "Cash Purchase Line";
     UserSetup: Record "User Setup";
      IsAdmin: Boolean;
+
+     customApp : codeunit "Fleet Management";
 }
 

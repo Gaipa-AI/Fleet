@@ -209,18 +209,18 @@ tableextension 50013 "Sales Cue FL" extends "Sales Cue"
             Caption = 'Available Drivers';
             CalcFormula = count(Employee where("Driver Status" = filter(Active), "Employee Type" = filter('DRIVER'), "License expired" = const(false),"Defensive Driving Days" = filter(>0), "Medical Fitness Days" = filter(>0)));
         }
-        field(50048; "Inactive Drivers"; Integer)
-        {
-            FieldClass = FlowField;
-            Caption = 'Inactive Drivers';
-            CalcFormula = count(Employee where("Driver Status" = filter(Inactive), "Employee Type" = filter('DRIVER')));
-        }
-        field(50049; "Terminated Drivers"; Integer)
-        {
-            FieldClass = FlowField;
-            Caption = 'Terminated Drivers';
-            CalcFormula = count(Employee where("Driver Status" = filter(Terminated), "Employee Type" = filter('DRIVER')));
-        }
+        // field(50048; "Inactive Drivers"; Integer)
+        // {
+        //     FieldClass = FlowField;
+        //     Caption = 'Inactive Drivers';
+        //     CalcFormula = count(Employee where("Driver Status" = filter(Inactive), "Employee Type" = filter('DRIVER')));
+        // }
+        // field(50049; "Terminated Drivers"; Integer)
+        // {
+        //     FieldClass = FlowField;
+        //     Caption = 'Terminated Drivers';
+        //     CalcFormula = count(Employee where("Driver Status" = filter(Terminated), "Employee Type" = filter('DRIVER')));
+        // }
         field(50050; "Drivers On Leave"; Integer)
         {
             FieldClass = FlowField;

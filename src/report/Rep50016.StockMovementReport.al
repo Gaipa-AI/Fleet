@@ -162,7 +162,8 @@ report 50016 "Stock Movement Report"
 
                 // Calculate Totals
                 TotalInboundQty := PurchaseReceiptQty + PositiveAdjQty + TransferReceiptQty;
-                TotalOutboundQty := Abs(ConsumptionQty) + Abs(NegativeAdjQty) + Abs(TransferShipmentQty);
+                //TotalOutboundQty := Abs(ConsumptionQty) + Abs(NegativeAdjQty) + Abs(TransferShipmentQty);
+                TotalOutboundQty := Abs(NegativeAdjQty) + Abs(TransferShipmentQty);
 
                 // Calculate Closing Stock
                 ClosingStock := OpeningStock + TotalInboundQty - TotalOutboundQty;

@@ -34,6 +34,7 @@ report 50010 "Vehicle Hand Over"
             column(Medical_Fitness_Certificate; "Medical Fitness Certificate") { }
             column(CompanyInfo_Name; CompanyInfo.Name) { }
             column(CompanyInfo_Picture; CompanyInfo.Picture) { }
+            column(Prepared_by;"Prepared by"){ }
 
             dataitem("Form Line"; "Form Line")
             {

@@ -421,11 +421,11 @@ page 50033 "Equipment HandOver Form"
                         Rec.TestField("Former Driver");
                         Rec.TestField("Assigned Driver");
                         //Rec.TestField("Any Dents");
-                        Rec.TestField("Dents Description");
+                       // Rec.TestField("Dents Description");
                         //Rec.TestField("Interior Condition");
-                        Rec.TestField("Interior Remarks");
+                        //Rec.TestField("Interior Remarks");
                         //Rec.TestField("Any Scratches");
-                        Rec.TestField("Scratches Description");
+                        //Rec.TestField("Scratches Description");
                         Rec.TestField("General Mechanical Condition");
                         Rec.TestField("Mechanical Remarks");
                         Rec.TestField("Fuel Level");
@@ -491,13 +491,13 @@ page 50033 "Equipment HandOver Form"
                         Rec.TestField(Date);
                         Rec.TestField("Former Driver");
                         Rec.TestField("Assigned Driver");
-                        Rec.TestField("Any Dents");
-                        Rec.TestField("Dents Description");
-                        Rec.TestField("Interior Condition");
-                        Rec.TestField("Interior Remarks");
-                        Rec.TestField("Any Scratches");
-                        Rec.TestField("Scratches Description");
-                        Rec.TestField("General Mechanical Condition");
+                        //Rec.TestField("Any Dents");
+                        //Rec.TestField("Dents Description");
+                        // Rec.TestField("Interior Condition");
+                        // Rec.TestField("Interior Remarks");
+                        //Rec.TestField("Any Scratches");
+                        // Rec.TestField("Scratches Description");
+                        // Rec.TestField("General Mechanical Condition");
                         Rec.TestField("Mechanical Remarks");
                         Rec.TestField("Fuel Level");
                         Rec.TestField("Odometer Reading");
@@ -551,12 +551,12 @@ page 50033 "Equipment HandOver Form"
                         Rec.TestField(Date);
                         Rec.TestField("Former Driver");
                         Rec.TestField("Assigned Driver");
-                        Rec.TestField("Any Dents");
-                        Rec.TestField("Dents Description");
-                        Rec.TestField("Interior Condition");
-                        Rec.TestField("Interior Remarks");
-                        Rec.TestField("Any Scratches");
-                        Rec.TestField("Scratches Description");
+                        // Rec.TestField("Any Dents");
+                        // Rec.TestField("Dents Description");
+                        // Rec.TestField("Interior Condition");
+                        // Rec.TestField("Interior Remarks");
+                        // Rec.TestField("Any Scratches");
+                        // Rec.TestField("Scratches Description");
                         Rec.TestField("General Mechanical Condition");
                         Rec.TestField("Mechanical Remarks");
                         Rec.TestField("Fuel Level");
@@ -601,12 +601,12 @@ page 50033 "Equipment HandOver Form"
                         Rec.TestField(Date);
                         Rec.TestField("Former Driver");
                         Rec.TestField("Assigned Driver");
-                        Rec.TestField("Any Dents");
-                        Rec.TestField("Dents Description");
-                        Rec.TestField("Interior Condition");
-                        Rec.TestField("Interior Remarks");
-                        Rec.TestField("Any Scratches");
-                        Rec.TestField("Scratches Description");
+                        // Rec.TestField("Any Dents");
+                        // Rec.TestField("Dents Description");
+                        // Rec.TestField("Interior Condition");
+                        // Rec.TestField("Interior Remarks");
+                        // Rec.TestField("Any Scratches");
+                        // Rec.TestField("Scratches Description");
                         Rec.TestField("General Mechanical Condition");
                         Rec.TestField("Mechanical Remarks");
                         Rec.TestField("Fuel Level");
@@ -630,6 +630,7 @@ page 50033 "Equipment HandOver Form"
                         ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
                         if ApprovalEntry.FindFirst() then begin
                             ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
+                            
                         end
                         else begin
                             ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
@@ -660,6 +661,8 @@ page 50033 "Equipment HandOver Form"
                         ApprovalComments: Record "Sales Comment Line";
                         ApprovalComments2: Record "Sales Comment Line";
                         approvalComment: Page "Sales Comment Sheet";
+                        ApprovalEntries: Record "Approval Entry";
+                        
                     begin
 
                         Rec.TESTFIELD("Equipment No.");
@@ -667,13 +670,13 @@ page 50033 "Equipment HandOver Form"
                         Rec.TestField(Date);
                         Rec.TestField("Former Driver");
                         Rec.TestField("Assigned Driver");
-                        Rec.TestField("Any Dents");
-                        Rec.TestField("Dents Description");
-                        Rec.TestField("Interior Condition");
-                        Rec.TestField("Interior Remarks");
-                        Rec.TestField("Any Scratches");
-                        Rec.TestField("Scratches Description");
-                        Rec.TestField("General Mechanical Condition");
+                        // Rec.TestField("Any Dents");
+                        // Rec.TestField("Dents Description");
+                        // Rec.TestField("Interior Condition");
+                        // Rec.TestField("Interior Remarks");
+                        // Rec.TestField("Any Scratches");
+                        // Rec.TestField("Scratches Description");
+                        //Rec.TestField("General Mechanical Condition");
                         Rec.TestField("Mechanical Remarks");
                         Rec.TestField("Fuel Level");
                         Rec.TestField("Odometer Reading");
@@ -683,22 +686,42 @@ page 50033 "Equipment HandOver Form"
                         Rec.TestField("Medical Fitness Certificate");
 
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
+                            
+                              // Update all open approval entries for this document to Rejected
+                            ApprovalEntries.Reset();
+                            ApprovalEntries.SetRange("Table ID", Database::"Form Header");
+                            ApprovalEntries.SetRange("Document No.", Rec."No.");
+                            ApprovalEntries.SetRange(Status, ApprovalEntries.Status::Open, ApprovalEntries.Status::Created);
+                            if ApprovalEntries.FindSet() then begin
+                                repeat
+                                    ApprovalEntries.Status := ApprovalEntries.Status::Rejected;
+                                    ApprovalEntries.Modify();
+                                until ApprovalEntries.Next() = 0;
+                            end;
+
+                            // Update form header status
+                            Rec.Status := Rec.Status::Rejected;
+                            Rec.Modify();
+
                             //Checking for comments before rejecting
-                            ApprovalComments.Reset();
-                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Equipment Hand Over");
-                            if ApprovalComments.FindFirst() then begin
-                                //ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
+
+                            // ApprovalComments.Reset();
+                            // ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            // ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Equipment Hand Over");
+                            
+                            //if ApprovalComments.FindFirst() then begin
+                                
+                                ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 customFunction.RejectApprovalRequestFM(Rec);
                                 Rec.SendRejectEmail(Rec);
-                            end else begin
-                                ApprovalComments2.Reset();
-                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Equipment Hand Over");
-                                ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
-                                ApprovalComments2.SetRange("Document Line No.", 0);
-                                approvalComment.SetTableView(ApprovalComments2);
-                                approvalComment.Run();
-                            end;
+                            // end else begin
+                            //     ApprovalComments2.Reset();
+                            //     ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Equipment Hand Over");
+                            //     ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
+                            //     ApprovalComments2.SetRange("Document Line No.", 0);
+                            //     approvalComment.SetTableView(ApprovalComments2);
+                            //     approvalComment.Run();
+                            // end;
                         end;
                     end;
                 }

@@ -51,6 +51,7 @@ report 50007 "Vehicle Inspection CheckList"
                 column(WalkAround_Status; WalkAround_Status) { }
                 column(WalkAround_Missing; Missing) { }
                 column(WalkAround_Damaged; Damaged) { }
+                column(WalkAround_Present; Present){ }
 
             
 
@@ -88,6 +89,8 @@ report 50007 "Vehicle Inspection CheckList"
                 column(UnderBonnet_Status; UnderBonnet_Status) { }
                 column(UnderBonnet_Missing; Missing) { }
                 column(UnderBonnet_Damaged; Damaged) { }
+                column(UnderBonnet_Present; Present){ }
+
 
                 trigger OnAfterGetRecord()
                 begin
@@ -122,11 +125,12 @@ report 50007 "Vehicle Inspection CheckList"
                 column(InsideVehicle_Status; InsideVehicle_Status) { }
                 column(InsideVehicle_Missing; Missing) { }
                 column(InsideVehicle_Damaged; Damaged) { }
+                column(InsideVehicle_Present; Present){ }
 
                 trigger OnAfterGetRecord()
                 begin
                     InsideVehicle_Status := false;
-                    if InsideVehicle.Monday or InsideVehicle.Missing or InsideVehicle.Damaged or InsideVehicle.Tuesday or InsideVehicle.Wednesday or InsideVehicle.Thursday or InsideVehicle.Friday or InsideVehicle.Saturday or InsideVehicle.Sunday then
+                    if InsideVehicle.Monday or InsideVehicle.Missing or InsideVehicle.Damaged or InsideVehicle.Present or InsideVehicle.Tuesday or InsideVehicle.Wednesday or InsideVehicle.Thursday or InsideVehicle.Friday or InsideVehicle.Saturday or InsideVehicle.Sunday then
                         InsideVehicle_Status := true;
                 end;
 
@@ -156,11 +160,12 @@ report 50007 "Vehicle Inspection CheckList"
                 column(EmergencyEquipment_Status; EmergencyEquipment_Status) { }
                 column(EmergencyEquipment_Missing; Missing) { }
                 column(EmergencyEquipment_Damaged; Damaged) { }
+                column(EmergencyEquipment_Present; Present){ }
 
                 trigger OnAfterGetRecord()
                 begin
                     EmergencyEquipment_Status := false;
-                    if EmergencyEquipment.Monday or EmergencyEquipment.Missing or EmergencyEquipment.Damaged or EmergencyEquipment.Tuesday or EmergencyEquipment.Wednesday or EmergencyEquipment.Thursday or EmergencyEquipment.Friday or EmergencyEquipment.Saturday or EmergencyEquipment.Sunday then
+                    if EmergencyEquipment.Monday or EmergencyEquipment.Missing or EmergencyEquipment.Damaged or EmergencyEquipment.Present or EmergencyEquipment.Tuesday or EmergencyEquipment.Wednesday or EmergencyEquipment.Thursday or EmergencyEquipment.Friday or EmergencyEquipment.Saturday or EmergencyEquipment.Sunday then
                         EmergencyEquipment_Status := true;
                 end;
 
@@ -189,11 +194,12 @@ report 50007 "Vehicle Inspection CheckList"
                 column(BeforeSettingOff_Status; BeforeSettingOff_Status) { }
                 column(BeforeSettingOff_Missing; Missing) { }
                 column(BeforeSettingOff_Damaged; Damaged) { }
+                column(BeforeSettingOff_Present; Present){ }
 
                 trigger OnAfterGetRecord()
                 begin
                     BeforeSettingOff_Status := false;
-                    if BeforeSettingOff.Monday or BeforeSettingOff.Missing or BeforeSettingOff.Damaged or BeforeSettingOff.Tuesday or BeforeSettingOff.Wednesday or BeforeSettingOff.Thursday or BeforeSettingOff.Friday or BeforeSettingOff.Saturday or BeforeSettingOff.Sunday then
+                    if BeforeSettingOff.Monday or BeforeSettingOff.Missing or BeforeSettingOff.Damaged or BeforeSettingOff.Present or BeforeSettingOff.Tuesday or BeforeSettingOff.Wednesday or BeforeSettingOff.Thursday or BeforeSettingOff.Friday or BeforeSettingOff.Saturday or BeforeSettingOff.Sunday then
                         BeforeSettingOff_Status := true;
                 end;
 

@@ -617,7 +617,7 @@ report 50004 "Spare Parts Requisition"
             {
                 DataItemLinkReference = "NFL Requisition Header";
                 DataItemLink = "Document No." = FIELD("No.");
-                DataItemTableView = where(status = filter(Approved));
+                //DataItemTableView = where(status = filter(Approved));
                 column(Approver_Id; "Approver ID")
                 {
                 }

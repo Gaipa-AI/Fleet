@@ -154,20 +154,20 @@ page 50018 "Admin Assist Activities"
                     ToolTip = 'Specifies the value of the Available Drivers field.', Comment = '%';
                     DrillDownPageId = "Driver List";
                 }
-                field("Inactive Drivers"; Rec."Inactive Drivers")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Inactive Drivers field.', Comment = '%';
-                    StyleExpr = ColorYellow;
-                    DrillDownPageId = "Driver List";
-                }
-                field("Terminated Drivers"; Rec."Terminated Drivers")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Terminated Drivers field.', Comment = '%';
-                    StyleExpr = ColorRed;
-                    DrillDownPageId = "Driver List";
-                }
+                // field("Inactive Drivers"; Rec."Inactive Drivers")
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies the value of the Inactive Drivers field.', Comment = '%';
+                //     StyleExpr = ColorYellow;
+                //     DrillDownPageId = "Driver List";
+                // }
+                // field("Terminated Drivers"; Rec."Terminated Drivers")
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies the value of the Terminated Drivers field.', Comment = '%';
+                //     StyleExpr = ColorRed;
+                //     DrillDownPageId = "Driver List";
+                // }
                 field("Drivers On Leave"; Rec."Drivers On Leave")
                 {
                     ApplicationArea = All;

@@ -6903,6 +6903,8 @@ codeunit 50000 "Fleet Management"
         Text018: Label '%1 %2 is greater than %3 and was adjusted to %4.';
         Text040: Label 'The %1 in the %2 must be same as in the %3.';
         RecRef: RecordRef;
+        UnsupportedRecordTypeErr: Label 'Record type %1 is not supported by this workflow response.', Comment = 'Record type Customer is not supported by this workflow response.';
+
 
         //========Approval Workflow Management - PRQ========
         WorkflowManagementPRQ: Codeunit 1501;
@@ -8418,25 +8420,40 @@ codeunit 50000 "Fleet Management"
         ApprovalEntries1: Record "Approval Entry";
         NvText: Label 'The approval Request has been rejected';
     begin
+
         ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Table ID", Database::"ADT Requisition Header");
         ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
-        ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
-        ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Rejected);
-        if ApprovalEntries.FindFirst() then begin
-            ApprovalEntries1.Reset();
-            ApprovalEntries1.SetRange(ApprovalEntries1."Document No.", ApprovalEntries."Document No.");
-            ApprovalEntries1.SetRange(ApprovalEntries1."Approval Code", ApprovalEntries."Approval Code");
-            ApprovalEntries1.SetFilter(ApprovalEntries1."Approver ID", '<>%1', ApprovalEntries."Approver ID");
-            ApprovalEntries1.SetFilter(ApprovalEntries1.Status, '%1|%2|%3', ApprovalEntries1.Status::Created, ApprovalEntries1.Status::Open, ApprovalEntries1.Status::Approved);
-            if ApprovalEntries1.FindFirst() then begin
+        //ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
+        ApprovalEntries.SetRange(Status, ApprovalEntries.Status::Open, ApprovalEntries.Status::Created);
+            if ApprovalEntries.FindSet() then begin
                 repeat
-                    ApprovalEntries1.Status := ApprovalEntries1.Status::Rejected;
-                    ApprovalEntries1.Modify();
-                until ApprovalEntries1.Next() = 0;
+                    ApprovalEntries.Status := ApprovalEntries.Status::Rejected;
+                    ApprovalEntries.Modify();
+                until ApprovalEntries.Next() = 0;
             end;
-            OpenDocumentPRQ(Rec);
-            Message(NvText);
-        end;
+
+        Rec.Status := Rec.Status::Rejected;
+        Rec.Modify();
+        // ApprovalEntries.Reset();
+        // ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
+        // ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
+        // ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Rejected);
+        // if ApprovalEntries.FindFirst() then begin
+        //     ApprovalEntries1.Reset();
+        //     ApprovalEntries1.SetRange(ApprovalEntries1."Document No.", ApprovalEntries."Document No.");
+        //     ApprovalEntries1.SetRange(ApprovalEntries1."Approval Code", ApprovalEntries."Approval Code");
+        //     ApprovalEntries1.SetFilter(ApprovalEntries1."Approver ID", '<>%1', ApprovalEntries."Approver ID");
+        //     ApprovalEntries1.SetFilter(ApprovalEntries1.Status, '%1|%2|%3', ApprovalEntries1.Status::Created, ApprovalEntries1.Status::Open, ApprovalEntries1.Status::Approved);
+        //     if ApprovalEntries1.FindFirst() then begin
+        //         repeat
+        //             ApprovalEntries1.Status := ApprovalEntries1.Status::Rejected;
+        //             ApprovalEntries1.Modify();
+        //         until ApprovalEntries1.Next() = 0;
+        //     end;
+        //     OpenDocumentPRQ(Rec);
+        //     Message(NvText);
+        // end;
     end;
 
     procedure OpenDocumentPRQ(Rec: Record "ADT Requisition Header")
@@ -8855,23 +8872,60 @@ codeunit 50000 "Fleet Management"
         NvText: Label 'The approval Request has been rejected';
     begin
         ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Table ID", Database::"Maintenance Header");
         ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
-        ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
-        ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Rejected);
-        if ApprovalEntries.FindFirst() then begin
-            ApprovalEntries1.Reset();
-            ApprovalEntries1.SetRange(ApprovalEntries1."Document No.", ApprovalEntries."Document No.");
-            ApprovalEntries1.SetRange(ApprovalEntries1."Approval Code", ApprovalEntries."Approval Code");
-            ApprovalEntries1.SetFilter(ApprovalEntries1."Approver ID", '<>%1', ApprovalEntries."Approver ID");
-            ApprovalEntries1.SetFilter(ApprovalEntries1.Status, '%1|%2|%3', ApprovalEntries1.Status::Created, ApprovalEntries1.Status::Open, ApprovalEntries1.Status::Approved);
-            if ApprovalEntries1.FindFirst() then
+        //ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
+        ApprovalEntries.SetRange(Status, ApprovalEntries.Status::Open, ApprovalEntries.Status::Created);
+            if ApprovalEntries.FindSet() then begin
                 repeat
-                    ApprovalEntries1.Status := ApprovalEntries1.Status::Rejected;
-                    ApprovalEntries1.Modify();
-                until ApprovalEntries1.Next() = 0;
-            OpenDocumentMR(Rec);
-            Message(NvText);
-        end;
+                    ApprovalEntries.Status := ApprovalEntries.Status::Rejected;
+                    ApprovalEntries.Modify();
+                until ApprovalEntries.Next() = 0;
+            end;
+
+        Rec.Status := Rec.Status::Rejected;
+        Rec.Modify();
+        // ApprovalEntries.Reset();
+        // ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
+        // ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
+        // ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Rejected);
+        // if ApprovalEntries.FindFirst() then begin
+        //     ApprovalEntries1.Reset();
+        //     ApprovalEntries1.SetRange(ApprovalEntries1."Document No.", ApprovalEntries."Document No.");
+        //     ApprovalEntries1.SetRange(ApprovalEntries1."Approval Code", ApprovalEntries."Approval Code");
+        //     ApprovalEntries1.SetFilter(ApprovalEntries1."Approver ID", '<>%1', ApprovalEntries."Approver ID");
+        //     ApprovalEntries1.SetFilter(ApprovalEntries1.Status, '%1|%2|%3', ApprovalEntries1.Status::Created, ApprovalEntries1.Status::Open, ApprovalEntries1.Status::Approved);
+        //     if ApprovalEntries1.FindFirst() then
+        //         repeat
+        //             ApprovalEntries1.Status := ApprovalEntries1.Status::Rejected;
+        //             ApprovalEntries1.Modify();
+        //         until ApprovalEntries1.Next() = 0;
+        //     OpenDocumentMR(Rec);
+        //     Message(NvText);
+        // end;
+    end;
+
+    procedure RejectApprovalRequestCP(Rec: Record "Cash Purchase")
+    var
+        ApprovalEntries: Record "Approval Entry";
+        ApprovalEntries1: Record "Approval Entry";
+        NvText: Label 'The approval Request has been rejected';
+    begin
+        ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Table ID", Database::"Cash Purchase");
+        ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
+        //ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
+        ApprovalEntries.SetRange(Status, ApprovalEntries.Status::Open, ApprovalEntries.Status::Created);
+            if ApprovalEntries.FindSet() then begin
+                repeat
+                    ApprovalEntries.Status := ApprovalEntries.Status::Rejected;
+                    ApprovalEntries.Modify();
+                until ApprovalEntries.Next() = 0;
+            end;
+             
+        Rec.Status := Rec.Status::Rejected;
+        Rec.Modify();
+       
     end;
 
     procedure OpenDocumentMR(Rec: Record "Maintenance Header")
@@ -9397,26 +9451,112 @@ codeunit 50000 "Fleet Management"
         ApprovalEntries1: Record "Approval Entry";
         NvText: Label 'The approval Request has been rejected';
     begin
-        Rec.Status := Rec.Status::Rejected;
+        
         ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Table ID", Database::"Form Header");
         ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
-        ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
-        //ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Rejected);
-        if ApprovalEntries.FindFirst() then begin
-            ApprovalEntries1.Reset();
-            ApprovalEntries1.SetRange(ApprovalEntries1."Document No.", ApprovalEntries."Document No.");
-            ApprovalEntries1.SetRange(ApprovalEntries1."Approval Code", ApprovalEntries."Approval Code");
-            ApprovalEntries1.SetFilter(ApprovalEntries1."Approver ID", '<>%1', ApprovalEntries."Approver ID");
-            ApprovalEntries1.SetFilter(ApprovalEntries1.Status, '%1|%2|%3', ApprovalEntries1.Status::Created, ApprovalEntries1.Status::Open, ApprovalEntries1.Status::Approved);
-            if ApprovalEntries1.FindFirst() then
+        //ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
+        ApprovalEntries.SetRange(Status, ApprovalEntries.Status::Open, ApprovalEntries.Status::Created);
+            if ApprovalEntries.FindSet() then begin
                 repeat
-                    ApprovalEntries1.Status := ApprovalEntries1.Status::Rejected;  
-                    ApprovalEntries1.Modify();
-                until ApprovalEntries1.Next() = 0;
-            OpenDocumentFM(Rec);
-            Message(NvText);
+                    ApprovalEntries.Status := ApprovalEntries.Status::Rejected;
+                    ApprovalEntries.Modify();
+                until ApprovalEntries.Next() = 0;
+            end;
+        
+        Rec.Status := Rec.Status::Rejected;
+        Rec.Modify();
+        //ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Rejected);
+        // if ApprovalEntries.FindFirst() then begin
+        //     //will work
+        //     ApprovalEntries.Status := ApprovalEntries.Status::Rejected;
+        //     ApprovalEntries.Reset();
+        //     ApprovalEntries1.SetRange(ApprovalEntries1."Document No.", ApprovalEntries."Document No.");
+        //     ApprovalEntries1.SetRange(ApprovalEntries1."Approval Code", ApprovalEntries."Approval Code");
+        //     ApprovalEntries1.SetFilter(ApprovalEntries1."Approver ID", '<>%1', ApprovalEntries."Approver ID");
+        //     ApprovalEntries1.SetFilter(ApprovalEntries1.Status, '%1|%2|%3', ApprovalEntries1.Status::Created, ApprovalEntries1.Status::Open, ApprovalEntries1.Status::Approved);
+        //     if ApprovalEntries1.FindFirst() then
+        //         repeat
+        //             ApprovalEntries1.Status := ApprovalEntries1.Status::Rejected;  
+        //             ApprovalEntries1.Modify();
+        //         until ApprovalEntries1.Next() = 0;
+        //     OpenDocumentFM(Rec);
+        //     Message(NvText);
+        // end;
+    end;
+
+    procedure SetStatusToRejected(Rec: Record "Form Header")
+    var
+        // SalesHeader: Record "Sales Header";
+        // PurchaseHeader: Record "Purchase Header";
+        // IncomingDocument: Record "Incoming Document";
+        FormHeader: Record "Form Header";
+        RecRef: RecordRef;
+        IsHandled: Boolean;
+    begin
+        OnBeforeSetStatusToRejected(Rec);
+        RecRef.GetTable(Rec);
+
+        case RecRef.Number of
+            // DATABASE::"Purchase Header":
+            //     begin
+            //         RecRef.SetTable(PurchaseHeader);
+            //         PurchaseHeader.Validate(Status, PurchaseHeader.Status::"Pending Approval");
+            //         PurchaseHeader.Modify(true);
+            //         Variant := PurchaseHeader;
+            //     end;
+            // DATABASE::"Sales Header":
+            //     begin
+            //         RecRef.SetTable(SalesHeader);
+            //         SalesHeader.Validate(Status, SalesHeader.Status::"Pending Approval");
+            //         SalesHeader.Modify(true);
+            //         Variant := SalesHeader;
+            //     end;
+            // DATABASE::"Incoming Document":
+            //     begin
+            //         RecRef.SetTable(IncomingDocument);
+            //         IncomingDocument.Validate(Status, IncomingDocument.Status::"Pending Approval");
+            //         IncomingDocument.Modify(true);
+            //         Variant := IncomingDocument;
+            //     end;
+            DATABASE::"Form Header":
+                begin
+                    RecRef.SetTable(FormHeader);
+                    FormHeader.Validate(Status, FormHeader.Status::"Rejected");
+                    FormHeader.Modify(true);
+                    Rec := FormHeader;
+                end;
+            else begin
+                IsHandled := false;
+                //OnSetStatusToRejected(RecRef, Variant, IsHandled);
+                if not IsHandled then
+                    Error(UnsupportedRecordTypeErr, RecRef.Caption);
+            end;
         end;
     end;
+
+    // procedure RejectRecordApprovalRequest(RecordID: RecordID)
+    // var
+    //     ApprovalEntry: Record "Approval Entry";
+    // begin
+    //     if not FindOpenApprovalEntryForCurrUser(ApprovalEntry, RecordID) then
+    //         Error(NoReqToRejectErr);
+
+    //     ApprovalEntry.SetRecFilter();
+    //     RejectApprovalRequests(ApprovalEntry);
+    // end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeSetStatusToRejected(Rec: Record "Form Header")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnSetStatusToRejected(RecRef: RecordRef; var Variant: Variant; var IsHandled: Boolean)
+    begin
+    end;
+
+    
 
     procedure OpenDocumentFM(Rec: Record "Form Header")
     var

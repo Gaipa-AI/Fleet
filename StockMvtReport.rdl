@@ -1025,7 +1025,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!NegativeAdjQty.Value</Value>
+                                  <Value>=Abs(Fields!NegativeAdjQty.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>0.0</Format>
@@ -1059,7 +1059,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ConsumptionQty.Value</Value>
+                                  <Value>=Abs(Fields!ConsumptionQty.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>0.0</Format>
@@ -1723,9 +1723,9 @@
         </PageFooter>
         <PageHeight>30cm</PageHeight>
         <PageWidth>30cm</PageWidth>
-        <LeftMargin>0cm</LeftMargin>
-        <RightMargin>0cm</RightMargin>
-        <TopMargin>0cm</TopMargin>
+        <LeftMargin>0.5cm</LeftMargin>
+        <RightMargin>0.5cm</RightMargin>
+        <TopMargin>1cm</TopMargin>
         <BottomMargin>0cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
