@@ -310,6 +310,26 @@ page 50018 "Admin Assist Activities"
                     DrillDownPageId = "All Equipment HandOver Forms";
                 }
             }
+
+            cuegroup(HireSales)
+            {
+                field("All Hire Sales";Rec."All Hire Sales")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the hire sales being made', Comment = '%';
+                    DrillDownPageId = "Posted Sales Invoices";
+
+                }
+                field("Hire Sales in Progress";Rec."Hire Sales in Progress")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the hire sales being made', Comment = '%';
+                    DrillDownPageId = "Sales Order List";
+
+                }
+
+
+            }
         }
     }
 

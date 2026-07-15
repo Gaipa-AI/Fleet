@@ -117,7 +117,6 @@ report 50022 "Hire Report"
         EquipmentNoFilter: Code[20];
         FromDateFilter: Date;
         ToDateFilter: Date;
-        HireFilter: Option "","Internal Hire","External Hire";
         
         ReportTitle: Text;
 }

@@ -29,6 +29,21 @@ pageextension 50016 "Sales Credit Memo FL" extends "Sales Credit Memo"
                 ToolTip = 'Specifies the value of the Hire Request No. field.', Comment = '%';
                 Editable = false;
             }
+            field("Equipment No."; Rec."Equipment No.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Hire Request No. field.', Comment = '%';
+                Editable = false;
+
+            }
+            field("Hire Type"; Rec."Hire Type")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Hire Type field.', Comment = '%';
+                Editable = false;
+
+            }
+           
         }
     }
 

@@ -2,8 +2,27 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
 {
     layout
     {
+        modify("Responsible Employee")
+        {
+            trigger OnLookup(var Text: Text): Boolean
+            var
+                Employee: Record Employee;
+            begin
+                Employee.SetRange(Blocked, false);
+
+                if Page.RunModal(Page::"Employee List", Employee) = Action::LookupOK then begin
+                    Rec."Responsible Employee" := Employee."No.";
+                    Rec.Modify();
+                    //exit(true);
+                end;
+
+                exit(false);
+            end;
+        }
+
         addafter(General)
         {
+            
             group(fleetDetails)
             {
                 Caption = 'Fleet Details';
@@ -58,7 +77,7 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the 3RD Party Expiry Date field.', Comment = '%';
                 }
-                field("Service Interval"; Rec."Service Interval")
+                field("Service Interval (km)"; Rec."Service Interval")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Service Interval field (km).', Comment = '%';
@@ -74,6 +93,38 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                     ApplicationArea = All;
                     ToolTip = 'Indicates on what date the vehicle was serviced.';
                     Editable = false;
+                }
+                field("Service Interval Hours";Rec."Service Interval Hours")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates the interval service hours for non-vehicle equipment';
+                    Editable = true;
+                    Visible = IsSeen;
+
+                }
+                field("Current Hours";Rec."Current Hours")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates the number of hours the equipment has been in use';
+                    Editable = true;
+                    Visible = IsSeen;
+
+                }
+                field("Next Service Hours";Rec."Next Service Hours")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates on what cumulative hours the equipment is meant to be serviced';
+                    Editable = true;
+                    Visible = IsSeen;
+
+                }
+                field("Hours to Next Service";Rec."Hours to Next Service")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates on what date the vehicle was serviced.';
+                    Editable = true;
+                    Visible = IsSeen;
+
                 }
             }
         }
@@ -193,17 +244,63 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                     Message('Vehicle mileage has been updated based on the latest performance data of responsible employee');
                 end;
             }
+            action(Use)
+            {
+                ApplicationArea = All;
+                Caption = 'Start Use';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Start;
+                Visible = IsVisible;
+
+                trigger OnAction()
+                var
+                    myInt: Integer;
+                begin
+                    Rec."Equipment Status" := Rec."Equipment Status"::"In Use";
+                    Rec.Modify();
+                    StartEquipmentHourCounter(Rec);
+
+                end;
+            }
+
+            action(EndUse)
+            {
+                ApplicationArea = All;
+                Caption = 'End Use';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Stop;
+                Visible = IsVisible;
+
+                trigger OnAction()
+                var
+                    myInt: Integer;
+                begin
+                    Rec."Equipment Status" := Rec."Equipment Status"::Available;
+                    Rec.Modify();
+                    StopEquipmentHourCounter(Rec);
+
+                end;
+            }
         }
     }
 
     var
         workCondition: Record "General value";
         ConditionOfWork: Text;
+        IsVisible: Boolean;
+
+        IsSeen: Boolean;
 
     trigger OnAfterGetRecord()
     var
         myInt: Integer;
+        
     begin
+
         workCondition.Reset();
         workCondition.SetRange(Type, workCondition.Type::"Work Condition");
         workCondition.SetRange("Equipment No.", Rec."No.");
@@ -211,6 +308,25 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
             ConditionOfWork := workCondition.Description
         else
             ConditionOfWork := '';
+        
+    end;
+
+    trigger OnAfterGetCurrRecord()
+    begin
+        //IsVisible := Rec."FA Subclass Code" <> 'VEHICLES';
+        //  if Rec."FA Subclass Code" <> 'VEHICLES' then IsVisible := true 
+        //  else IsVisible := false ;
+        IsVisible := Rec."Equipment Type" <> 'VEHICLES';
+        CurrPage.UPDATE(false);
+        //works for only actions
+    end;
+
+    trigger OnOpenPage()
+    begin
+          if Rec."Equipment Type" <> 'VEHICLES' then IsSeen := true 
+          else IsSeen := false ;
+        //IsSeen := Rec."Equipment Type" <> 'VEHICLES';
+        CurrPage.UPDATE(false);
     end;
 
     local procedure DrillDownActionOnPage()
@@ -243,13 +359,14 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
         
     begin
         
-        if Confirm('Are you sure you want to service this vehicle?', true) then begin
+        if Confirm('Are you sure you want to service this equipment?', true) then begin
             if FixedAsset.Get(Rec."No.") then begin
                 // Update the Next Service At Mileage based on the Service Interval
                 Rec."Next Service At Mileage" := Rec."Vehicle Mileage" + Rec."Service Interval";
+                Rec."Next Service Hours" := Rec."Current Hours" + Rec."Service Interval Hours";
                 Rec."Service Date" := Today();
                 Rec.Modify();
-                Message('Vehicle has been serviced. Next service at mileage is updated to %1 km', Rec."Next Service At Mileage");
+                Message('Equipment has been serviced. Next service at mileage or hours is updated to %1 km', Rec."Next Service At Mileage");
             end else
                 Error('Fixed Asset not found.');
         end;
@@ -274,4 +391,70 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
             Rec."Vehicle Mileage" += TotalKMCovered;
             Rec.Modify();
         end;
+
+
+    procedure StartEquipmentHourCounter(var Equipment: Record "Fixed Asset")
+    begin
+        // only start for non-vehicle equipment
+        if Equipment."Equipment Type" = 'VEHICLES' then
+            exit;
+
+        // set the In Use Start Time only if not already set
+        if Equipment."In Use Start Time" = 0DT then begin
+            Equipment."In Use Start Time" := CURRENTDATETIME;
+            Equipment.Modify();
+        end;
+    end;
+
+    procedure StopEquipmentHourCounter(var Equipment: Record "Fixed Asset")
+    var
+        StartDT: DateTime;
+        EndDT: DateTime;
+        MinutesBetween: Integer;
+        HoursToAdd: Decimal;
+        Hours: Decimal;
+        // NOTE: DateTimeMgmt is a placeholder for a date/time helper codeunit you may have.
+        // Replace with your environment's available function to calculate minutes between two DateTime values.
+        DateTimeMgmt: Codeunit "Date Time Management";
+
+       // DateM: Codeunit "Time Series Management";
+    begin
+        // only for non-vehicle equipment
+        if Equipment."Equipment Type" = 'VEHICLES' then
+            exit;
+
+        StartDT := Equipment."In Use Start Time";
+        
+        if StartDT = 0DT then
+            exit; // nothing to stop
+
+        EndDT := CURRENTDATETIME;
+        HoursToAdd := 0;
+        Hours := 0;
+        // Calculate minutes between StartDT and EndDT.
+        // If you have a codeunit that provides MinutesBetween, use it; otherwise replace with an appropriate implementation.
+        // Example assumes Date Time Management codeunit with MinutesBetween(StartDT, EndDT): Integer
+        // If not available, you can compute using available utilities or approximate by dates.
+        // Wrap in TRY..CATCH if your environment requires.
+        //if Codeunit.IsAvailable(DateTimeMgmt) then
+            //MinutesBetween := DateTimeMgmt.MinutesBetween(StartDT, EndDT);
+        //else 
+       // begin
+            // Fallback: approximate by difference in days -> convert to hours
+           // MinutesBetween := (EndDT.Date() - StartDT.Date()) * 24 * 60;
+            MinutesBetween := (EndDT.Time() - StartDT.Time());
+        //end;
+
+        HoursToAdd := ROUND(MinutesBetween / 59090, 0.01);
+        Hours := HoursToAdd/60;
+        Message('Hours added ', Hours);
+
+        // add to current hours and clear the start time
+        //Equipment."Current Hours" += HoursToAdd;
+        Equipment."Current Hours" += Hours;
+        
+        Equipment."In Use Start Time" := 0DT;
+        Equipment.Modify();
+    end;
+
 }

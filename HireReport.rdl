@@ -667,7 +667,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!EstimatedCost.Value</Value>
+                                  <Value>=Round((Fields!EstimatedCost.Value),2)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -805,7 +805,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!EstimatedCost.Value)</Value>
+                                  <Value>=Round(SUM(Fields!EstimatedCost.Value),2)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -826,6 +826,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

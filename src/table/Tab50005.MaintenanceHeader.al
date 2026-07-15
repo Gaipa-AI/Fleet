@@ -87,7 +87,7 @@ table 50005 "Maintenance Header"
         }
         field(7; "Driver No."; Code[20])
         {
-            TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'));
+            TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'), Blocked = const(false));
             trigger OnValidate()
             var
                 Employee: Record Employee;
@@ -112,7 +112,7 @@ table 50005 "Maintenance Header"
         }
         field(9; "Requester No."; Code[20])
         {
-            TableRelation = Employee."No.";
+            TableRelation = Employee."No." where(Blocked = const(false));
             trigger OnValidate()
             var
                 Employee: Record Employee;

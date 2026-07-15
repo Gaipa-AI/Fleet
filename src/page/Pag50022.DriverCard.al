@@ -52,6 +52,11 @@ page 50022 "Driver Card"
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the employee''s gender.';
                 }
+                field(Blocked; Rec.Blocked)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifics if driver is blocked';
+                }
                 field("Phone No.2"; Rec."Phone No.")
                 {
                     ApplicationArea = BasicHR;
@@ -456,7 +461,7 @@ page 50022 "Driver Card"
                 ApplicationArea = BasicHR;
                 SubPageLink = "No." = field("No.");
             }
-            part("Attached Documents"; "Document Attachment Factbox")
+            part("Attached Documents"; "Doc. Attachment List Factbox")
             {
                 ApplicationArea = All;
                 Caption = 'Attachments';

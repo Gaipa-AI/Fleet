@@ -1921,7 +1921,7 @@ table 50001 "ADT Requisition Header"
         }
         field(5806; "Request-By No."; Code[100])
         {
-            TableRelation = Resource."No." where(Type = filter(Person));
+            TableRelation = Resource."No." where(Type = filter(Person), Blocked = const(false));
             trigger OnValidate();
             var
                 Employee: Record Resource;
@@ -2420,7 +2420,7 @@ table 50001 "ADT Requisition Header"
         }
         field(5882; "Driver No."; Code[20])
         {
-            TableRelation = Employee."No.";
+            TableRelation = Employee."No." where(Blocked = const(false));
 
             trigger OnValidate()
             var

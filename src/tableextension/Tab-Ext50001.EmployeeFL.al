@@ -29,6 +29,15 @@ tableextension 50001 "Employee FL" extends Employee
                     if Rec."License Validity End date" <> 0D then
                         if Rec."License validity Start Date" > Rec."License Validity End date" then
                             Error('License validity Start Date can not be greater than License Validity End date');
+
+                    if Rec."License Validity End date" <> 0D then begin
+                    Rec.Validate("Days to License expiry", Rec."License Validity End date" - Today);
+                    Rec.Modify();
+                end else begin
+                    Rec.validate("Days to License expiry", 0);
+                    Rec.Modify();
+                end;
+                LicenseExpiry();
             end;
         }
         field(50005; "License Validity End date"; Date)
@@ -48,6 +57,7 @@ tableextension 50001 "Employee FL" extends Employee
                     Rec.validate("Days to License expiry", 0);
                     Rec.Modify();
                 end;
+                LicenseExpiry();
             end;
         }
         field(50006; "DDT Certification(Provider)"; Text[200])
@@ -63,6 +73,14 @@ tableextension 50001 "Employee FL" extends Employee
                     if Rec."DefensiveDrive ValidEndDate" <> 0D then
                         if Rec."DefensiveDrive ValidStartDate" > Rec."DefensiveDrive ValidEndDate" then
                             Error('Defensive Driving Start Date can not be greater than the End Date');
+
+                if Rec."DefensiveDrive ValidEndDate" <> 0D then begin
+                    Rec."Defensive Driving Days" := Rec."DefensiveDrive ValidEndDate" - Today;
+                    Rec.Modify();
+                end else begin
+                    Rec."Defensive Driving Days" := 0;
+                    Rec.Modify();
+                end;
             end;
         }
         field(50008; "DefensiveDrive ValidEndDate"; Date)
@@ -98,6 +116,14 @@ tableextension 50001 "Employee FL" extends Employee
                     if Rec."Fitness Validity End Date" <> 0D then
                         if Rec."Fitness Validity Start Date" > Rec."Fitness Validity End Date" then
                             Error('The Fitness Start Date can not be greater than the End Date');
+
+                if Rec."Fitness Validity End Date" <> 0D then begin
+                    Rec."Medical Fitness Days" := ("Fitness Validity End Date" - Today);
+                    Rec.Modify();
+                end else begin
+                    Rec."Medical Fitness Days" := 0;
+                    Rec.Modify();
+                end;
             end;
         }
         field(50011; "Fitness Validity End Date"; Date)
@@ -191,6 +217,12 @@ tableextension 50001 "Employee FL" extends Employee
         {
             Editable = false;
         }
+        field(50023; "Blocked"; Boolean)
+        {
+            Caption = 'Blocked';
+
+        }
+        
     }
 
     keys
@@ -201,9 +233,26 @@ tableextension 50001 "Employee FL" extends Employee
 
     fieldgroups
     {
+        
+        
         // Add changes to field groups here
     }
 
+    procedure LicenseExpiry()
+    begin
+            begin
+                if Rec."Days to License expiry" <= 0 then begin
+                    Rec."License Expired" := true;
+                    Rec.Modify();
+                end else begin
+                    Rec."License Expired" := false;
+                    Rec.Modify();
+                end;
+            end;
+    end;
+
+
     var
         myInt: Integer;
+
 }

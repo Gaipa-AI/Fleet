@@ -119,6 +119,14 @@ page 50000 "Fleet Management Role Center"
                     RunObject = Report "Hire Report";
 
                 }
+                action("Report10")
+                {
+                    ApplicationArea= All;
+                    Caption = 'Hiring Sales';
+                    Image = Report;
+                    RunObject = Report "HireSales";
+
+                }
 
             }
 
@@ -316,7 +324,7 @@ page 50000 "Fleet Management Role Center"
                     Caption = 'Verified Incidents';
                     Image = List;
                     RunObject = page "Incident Forms";
-                    RunPageView = where("Status" = const("Released"));
+                    RunPageView = where("Status" = const("Released"), "Incident Posted" = const(false));
                 }
                 action(UnverifiedIncidentForms)
                 {
@@ -350,6 +358,7 @@ page 50000 "Fleet Management Role Center"
                 group("Equipment Hire Requests")
                 {
                     Caption = 'Vehicle|Equipment Hire Requests';
+                    Visible = false;
                     group(InternalRequests)
                     {
                         Caption = 'Internal Hire Requests';
@@ -396,6 +405,7 @@ page 50000 "Fleet Management Role Center"
                     group(ExternalRequests)
                     {
                         Caption = 'External Hire Requests';
+                        
                         action("External Hire Requests")
                         {
                             ApplicationArea = All;
@@ -439,21 +449,43 @@ page 50000 "Fleet Management Role Center"
 
                     }
                 }
-                group(Documents)
+                group(Sales)
                 {
+                    Caption = 'Hire Sales';
+                    
+                    action(salesOrders)
+                    {
+                        ApplicationArea = All;
+                        Image = Approvals;
+                        Caption = 'Open Sales Orders';
+                        RunObject = page "Sales Order List";
+                        RunPageView = where(Status = const("Open"));
+                        
+                    }
+                    action(PendingsalesOrders)
+                    {
+                        ApplicationArea = All;
+                        Image = Approvals;
+                        Caption = 'Sales Orders';
+                        RunObject = page "Sales Order List";
+                        RunPageView = where(Status = const("Pending Approval"));
+
+                    }
+                    action(ApprovedsalesOrders)
+                    {
+                        ApplicationArea = All;
+                        Image = Approvals;
+                        Caption = 'Approved Sales Orders';
+                        RunObject = page "Sales Order List";
+                         RunPageView = where(Status = const(Released));
+
+                    }
                     action(salesInvoices)
                     {
                         ApplicationArea = All;
                         Image = Approvals;
                         Caption = 'Sales Invoices';
                         RunObject = page "Sales Invoice List";
-                    }
-                    action(salesOrders)
-                    {
-                        ApplicationArea = All;
-                        Image = Approvals;
-                        Caption = 'Sales Orders';
-                        RunObject = page "Sales Order List";
                     }
                     action(salesCreditMemos)
                     {
@@ -503,15 +535,15 @@ page 50000 "Fleet Management Role Center"
                         action("Fuel Requisition List")
                         {
                             ApplicationArea = All;
-                            Caption = 'Fuel Consumption';
+                            Caption = 'Open Consumptions';
                             RunObject = page "Fuel Requisitions";
-                            RunPageView = where(Status = filter(Open | "Pending Approval" | "Pending Prepayment"), Archived = filter(false));
+                            RunPageView = where(Status = filter(Open), Archived = filter(false));
                             Image = List;
                         }
                         action("Pending Approvals Fuel Requisition")
                         {
                             ApplicationArea = All;
-                            Caption = 'Pending Approvals Fuel Consumption';
+                            Caption = 'Pending Consumptions';
                             RunObject = page "Fuel Requisitions";
                             RunPageView = where(Status = filter("Pending Approval" | "Pending Prepayment"), Archived = filter(false));
                             Image = List;
@@ -520,9 +552,17 @@ page 50000 "Fleet Management Role Center"
                         {
                             ApplicationArea = All;
                             Image = Approvals;
-                            Caption = 'Approved Fuel Consumptions';
+                            Caption = 'Approved Consumptions';
                             RunObject = page "Fuel Requisitions";
                             RunPageView = where(Status = filter(Released), Archived = filter(false));
+                        }
+                        action("Rejected Fuel Requisitions")
+                        {
+                            ApplicationArea = All;
+                            Image = Approvals;
+                            Caption = 'Rejected Consumptions';
+                            RunObject = page "Fuel Requisitions";
+                            RunPageView = where(Status = filter(Rejected), Archived = filter(false));
                         }
                         action("All Fuel Requisitions")
                         {
@@ -569,7 +609,7 @@ page 50000 "Fleet Management Role Center"
                             ApplicationArea = All;
                             Caption = 'Spare Parts Requisition List';
                             RunObject = page "Spare Part Requisition List";
-                            RunPageView = where(Status = filter(Open | "Pending Approval" | "Pending Prepayment"), Archived = filter(false));
+                            RunPageView = where(Status = filter(Open), Archived = filter(false));
                             Image = List;
                         }
                         action("Pending Approvals Spare Parts Requisition")
@@ -604,6 +644,14 @@ page 50000 "Fleet Management Role Center"
                             Caption = 'Purchased Spare Parts Requisitions';
                             RunObject = page "Spare Part Requisition List";
                             RunPageView = where(Status = filter(Released), "Converted to Quote"= const(true));
+                        }
+                        action("Rejected Spare Parts Requisitions")
+                        {
+                            ApplicationArea = All;
+                            Caption = 'Rejected Spare Parts Requisitions';
+                            RunObject = page "Spare Part Requisition List";
+                            RunPageView = where(Status = filter(Rejected), Archived = filter(false));
+                            Image = List;
                         }
                         action("All Spare Parts Requisitions")
                         {

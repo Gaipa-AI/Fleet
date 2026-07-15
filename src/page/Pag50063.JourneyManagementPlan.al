@@ -288,6 +288,18 @@ page 50063 "Journey Management Plan"
                     ToolTip = 'Specifies the value of the Number Of Non-Resident Foreigners field.', Comment = '%';
                 }
             }
+            group(Hire)
+            {
+                Caption = 'Hire Details';
+
+                field("Related Hire No.";Rec."Related Hire No.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the related Hire No. if any', Comment = '%';
+                    Editable = IsEditable;
+                }
+
+            }
             group(RiskAssessment)
             {
                 Caption = 'Risk Assessment';
@@ -729,9 +741,9 @@ page 50063 "Journey Management Plan"
         CanCancelApprovalForRecord := ApprovalsMgmt.CanCancelApprovalForRecord(Rec.RecordId);
         WorkflowWebhookMgt.GetCanRequestAndCanCancel(Rec.RecordId, CanRequestApprovalForFlow, CanCancelApprovalForFlow);
 
-        if Rec."Journey Started"= false then IsEditable := true 
+        if Rec."Journey Started" = false then IsEditable := true 
         else if Rec."Journey Started" = true and Rec."Journey Ended" = false then IsEditable := true
-        else IsEditable:=false;         
+        else IsEditable := false;         
         
         //IsEditable := not Rec."Journey Ended";
 

@@ -21,22 +21,53 @@ pageextension 50014 "Sales Order FL" extends "Sales Order"
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Equipment Type field.', Comment = '%';
-                Editable = false;
+                Editable = true;
+            }
+            
+            field("Equipment No."; Rec."Equipment No.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Hire Request No. field.', Comment = '%';
+                Editable = true;
+
+            }
+            field("Hire Type"; Rec."Hire Type")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Hire Type field.', Comment = '%';
+                Editable = true;
+
             }
             field("Hire Request No."; Rec."Hire Request No.")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Hire Request No. field.', Comment = '%';
-                Editable = false;
+                Editable = IsEditable;
             }
+            
+            
         }
     }
+
+    
 
     actions
     {
         // Add changes to page actions here
     }
+    trigger OnAfterGetRecord()
+        var 
+        IsEditable : Boolean;
+
+        begin
+            if Rec."Hire Request No." <> '' then IsEditable := false
+            else IsEditable := true;
+
+        end;
+
 
     var
         myInt: Integer;
+
+        IsEditable : Boolean;
 }

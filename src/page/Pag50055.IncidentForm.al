@@ -18,7 +18,7 @@ page 50055 "Incident Form"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the No. field.', Comment = '%';
-                    Editable = IsEditable;
+                    //Editable = IsEditable;
                     trigger OnAssistEdit();
                     begin
                         IF Rec.AssistEdit(xRec) THEN
@@ -30,13 +30,13 @@ page 50055 "Incident Form"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Date field.', Comment = '%';
-                    Editable = IsEditable;
+                    Editable = true;
                 }
                 field("Equipment No."; Rec."Equipment No.")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Equipment No. field.', Comment = '%';
-                    Editable = IsEditable;
+                   // Editable = IsEditable;
                 }
                 field("Equipment Name"; Rec."Equipment Name")
                 {
@@ -55,7 +55,7 @@ page 50055 "Incident Form"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Driver No. field.', Comment = '%';
-                    Editable = IsEditable;
+                    Editable = true;
                     
                 }
                 field("Driver Name"; Rec."Driver Name")
@@ -231,7 +231,7 @@ page 50055 "Incident Form"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Complaint No. field.', Comment = '%';
-                    Editable = IsEditable;
+                    //Editable = IsEditable;
                     trigger OnAssistEdit();
                     begin
                         IF Rec.AssistEdit(xRec) THEN
@@ -540,6 +540,7 @@ page 50055 "Incident Form"
                         Rec.TestField("Description");
                         if Confirm('Are you sure you want to post this incident?', true) then
                         Rec.PostIncident();
+                        
                     end;
 
                 }
@@ -587,6 +588,7 @@ page 50055 "Incident Form"
                     begin
                         CurrPage.Update();
                         Rec.TestField("Driver No.");
+                        Rec.TestField("Description");
                         //Rec.TestField("Medical Fitness Certificate");
 
                         // Check if there is at least one Form Request Lines
@@ -719,6 +721,7 @@ page 50055 "Incident Form"
                     begin
                         
                         Rec.TestField("Driver No.");
+
                        // Rec.TestField("Medical Fitness Certificate");
 
                         if Rec.Status = Rec.Status::Released then
@@ -744,6 +747,10 @@ page 50055 "Incident Form"
                         customFunction.OpenApprovalEntriesFM(Rec);
                         Rec.CheckDocumentRelease(Rec);
                         Rec.SendRequisitionApprovedEmail(Rec);
+
+                        //if Confirm('Are you sure you want to post this incident?', true) then
+                        //Rec."Incident Posted" := true;
+                        Rec.PostIncident();
                         // end;
 
                     end;
@@ -835,7 +842,6 @@ page 50055 "Incident Form"
         //CanCancelApprovalForRecord := ApprovalsMgmt.CanCancelApprovalForRecord(Rec.RecordId);
         //WorkflowWebhookMgt.GetCanRequestAndCanCancel(Rec.RecordId, CanRequestApprovalForFlow, CanCancelApprovalForFlow);
         if Rec."Status" = Rec.Status::Released then IsEditable := false 
-        //else if Rec."Journey Started" = true and Rec."Journey Ended" = false then IsEditable := true
         else IsEditable:= true; 
     end;
 

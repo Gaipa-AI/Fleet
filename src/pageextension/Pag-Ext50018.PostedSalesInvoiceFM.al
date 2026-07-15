@@ -29,6 +29,21 @@ pageextension 50018 "Posted Sales Invoice FM" extends "Posted Sales Invoice"
                 ToolTip = 'Specifies the value of the Hire Request No. field.', Comment = '%';
                 Editable = false;
             }
+            field("Equipment No."; Rec."Equipment No.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Hire Request No. field.', Comment = '%';
+                Editable = false;
+
+            }
+            field("Hire Type"; Rec."Hire Type")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Hire Type field.', Comment = '%';
+                Editable = false;
+
+            }
+           
         }
     }
 

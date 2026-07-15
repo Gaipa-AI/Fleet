@@ -604,7 +604,8 @@ table 50007 "Form Header"
         }
         field(73; "Driver No."; Code[20])
         {
-            TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'), "Driver Status" = filter(Active), "License expired" = const(false),"Defensive Driving Days" = filter(>0), "Medical Fitness Days" = filter(>0));
+            TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'), "Driver Status" = filter(Active), "License expired" = const(false), "Blocked" = const(false));
+            //,"Defensive Driving Days" = filter(>0), "Medical Fitness Days" = filter(>0)
 
             trigger OnValidate()
             var
@@ -963,7 +964,7 @@ table 50007 "Form Header"
         }
         field(139; "JMP Requester No."; Code[20])
         {
-            TableRelation = Employee."No.";
+            TableRelation = Employee."No." where(Blocked = const(false));
             trigger OnValidate()
             var
                 Employee: Record Employee;
@@ -981,7 +982,7 @@ table 50007 "Form Header"
         }
         field(141; "JMP User No."; Code[20])
         {
-            TableRelation = Employee."No.";
+            TableRelation = Employee."No." where(Blocked = const(false));
             trigger OnValidate()
             var
                 Employee: Record Employee;
@@ -1127,16 +1128,7 @@ table 50007 "Form Header"
         {
             
             DataClassification = ToBeClassified;
-            //Editable = false;
-            // trigger OnValidate()
-            // begin
-            //     if Rec."From Date" <> 0D then 
-            //       if Rec."To Date" <> 0D then begin  
-            //         Rec.Days:= Abs(Rec."From Date" - Rec."To Date");
-            //         Rec.Modify();      
-                
-            //     end;
-            // end;
+            
         }
         field(174; "Hours"; Integer)
         {
@@ -1190,9 +1182,30 @@ table 50007 "Form Header"
         field(182; "Hire Days"; Integer)
         {
             DataClassification = ToBeClassified;
+        
+        }
+        field(183;"Related Hire No.";Code[50])
+        {
+            //TableRelation = "Sales Invoice Header"."No.";
+             trigger OnLookup()
+                var
+                SalesInvHeader: Record "Sales Invoice Header";
+                begin
+                    if Page.RunModal(Page::"Posted Sales Invoices", SalesInvHeader) = Action::LookupOK then
+                        Rec."Related Hire No." := SalesInvHeader."Hire Request No.";
+                        Rec."Equipment No." := SalesInvHeader."Equipment No.";
+                        Rec."Equipment Model" := SalesInvHeader."Equipment Name";
+                end;
             
+            // trigger OnValidate()
+            // var
+            // SalesInvHeader: Record "Sales Invoice Header";
+            // begin
+
+            // end;
 
         }
+        
     }
 
     keys
@@ -1923,11 +1936,12 @@ table 50007 "Form Header"
     FormHeader.SetRange("Document Type", FormHeader."Document Type"::"Incident Notification Form");
     FormHeader.SetRange("Driver No.", Rec."Driver No.");
     IncidenceCount := FormHeader.Count();
-    "Incident Posted" := true;
+
+    Rec."Incident Posted" := true;
+    //Rec.Modify();
 
     //if Rec."Client Complaints"=''
            
-
     // Find the Performance Header for the driver
     PerformanceHeader.Reset();
     PerformanceHeader.SetRange("Driver No.", Rec."Driver No.");
@@ -2548,6 +2562,9 @@ table 50007 "Form Header"
                 Equipment.Get(FormLines."Equipment No.");
                 Equipment."Equipment Status" := Equipment."Equipment Status"::"In Use";
                 Equipment.Modify();
+
+                // stop hour counter and update current hours only for non-vehicles
+                //StopEquipmentHourCounter(Equipment);
             until FormLines.Next() = 0;
         end;
 
@@ -2588,6 +2605,9 @@ table 50007 "Form Header"
                 Equipment.Get(FormLines."Equipment No.");
                 Equipment."Equipment Status" := Equipment."Equipment Status"::Available;
                 Equipment.Modify();
+
+                // stop hour counter and update current hours only for non-vehicles
+                //StopEquipmentHourCounter(Equipment);
             until FormLines.Next() = 0;
         end;
 
@@ -2602,6 +2622,5 @@ table 50007 "Form Header"
 
         Message('Equipment(s) have been returned successfully');
     end;
-
-    
+ 
 }

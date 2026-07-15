@@ -17,13 +17,48 @@ tableextension 50018 "Sales Invoice Header FL" extends "Sales Invoice Header"
         }
         field(50003; "Hire Request No."; code[50])
         {
-            TableRelation = "Form Header"."No.";
+            TableRelation = "Form Header"."No." where("Document Type" = FILTER("Internal Hire"|"External Hire"));
+        }
+        field(50004; "Hire Type"; Option)
+        {
+            
+            OptionMembers = " ",INTERNAL,EXTERNAL;
+            Editable = true;
+
+         }
+        field(50005; "Equipment No."; Code[20])
+        {
+           
+            TableRelation = "Fixed Asset"."No." where("Equipment Status" = filter(Available));
+            trigger OnValidate()
+            var
+                Equipment: Record "Fixed Asset";
+                Employee: Record "Employee";
+                begin
+                    if Equipment.Get("Equipment No.") then begin
+                    
+                    "Equipment Name" := Equipment.Description;
+                    end;
+                    
+                end;
+
+        }
+        field(50006; "Equipment Name"; Text[250])
+        {
+            Caption = 'Equipment Name';
+            DataClassification = ToBeClassified;
+
         }
     }
 
     keys
     {
         // Add changes to keys here
+        key(HireRequest;"Hire Request No.")
+        {
+            // Unique = true;
+
+        }
     }
 
     fieldgroups

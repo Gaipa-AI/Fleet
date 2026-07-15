@@ -29,6 +29,21 @@ pageextension 50015 "Sales Invoice FL" extends "Sales Invoice"
                 ToolTip = 'Specifies the value of the Hire Request No. field.', Comment = '%';
                 Editable = false;
             }
+            field("Equipment No."; Rec."Equipment No.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Hire Request No. field.', Comment = '%';
+                Editable = true;
+
+            }
+            field("Hire Type"; Rec."Hire Type")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Hire Type field.', Comment = '%';
+                Editable = true;
+
+            }
+            
         }
     }
 
