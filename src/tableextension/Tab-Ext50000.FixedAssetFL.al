@@ -100,6 +100,24 @@ tableextension 50000 "Fixed Asset FL" extends "Fixed Asset"
             Editable = false;
             DataClassification = ToBeClassified;
         }
+        field(50016; "Gen Set Capacity"; Integer)
+        {
+            Caption = 'Gen Set Capacity';
+            //Editable = false;
+            DataClassification = ToBeClassified;
+        }
+        field(50017; "Gen Set S/No"; Text[250])
+        {
+            Caption = 'Gen Set S/No';
+            //Editable = false;
+            DataClassification = ToBeClassified;
+        }
+        field(50018; "Engine Model"; Text[250])
+        {
+            Caption = 'Engine Model';
+            //Editable = false;
+            DataClassification = ToBeClassified;
+        }
         
 
 

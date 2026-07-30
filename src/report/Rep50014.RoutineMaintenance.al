@@ -14,7 +14,7 @@ report 50014 "Routine Maintenance"
         dataitem("Fixed Asset"; "Fixed Asset")
         {
             //DataItemTableView = where("Document Type" = const("Routine Service Tracker"));
-            RequestFilterFields= "No.", "Equipment Type", "Location Code", "FA Location Code";
+            RequestFilterFields= "No.", "Equipment Type", "FA Location Code";
             column(CompanyInfo_Name; CompanyInfo.Name) { }
             column(CompanyInfo_Address; CompanyInfo.Address) { }
             column(CompanyImage; CompanyInfo.Picture) { }
@@ -42,6 +42,9 @@ report 50014 "Routine Maintenance"
             column(Hours_to_Next_Service;"Hours to Next Service"){}
             column(FA_Location_Code;"FA Location Code"){ }
             column(Equipment_Status;"Equipment Status"){ }
+            column(Gen_Set_Capacity;"Gen Set Capacity"){ }
+            column(Gen_Set_S_No;"Gen Set S/No"){ }
+            column(Engine_Model;"Engine Model"){ }
 
             column("User_id"; User){ }
 

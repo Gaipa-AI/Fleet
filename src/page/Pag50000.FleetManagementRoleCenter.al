@@ -527,7 +527,7 @@ page 50000 "Fleet Management Role Center"
             }
             group("Requisition Management")
             {
-                group("Fuel Requisition")
+                group("Consumptions")
                 {
                     group(Lists4)
                     {

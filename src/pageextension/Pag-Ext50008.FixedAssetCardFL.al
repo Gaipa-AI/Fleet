@@ -81,6 +81,7 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Service Interval field (km).', Comment = '%';
+                    
                 }
                 field("Serviced"; Rec."Serviced")
                 {
@@ -125,6 +126,29 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                     Editable = true;
                     Visible = IsSeen;
 
+                }
+                field("Gen Set Capacity";Rec."Gen Set Capacity")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates capacity for generator';
+                    Editable = true;
+                    Visible = IsGenerator;
+
+                }
+                field("Gen Set S/No";Rec."Gen Set S/No")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates serial number for generator';
+                    Editable = true;
+                    Visible = IsGenerator;
+
+                }
+                field("Engine Model";Rec."Engine Model")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates serial number for generator';
+                    Editable = true;
+                    Visible = IsGenerator;
                 }
             }
         }
@@ -214,7 +238,7 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
             action(Service)
             {
                 ApplicationArea = All;
-                Caption = 'Service Vehicle';
+                Caption = 'Service Equipment';
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
@@ -292,7 +316,7 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
         workCondition: Record "General value";
         ConditionOfWork: Text;
         IsVisible: Boolean;
-
+        IsGenerator: Boolean;
         IsSeen: Boolean;
 
     trigger OnAfterGetRecord()
@@ -325,6 +349,8 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
     begin
           if Rec."Equipment Type" <> 'VEHICLES' then IsSeen := true 
           else IsSeen := false ;
+          if Rec."Equipment Type" = 'GENERATORS' then IsGenerator := true
+          else IsGenerator :=false;
         //IsSeen := Rec."Equipment Type" <> 'VEHICLES';
         CurrPage.UPDATE(false);
     end;

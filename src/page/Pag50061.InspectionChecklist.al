@@ -289,6 +289,11 @@ page 50061 "Inspection Checklist"
         
     end;
 
+    trigger OnModifyRecord(): Boolean
+    begin
+        UpdateVehicleOdometer();
+    end;
+
     local procedure UpdateLastVehicleInspection()
     var
         PrevChecklist: Record "Form Header";
@@ -311,6 +316,17 @@ page 50061 "Inspection Checklist"
             until PrevChecklist.Next() = 0;
 
         Rec."Last Vehicle Inspection" := LastInspectionDate;
+    end;
+
+    local procedure UpdateVehicleOdometer()
+    var
+        Vehicle: Record "Fixed Asset";
+    begin
+        if (Rec."Equipment No." <> '') and (Rec."Week Start Km's" > 0) and Vehicle.Get(Rec."Equipment No.") then
+            if Rec."Week Start Km's" > Vehicle."Vehicle Mileage" then begin
+                Vehicle."Vehicle Mileage" := Rec."Week Start Km's";
+                Vehicle.Modify();
+            end;
     end;
 
     var
