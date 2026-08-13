@@ -170,6 +170,11 @@ page 50021 "Fleet Management Setup"
                     ToolTip = 'Specifies the value of the Cash Purchase No. field.', Comment = '%';
 
                 }
+                field("Template Nos";Rec."Template Nos")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Template Nos for the equipment template page';
+                }
             }
         }
     }

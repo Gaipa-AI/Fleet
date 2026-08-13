@@ -35,6 +35,13 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Type of the equipment.';
+                    trigger OnValidate()
+                    begin
+                        //Rec.Modify(true);
+                        CurrPage.SaveRecord();
+                        CurrPage.Update(true);
+                    end;
+
                 }
                 field(Make; Rec.Make)
                 {
@@ -337,9 +344,7 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
 
     trigger OnAfterGetCurrRecord()
     begin
-        //IsVisible := Rec."FA Subclass Code" <> 'VEHICLES';
-        //  if Rec."FA Subclass Code" <> 'VEHICLES' then IsVisible := true 
-        //  else IsVisible := false ;
+        
         IsVisible := Rec."Equipment Type" <> 'VEHICLES';
         CurrPage.UPDATE(false);
         //works for only actions
@@ -352,7 +357,7 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
           if Rec."Equipment Type" = 'GENERATORS' then IsGenerator := true
           else IsGenerator :=false;
         //IsSeen := Rec."Equipment Type" <> 'VEHICLES';
-        CurrPage.UPDATE(false);
+        CurrPage.UPDATE(true);
     end;
 
     local procedure DrillDownActionOnPage()

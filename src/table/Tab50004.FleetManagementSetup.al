@@ -420,6 +420,11 @@ table 50004 "Fleet Management Setup"
             TableRelation="No. Series".Code;
 
         }
+        field(500358;"Template Nos"; Code[20])
+        {
+             TableRelation="No. Series".Code;
+             Caption = 'Template No.s';
+        }
     }
 
     keys

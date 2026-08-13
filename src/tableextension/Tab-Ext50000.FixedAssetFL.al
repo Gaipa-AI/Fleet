@@ -11,6 +11,7 @@ tableextension 50000 "Fixed Asset FL" extends "Fixed Asset"
         field(50001; "Equipment Type"; Code[100])
         {
             TableRelation = "General value".Code where(Type = const("Equipment Type"));
+            
         }
         field(50002; Make; Text[100])
         {
@@ -116,6 +117,11 @@ tableextension 50000 "Fixed Asset FL" extends "Fixed Asset"
         {
             Caption = 'Engine Model';
             //Editable = false;
+            DataClassification = ToBeClassified;
+        }
+        field(50019;"Lifting Capacity"; Text[100])
+        {
+            Caption = 'Lifting Capacity';
             DataClassification = ToBeClassified;
         }
         

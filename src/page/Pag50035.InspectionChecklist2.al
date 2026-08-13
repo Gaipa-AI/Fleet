@@ -1,16 +1,18 @@
-page 50061 "Inspection Checklist"
+page 50035 "Inspection Checklist 2"
 {
-    PageType = Card;
     ApplicationArea = All;
-    UsageCategory = Administration;
+    Caption = 'Inspection Checklist 2';
+    PageType = Card;
     SourceTable = "Form Header";
-
+    UsageCategory = Lists;
+    
     layout
     {
         area(Content)
         {
-            group(General)
+            group(Inspection)
             {
+                Caption = 'General';
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No. field.', Comment = '%';
@@ -25,11 +27,13 @@ page 50061 "Inspection Checklist"
                 {
                     ToolTip = 'Specifies the value of the Driver No. field.', Comment = '%';
                     ApplicationArea = All;
+                    Caption = 'Operator No.';
                 }
                 field("Driver Name"; Rec."Driver Name")
                 {
                     ToolTip = 'Specifies the value of the Driver Name field.', Comment = '%';
                     ApplicationArea = All;
+                    Caption = 'Operator Name';
                 }
                 field("Inspection Type"; Rec."Inspection Type")
                 {
@@ -46,19 +50,9 @@ page 50061 "Inspection Checklist"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Current hour mileage of equipment';
-                    Visible = IsGenerator;
+                    Visible = IsHoe;
                 }
-                // field("Week End Km's"; Rec."Week End Km's")
-                // {
-                //     ToolTip = 'Specifies the value of the Week End Km''s field.', Comment = '%';
-                //     ApplicationArea = All;
-                // }
-                // field("Current Mileage"; Rec."Odometer Reading")
-                // {
-                //     ToolTip = 'Specifies the value of vehicle mileage', Comment = '%';
-                //     ApplicationArea = All;
-
-                // }
+                
                 field(Department; Rec.Department)
                 {
                     ToolTip = 'Specifies the value of the Department field.', Comment = '%';
@@ -116,7 +110,7 @@ page 50061 "Inspection Checklist"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Voltage capacity of generator';
-                    Visible = IsGenerator;
+                    Visible = IsHoe;
                     Editable = false;
 
                 }
@@ -130,7 +124,7 @@ page 50061 "Inspection Checklist"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Due for servicing in hours';
-                    Visible = IsGenerator;
+                    Visible = IsHoe;
                     Editable = false;
                 }
                 field("Week Start Date"; Rec."Week Start Date")
@@ -155,76 +149,45 @@ page 50061 "Inspection Checklist"
 
                 }
             }
-
-             part(Electrical; "Inspection Checklist Subform")
+        
+            part(General; "Inspection Checklist Subform 2")
             {
-                Caption = 'Electrical';
+                Caption = 'General';
                 ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Electrical");
-                Visible = IsGenerator;
-            }
-            part(Lubrication; "Inspection Checklist Subform")
-            {
-                Caption = 'Lubrication';
-                ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Lubrication");
-                Visible = IsGenerator;
-            }
-            part(Mechanical; "Inspection Checklist Subform")
-            {
-                Caption = 'Mechanical';
-                ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Mechanical");
-                Visible = IsGenerator;
-            }
-            part(Housekeeping; "Inspection Checklist Subform")
-            {
-                Caption = 'Housekeeping';
-                ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter(Housekeeping);
-                Visible = IsGenerator;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("General");
+                //Visible = IsHoe;
+               
             }
 
+            // part(Electrical; "Inspection Checklist Subform 2")
+            // {
+            //     Caption = 'Electrical';
+            //     ApplicationArea = Basic, Suite;
+            //     SubPageLink = "Document No." = FIELD("No."), Sections = filter("Electrical");
+            //     Visible = IsHoe;
+            // }
+            // part(Lubrication; "Inspection Checklist Subform 2")
+            // {
+            //     Caption = 'Lubrication';
+            //     ApplicationArea = Basic, Suite;
+            //     SubPageLink = "Document No." = FIELD("No."), Sections = filter("Lubrication");
+            //     Visible = IsHoe;
+            // }
+            // part(Mechanical; "Inspection Checklist Subform 2")
+            // {
+            //     Caption = 'Mechanical';
+            //     ApplicationArea = Basic, Suite;
+            //     SubPageLink = "Document No." = FIELD("No."), Sections = filter("Mechanical");
+            //     Visible = IsHoe;
+            // }
+            // part(Housekeeping; "Inspection Checklist Subform 2")
+            // {
+            //     Caption = 'Housekeeping';
+            //     ApplicationArea = Basic, Suite;
+            //     SubPageLink = "Document No." = FIELD("No."), Sections = filter(Housekeeping);
+            //     Visible = IsHoe;
+            // }
 
-
-            part(WalkAround; "Inspection Checklist Subform")
-            {
-                Caption = 'Walk Around';
-                ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Walk around");
-                Visible = IsVehicle;
-                
-            }
-           
-            part(UnderBonnet; "Inspection Checklist Subform")
-            {
-                Caption = 'Under Bonnet';
-                ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Under Bonnet");
-                Visible = IsVehicle;
-            }
-            part(InsideVehicle; "Inspection Checklist Subform")
-            {
-                Caption = 'Inside Vehicle';
-                ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Inside Vehicle");
-                Visible = IsVehicle;
-                
-            }
-            part(EmergencyEquipment; "Inspection Checklist Subform")
-            {
-                Caption = 'Emergency Equipment';
-                ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Emergency Equipment");
-                Visible = IsVehicle;
-            }
-            part(BeforeSettingOff; "Inspection Checklist Subform")
-            {
-                Caption = 'Before Setting Off';
-                ApplicationArea = Basic, Suite;
-                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Before setting off");
-                Visible = IsVehicle;
-            }
             group(RoadLicenses)
             {
                 Caption = 'Road Licenses';
@@ -311,7 +274,7 @@ page 50061 "Inspection Checklist"
                     {
                         ApplicationArea = Suite;
                         //Caption = 'Create Section Lines';
-                        Caption = 'Vehicle';
+                        Caption = 'Self Loader';
                         Image = CreateDocument;
                         Ellipsis = true;
                         Promoted = true;
@@ -320,14 +283,14 @@ page 50061 "Inspection Checklist"
                         trigger OnAction()
                         begin
                             if Confirm('Are you sure you want to create section Lines?', true) then
-                                Rec.GenerateSections();
+                                Rec.GenerateSections1('HIAB');
                         end;
                     }
                     action(CreateGen)
                     {
                         ApplicationArea = Suite;
                         //Caption = 'Create Section Lines';
-                        Caption = 'Generator';
+                        Caption = 'Back Hoe';
                         Image = CreateDocument;
                         Promoted = true;
                         Ellipsis = true;
@@ -336,7 +299,7 @@ page 50061 "Inspection Checklist"
                         trigger OnAction()
                         begin
                             if Confirm('Are you sure you want to create section Lines?', true) then
-                                Rec.GeneratorSections();
+                                Rec.GenerateSections1('BACKHOE');
                         end;
 
                     }
@@ -360,24 +323,21 @@ page 50061 "Inspection Checklist"
                         RptStoreReqn.RUNMODAL;
                     end;
                 }
-            //}
-        }
-    }
-
-    trigger OnAfterGetRecord()
-    begin
-        if Rec."State" = Rec.State::"Good Condition" then IsEditable := true
-        else IsEditable := false;
+           
         
-    end;
+    
+
+
+
+                
+            }
+        }
 
     trigger OnOpenPage()
     begin 
-          if Rec."Equipment Type" = 'GENERATORS' then IsGenerator := true
-          else IsGenerator := false;
-        //IsSeen := Rec."Equipment Type" <> 'VEHICLES';
-        if Rec."Equipment Type" = 'VEHICLES' then IsVehicle := true
-          else IsVehicle := false;
+        //   if Rec."Equipment Type" = 'TRUCKS' then IsHoe := false
+        //   else IsHoe := true;
+        IsHoe := true;
         CurrPage.UPDATE(true);
     end;
 
@@ -421,9 +381,7 @@ page 50061 "Inspection Checklist"
             end;
     end;
 
-    var
-        myInt: Integer;
-        IsEditable: Boolean;
-        IsVehicle : Boolean;
-        IsGenerator: Boolean;
+    var 
+     IsHoe : Boolean;
+     IsEditable : Boolean;
 }

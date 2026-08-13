@@ -142,6 +142,11 @@ table 50007 "Form Header"
                     "Week Start Km's" := Equipment."Vehicle Mileage";
                     "Next Service" := Equipment."Next Service At Mileage";
                     "Driver No." := Equipment."Responsible Employee";
+                    "Current Hours" := Equipment."Current Hours";
+                    "Next Service Due" := Equipment."Next Service Hours";
+                    Capacity := Equipment."Gen Set Capacity";
+                    "Service Date" := Equipment."Service Date";
+
                     if Employee.Get(Rec."Driver No.") then begin
                     Rec."Driver Name" := Employee.FullName();
                     end;
@@ -1196,15 +1201,45 @@ table 50007 "Form Header"
                         Rec."Equipment No." := SalesInvHeader."Equipment No.";
                         Rec."Equipment Model" := SalesInvHeader."Equipment Name";
                 end;
-            
-            // trigger OnValidate()
-            // var
-            // SalesInvHeader: Record "Sales Invoice Header";
-            // begin
-
-            // end;
+           
+        }
+        field(184; "Capacity"; Integer)
+        {
+            Caption = 'Gen Set Capacity';
+            DataClassification = ToBeClassified;
 
         }
+        field(185; "Model"; Text[250])
+        {
+            Caption = 'Engine Model';
+            DataClassification = ToBeClassified;
+
+        }
+        field(186;"Service Date"; Date)
+        {
+            Caption = 'Service Date';
+            DataClassification = ToBeClassified;
+
+        }
+        field(187; "Next Service Due"; Decimal)
+        {
+            Caption = 'Next Service Due (Hours)';
+            DataClassification = ToBeClassified;
+            
+        }
+        field(188; "Current Hours"; Decimal)
+        {
+            Caption = 'Current Running Hours';
+            DataClassification = ToBeClassified;
+            
+        }
+        field(189; "Technician"; Text[250])
+        {
+            Caption = 'Technician';
+            DataClassification = ToBeClassified;
+            
+        }
+
         
     }
 
@@ -2199,345 +2234,199 @@ table 50007 "Form Header"
     end;
 
     procedure GenerateSections()
+        var
+            FormLines: Record "Form Line";
+        begin
+            Rec.TestField("Document Type", Rec."Document Type"::"Equipment Inspection");
+
+            AddLine(10000, FormLines.Sections::"Walk around", 'Lights, signals', 'functioning, no wiring problems');
+            AddLine(10001, FormLines.Sections::"Walk around", 'Tire pressure, condition', 'Inspect, wear, cuts');
+            AddLine(10002, FormLines.Sections::"Walk around", 'Wheel nuts', 'Loose, missing');
+            AddLine(10003, FormLines.Sections::"Walk around", 'Windshield', 'Cracks, abrasions');
+            AddLine(10004, FormLines.Sections::"Walk around", 'Wipers / washers', 'Work, and clear');
+            AddLine(10005, FormLines.Sections::"Walk around", 'Doors', 'Locks, handles, glass, mirrors');
+            AddLine(10006, FormLines.Sections::"Walk around", 'Cleanliness for use', 'Interior and outer cleanliness');
+            AddLine(10007, FormLines.Sections::"Walk around", 'Mud flaps', 'Loose, torn, missing');
+            AddLine(10008, FormLines.Sections::"Walk around", 'Accident damage', 'Check and report');
+
+            // Under Bonnet
+            AddLine(10009, FormLines.Sections::"Under Bonnet", 'Leaks, General', 'Inspect');
+            AddLine(10010, FormLines.Sections::"Under Bonnet", 'Radiator', 'Fluid level and leaks');
+            AddLine(10011, FormLines.Sections::"Under Bonnet", 'Belts, hoses', 'Torn, leaking');
+            AddLine(10012, FormLines.Sections::"Under Bonnet", 'Engine oil', 'Check dip stick level');
+            AddLine(10013, FormLines.Sections::"Under Bonnet", 'Fluid levels', 'Check');
+            AddLine(10014, FormLines.Sections::"Under Bonnet", 'Battery', 'Clamp, terminals secure');
+
+            // Inside Vehicle
+            AddLine(10015, FormLines.Sections::"Inside Vehicle", 'Interior', 'Check for faults / damages');
+            AddLine(10016, FormLines.Sections::"Inside Vehicle", 'Seat belts', 'Operation / damage');
+            AddLine(10017, FormLines.Sections::"Inside Vehicle", 'Horn', 'Test');
+            AddLine(10018, FormLines.Sections::"Inside Vehicle", 'Gauges, instruments', 'Must function');
+            AddLine(10019, FormLines.Sections::"Inside Vehicle", 'Radio - Two way', 'Check operation');
+            AddLine(10020, FormLines.Sections::"Inside Vehicle", 'Reverse Alarm', 'Check operation');
+
+            // Emergency Equipment
+            AddLine(10021, FormLines.Sections::"Emergency Equipment", 'Fire extinguisher', 'Full, secure');
+            AddLine(10022, FormLines.Sections::"Emergency Equipment", 'First aid kit', 'Full, secure');
+            AddLine(10023, FormLines.Sections::"Emergency Equipment", 'Tow rope & Shackle', 'Inspect, wear, cuts');
+            AddLine(10024, FormLines.Sections::"Emergency Equipment", 'Spare Wheel', 'Pressure, wear condition');
+            AddLine(10025, FormLines.Sections::"Emergency Equipment", 'Reflector triangles', 'Available, 2 pieces');
+            AddLine(10026, FormLines.Sections::"Emergency Equipment", 'Jack, Handle, Wheel spanner, jacking plate', 'Check');
+            AddLine(10027, FormLines.Sections::"Emergency Equipment", 'Shovel', 'Good condition');
+
+            // Before Setting Off
+            AddLine(10028, FormLines.Sections::"Before setting off", 'Brakes', 'Test before leaving');
+            AddLine(10029, FormLines.Sections::"Before setting off", 'Clutch', 'Working, free play');
+            AddLine(10030, FormLines.Sections::"Before setting off", 'Steering', 'Free travel');
+            AddLine(10031, FormLines.Sections::"Before setting off", 'Unusual noises', 'Report to workshop');
+            AddLine(10032, FormLines.Sections::"Before setting off", '4 X 4 system', 'Test');
+        end;
+
+
+
+    procedure GeneratorSections()
     var
         FormLines: Record "Form Line";
     begin
-        Rec.TestField("Document Type", Rec."Document Type"::"Equipment Inspection");
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10000;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'Lights, signals';
-        FormLines.Details := 'functioning, no wiring problems';
-        FormLines.Insert();
+    Rec.TestField("Document Type", Rec."Document Type"::"Equipment Inspection");
+    //Electrical
+    AddLine(10000, FormLines.Sections::Electrical, 'Battery condition', 'functioning, no wiring problems');
+    AddLine(10001, FormLines.Sections::"Electrical", 'Battery terminal', 'Inspect, wear, cuts');
+    AddLine(10002, FormLines.Sections::Electrical, 'Alternately', 'Loose, missing');
+    AddLine(10003, FormLines.Sections::Electrical, 'Starter', 'Cracks, abrasions');
+    AddLine(10004, FormLines.Sections::Electrical, 'AVR', 'Work, and clear');
+    AddLine(10005, FormLines.Sections::Electrical, 'Output voltage', 'Locks, handles, glass, mirrors');
+    AddLine(10006, FormLines.Sections::Electrical, 'Frequency', 'Interior and outer cleanliness');
+    AddLine(10007, FormLines.Sections::Electrical, 'Circuit breaker', 'Loose, torn, missing');
+    AddLine(10008, FormLines.Sections::Electrical, 'Earthly', 'Check and report');
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10001;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'Tire pressure, condition';
-        FormLines.Details := 'Inspect ,wear, cuts';
-        FormLines.Insert();
+    // Lubrication
+    AddLine(10009, FormLines.Sections::Lubrication, 'Grease points', 'Inspect');
+    AddLine(10010, FormLines.Sections::Lubrication, 'Bearing condition', 'Fluid level and leaks');
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10002;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'wheel nuts';
-        FormLines.Details := 'loose ,missing';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10003;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'Windshield';
-        FormLines.Details := 'Cracks, abrasions';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10004;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'Wipers / washers';
-        FormLines.Details := 'Work ,and clear';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10005;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'Doors';
-        FormLines.Details := 'Locks,handles,glass,mirrors';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10006;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'Cleanliness for use';
-        FormLines.Details := 'Interior and outer cleanliness';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10007;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'Mud flaps';
-        FormLines.Details := 'Loose,torn,missing';
-        FormLines.Insert();
+    //Mechanical
+    AddLine(10011, FormLines.Sections::Mechanical, 'Vibration', 'Torn, leaking');
+    AddLine(10012, FormLines.Sections::Mechanical, 'Noise', 'Check dip stick level');
+    AddLine(10013, FormLines.Sections::Mechanical, 'Coupling', 'Check');
+    AddLine(10014, FormLines.Sections::Mechanical, 'Base frame', 'Clamp, terminals secure');
+    AddLine(10015, FormLines.Sections::Mechanical, 'Anti-vibration mounts', 'Check for faults / damages');
+    AddLine(10016, FormLines.Sections::Mechanical, 'Others', 'Operation / damage');
 
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10008;
-        FormLines.Sections := FormLines.Sections::"Walk around";
-        FormLines.Description := 'Accident damage';
-        FormLines.Details := 'Check and report';
-        FormLines.Insert();
+    // Inside Vehicle
+    AddLine(10017, FormLines.Sections::Housekeeping, 'Cleanliness', 'Test');
+    AddLine(10018, FormLines.Sections::Housekeeping, 'Ventilation', 'Must function');
+    AddLine(10019, FormLines.Sections::Housekeeping, 'Fire extinguisher', 'Check operation');
+    AddLine(10020, FormLines.Sections::Housekeeping, 'Documentation', 'Check operation');
 
-        //Under Bonnet
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10009;
-        FormLines.Sections := FormLines.Sections::"Under Bonnet";
-        FormLines.Description := 'Leaks, General';
-        FormLines.Details := 'Inspect';
-        FormLines.Insert();
+end;
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10010;
-        FormLines.Sections := FormLines.Sections::"Under Bonnet";
-        FormLines.Description := 'Radiator';
-        FormLines.Details := 'Fluid level and leaks';
-        FormLines.Insert();
+local procedure AddLine(LineNo: Integer; Section: Enum "Inspection Type"; Description: Text; Details: Text)
+var
+    FormLines: Record "Form Line";
+begin
+    FormLines.Init();
+    FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
+    FormLines."Document No." := Rec."No.";
+    FormLines."Line No." := LineNo;
+    FormLines.Sections := Section;
+    FormLines.Description := Description;
+    FormLines.Details := Details;
+    FormLines.Insert();
+end;
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10011;
-        FormLines.Sections := FormLines.Sections::"Under Bonnet";
-        FormLines.Description := 'Belts, hoses';
-        FormLines.Details := 'Torn, leaking';
-        FormLines.Insert();
+local procedure CreateInspectionTemplate()
+var
+    FormLines: Record "Form Line";
+begin
+    AddTemplateLine(10000, FormLines.Sections::"Walk around", 'Lights, signals', 'Functioning, no wiring problems');
+    AddTemplateLine(10001, FormLines.Sections::"Walk around", 'Tire pressure, condition', 'Inspect, wear, cuts');
+    AddTemplateLine(10002, FormLines.Sections::"Walk around", 'Wheel nuts', 'Loose, missing');
+    AddTemplateLine(10003, FormLines.Sections::"Walk around", 'Windshield', 'Cracks, abrasions');
+    AddTemplateLine(10004, FormLines.Sections::"Walk around", 'Wipers / washers', 'Work, and clear');
+    AddTemplateLine(10005, FormLines.Sections::"Walk around", 'Doors', 'Locks, handles, glass, mirrors');
+    AddTemplateLine(10006, FormLines.Sections::"Walk around", 'Cleanliness for use', 'Interior and outer cleanliness');
+    AddTemplateLine(10007, FormLines.Sections::"Walk around", 'Mud flaps', 'Loose, torn, missing');
+    AddTemplateLine(10008, FormLines.Sections::"Walk around", 'Accident damage', 'Check and report');
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10012;
-        FormLines.Sections := FormLines.Sections::"Under Bonnet";
-        FormLines.Description := 'Engine oil';
-        FormLines.Details := 'Check dip stick level';
-        FormLines.Insert();
+    AddTemplateLine(10009, FormLines.Sections::"Under Bonnet", 'Leaks, General', 'Inspect');
+    AddTemplateLine(10010, FormLines.Sections::"Under Bonnet", 'Radiator', 'Fluid level and leaks');
+    AddTemplateLine(10011, FormLines.Sections::"Under Bonnet", 'Belts, hoses', 'Torn, leaking');
+    AddTemplateLine(10012, FormLines.Sections::"Under Bonnet", 'Engine oil', 'Check dip stick level');
+    AddTemplateLine(10013, FormLines.Sections::"Under Bonnet", 'Fluid levels', 'Check');
+    AddTemplateLine(10014, FormLines.Sections::"Under Bonnet", 'Battery', 'Clamp, terminals secure');
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10013;
-        FormLines.Sections := FormLines.Sections::"Under Bonnet";
-        FormLines.Description := 'Fluid levels';
-        FormLines.Details := 'Check';
-        FormLines.Insert();
+    AddTemplateLine(10015, FormLines.Sections::"Inside Vehicle", 'Interior', 'Check for faults / damages');
+    AddTemplateLine(10016, FormLines.Sections::"Inside Vehicle", 'Seat belts', 'Operation / damage');
+    AddTemplateLine(10017, FormLines.Sections::"Inside Vehicle", 'Horn', 'Test');
+    AddTemplateLine(10018, FormLines.Sections::"Inside Vehicle", 'Gauges, instruments', 'Must function');
+    AddTemplateLine(10019, FormLines.Sections::"Inside Vehicle", 'Radio - Two way', 'Check operation');
+    AddTemplateLine(10020, FormLines.Sections::"Inside Vehicle", 'Reverse Alarm', 'Check operation');
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10014;
-        FormLines.Sections := FormLines.Sections::"Under Bonnet";
-        FormLines.Description := 'Battery';
-        FormLines.Details := 'Clamp, terminals Secure';
-        FormLines.Insert();
+    AddTemplateLine(10021, FormLines.Sections::"Emergency Equipment", 'Fire extinguisher', 'Full, secure');
+    AddTemplateLine(10022, FormLines.Sections::"Emergency Equipment", 'First aid kit', 'Full, secure');
+    AddTemplateLine(10023, FormLines.Sections::"Emergency Equipment", 'Tow rope & Shackle', 'Inspect, wear, cuts');
+    AddTemplateLine(10024, FormLines.Sections::"Emergency Equipment", 'Spare Wheel', 'Pressure, wear condition');
+    AddTemplateLine(10025, FormLines.Sections::"Emergency Equipment", 'Reflector triangles', 'Available, 2 pieces');
+    AddTemplateLine(10026, FormLines.Sections::"Emergency Equipment", 'Jack, Handle, Wheel spanner, jacking plate', 'Check');
+    AddTemplateLine(10027, FormLines.Sections::"Emergency Equipment", 'Shovel', 'Good condition');
 
-        //Inside Vehicle
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10015;
-        FormLines.Sections := FormLines.Sections::"Inside Vehicle";
-        FormLines.Description := 'Interior';
-        FormLines.Details := 'Check for faults / Damages';
-        FormLines.Insert();
+    AddTemplateLine(10028, FormLines.Sections::"Before setting off", 'Brakes', 'Test before leaving');
+    AddTemplateLine(10029, FormLines.Sections::"Before setting off", 'Clutch', 'Working, free play');
+    AddTemplateLine(10030, FormLines.Sections::"Before setting off", 'Steering', 'Free travel');
+    AddTemplateLine(10031, FormLines.Sections::"Before setting off", 'Unusual noises', 'Report to workshop');
+    AddTemplateLine(10032, FormLines.Sections::"Before setting off", '4 X 4 system', 'Test');
+end;
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10016;
-        FormLines.Sections := FormLines.Sections::"Inside Vehicle";
-        FormLines.Description := 'Seat belts';
-        FormLines.Details := 'Operation / damage';
-        FormLines.Insert();
+local procedure AddTemplateLine(
+    LineNo: Integer;
+    Section: Enum "Inspection Type";
+    Description: Text[250];
+    Details: Text[250])
+var
+    Template: Record "Equipment Inspection Template";
+begin
+    Template.Init();
+    //Template.Code := 'VEHICLES';
+    //Template."Template Code" := 'VEHICLES';
+    Template."Line No" := LineNo;
+    Template.Sections := Section;
+    Template.Description := Description;
+    Template.Details := Details;
+    Template.Active := true;
+    Template.Insert();
+end;
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10017;
-        FormLines.Sections := FormLines.Sections::"Inside Vehicle";
-        FormLines.Description := 'Horn';
-        FormLines.Details := 'Test';
-        FormLines.Insert();
+procedure GenerateSections1(Type: Text[100])
+var
+    Template: Record "Equipment Inspection Template"  ;
+begin
+    Rec.TestField("Document Type", Rec."Document Type"::"Equipment Inspection");
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10018;
-        FormLines.Sections := FormLines.Sections::"Inside Vehicle";
-        FormLines.Description := 'Gauges, instruments';
-        FormLines.Details := 'Must function';
-        FormLines.Insert();
+    Template.SetRange(Active, true);
+    Template.SetRange("Template Code", Type);
+    if Template.FindSet() then
+        repeat
+            AddFormLine(Template);
+        until Template.Next() = 0;
+end;
+local procedure AddFormLine(Template: Record "Equipment Inspection Template")
+var
+    FormLines: Record "Form Line";
+begin
+    FormLines.Init();
+    FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
+    FormLines."Document No." := Rec."No.";
+    FormLines."Line No." := Template."Line No";
+    FormLines.Sections := Template.Sections;
+    FormLines.Description := Template.Description;
+    FormLines.Details := Template.Details;
+    FormLines.Insert();
+end;
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10019;
-        FormLines.Sections := FormLines.Sections::"Inside Vehicle";
-        FormLines.Description := 'Radio - Two way';
-        FormLines.Details := 'Check operation';
-        FormLines.Insert();
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10020;
-        FormLines.Sections := FormLines.Sections::"Inside Vehicle";
-        FormLines.Description := 'Reverse Alarm';
-        FormLines.Details := 'Check operation';
-        FormLines.Insert();
 
-        //Emergency Equipment
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10021;
-        FormLines.Sections := FormLines.Sections::"Emergency Equipment";
-        FormLines.Description := 'Fire extinguisher';
-        FormLines.Details := 'Full , secure';
-        FormLines.Insert();
 
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10022;
-        FormLines.Sections := FormLines.Sections::"Emergency Equipment";
-        FormLines.Description := 'First aid kit';
-        FormLines.Details := 'Full ,secure';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10023;
-        FormLines.Sections := FormLines.Sections::"Emergency Equipment";
-        FormLines.Description := 'Tow rope & Shackle';
-        FormLines.Details := 'Inspect ,wear, cuts';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10024;
-        FormLines.Sections := FormLines.Sections::"Emergency Equipment";
-        FormLines.Description := 'Spare Wheel';
-        FormLines.Details := 'pressure , wear condition';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10025;
-        FormLines.Sections := FormLines.Sections::"Emergency Equipment";
-        FormLines.Description := 'Reflector triangles';
-        FormLines.Details := 'Available, 2 pieces';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10026;
-        FormLines.Sections := FormLines.Sections::"Emergency Equipment";
-        FormLines.Description := 'Jack, Handle, Wheel spanner, jacking plate ';
-        FormLines.Details := 'Check';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10027;
-        FormLines.Sections := FormLines.Sections::"Emergency Equipment";
-        FormLines.Description := 'Shovel';
-        FormLines.Details := 'Good condition';
-        FormLines.Insert();
-
-        //Before Setting Off
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10028;
-        FormLines.Sections := FormLines.Sections::"Before setting off";
-        FormLines.Description := 'Brakes';
-        FormLines.Details := 'Test before leaving';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10029;
-        FormLines.Sections := FormLines.Sections::"Before setting off";
-        FormLines.Description := 'Clutch';
-        FormLines.Details := 'Working, free play';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10030;
-        FormLines.Sections := FormLines.Sections::"Before setting off";
-        FormLines.Description := 'Steering';
-        FormLines.Details := 'Free travel';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10031;
-        FormLines.Sections := FormLines.Sections::"Before setting off";
-        FormLines.Description := 'Unusual noises';
-        FormLines.Details := 'Report to workshop';
-        FormLines.Insert();
-
-        Clear(FormLines);
-        FormLines.Init();
-        FormLines."Document Type" := FormLines."Document Type"::"Equipment Inspection";
-        FormLines."Document No." := Rec."No.";
-        FormLines."Line No." := 10032;
-        FormLines.Sections := FormLines.Sections::"Before setting off";
-        FormLines.Description := '4 X 4 system';
-        FormLines.Details := 'Test';
-        FormLines.Insert();
-    end;
 
     
 
