@@ -56,17 +56,19 @@ page 50004 "Equipment Inspection Template"
         action(Generator)
         {
             Caption = 'Generate Starter';
-            ToolTip = 'Generate starter template';
+            ToolTip = 'Generate Starter template';
             ApplicationArea = All;
             Image = CreateForm;
+            Promoted = true;
+            PromotedCategory = Process;
 
             trigger OnAction()
               var 
                 FormHeader : Record "Form Header";
             begin
-                //FormHeader.GenerateSections1();
+                
                 Rec.CreateInspectionTemplate();
-
+                Message('Inspection Lines created');
             end;
 
 

@@ -26,21 +26,30 @@ page 50060 "Inspection Checklist Subform"
                 
                 field(Present; Rec.Present)
                 {
-                    Caption = 'Okay';
+                    Caption = 'Good';
                     ApplicationArea = All;
-                    ToolTip = 'Specifies if that vehicle part is missing', Comment = '%';
+                    ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
 
                 }
+                field(Fair;Rec.Fair)
+                {
+                    Caption = 'Fair';
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies if that vehicle part is fair', Comment = '%';
+
+                }
+
                 field(Missing; Rec.Missing)
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Specifies if that vehicle part is missing', Comment = '%';
+                    ToolTip = 'Specifies if that vehicle part is missing and needed to be replaced', Comment = '%';
 
                 }
+
                 field(Damaged; Rec.Damaged)
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Specifies if that part of the vehicle is damaged', Comment = '%';
+                    ToolTip = 'Specifies if that part of the vehicle is damaged or poor', Comment = '%';
 
                 }
 

@@ -6,7 +6,7 @@ page 50084 "Inspection Checklists 2"
     CardPageId = "Inspection Checklist 2";
     Editable = false;
     SourceTable = "Form Header";
-    SourceTableView = where("Document Type" = const("Equipment Inspection"));
+    SourceTableView = where("Document Type" = const("Equipment Inspection"), "Equipment Type" = filter(<>'VEHICLES'));
     Caption = 'Inspection Checklists - Others';
 
     layout

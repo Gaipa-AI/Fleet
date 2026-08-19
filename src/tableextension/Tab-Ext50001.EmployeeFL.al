@@ -229,6 +229,7 @@ tableextension 50001 "Employee FL" extends Employee
     {
         // Add changes to keys here
         key(Key2; "Employee Type") { }
+        key(Key10;"Search Name") { }
     }
 
     fieldgroups

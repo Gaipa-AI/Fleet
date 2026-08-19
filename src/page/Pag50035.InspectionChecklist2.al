@@ -1,10 +1,10 @@
 page 50035 "Inspection Checklist 2"
 {
     ApplicationArea = All;
-    Caption = 'Inspection Checklist 2';
+    Caption = 'Inspection Checklist Other';
     PageType = Card;
     SourceTable = "Form Header";
-    UsageCategory = Lists;
+    UsageCategory = Administration;
     
     layout
     {
@@ -148,6 +148,12 @@ page 50035 "Inspection Checklist 2"
                     Editable = false;
 
                 }
+                field(Technician;Rec.Technician)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Person who inspected equipment';
+
+                }
             }
         
             part(General; "Inspection Checklist Subform 2")
@@ -158,35 +164,6 @@ page 50035 "Inspection Checklist 2"
                 //Visible = IsHoe;
                
             }
-
-            // part(Electrical; "Inspection Checklist Subform 2")
-            // {
-            //     Caption = 'Electrical';
-            //     ApplicationArea = Basic, Suite;
-            //     SubPageLink = "Document No." = FIELD("No."), Sections = filter("Electrical");
-            //     Visible = IsHoe;
-            // }
-            // part(Lubrication; "Inspection Checklist Subform 2")
-            // {
-            //     Caption = 'Lubrication';
-            //     ApplicationArea = Basic, Suite;
-            //     SubPageLink = "Document No." = FIELD("No."), Sections = filter("Lubrication");
-            //     Visible = IsHoe;
-            // }
-            // part(Mechanical; "Inspection Checklist Subform 2")
-            // {
-            //     Caption = 'Mechanical';
-            //     ApplicationArea = Basic, Suite;
-            //     SubPageLink = "Document No." = FIELD("No."), Sections = filter("Mechanical");
-            //     Visible = IsHoe;
-            // }
-            // part(Housekeeping; "Inspection Checklist Subform 2")
-            // {
-            //     Caption = 'Housekeeping';
-            //     ApplicationArea = Basic, Suite;
-            //     SubPageLink = "Document No." = FIELD("No."), Sections = filter(Housekeeping);
-            //     Visible = IsHoe;
-            // }
 
             group(RoadLicenses)
             {
@@ -295,6 +272,7 @@ page 50035 "Inspection Checklist 2"
                         Promoted = true;
                         Ellipsis = true;
                         PromotedCategory = Process;
+                        
 
                         trigger OnAction()
                         begin
@@ -315,7 +293,7 @@ page 50035 "Inspection Checklist 2"
                     trigger OnAction();
                     var
                         ReqnHeader: Record "Form Header";
-                        RptStoreReqn: Report "Vehicle Inspection CheckList";
+                        RptStoreReqn: Report "Extra CheckList";
                     begin
                         ReqnHeader.SETRANGE("Document Type", ReqnHeader."Document Type"::"Equipment Inspection");
                         ReqnHeader.SETRANGE("No.", Rec."No.");

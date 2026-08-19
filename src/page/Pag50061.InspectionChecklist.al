@@ -9,7 +9,7 @@ page 50061 "Inspection Checklist"
     {
         area(Content)
         {
-            group(General)
+            group(General1)
             {
                 field("No."; Rec."No.")
                 {
@@ -146,7 +146,6 @@ page 50061 "Inspection Checklist"
                     Editable = IsEditable;
 
                 }
-            
                 field("Last Inspected"; Rec."Last Vehicle Inspection")
                 {
                     ApplicationArea = All;
@@ -154,9 +153,43 @@ page 50061 "Inspection Checklist"
                     Editable = false;
 
                 }
+                field(Technician;Rec.Technician)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Inspector or person who inspects this equipment';
+                }
+                field("Technician's Name";Rec."Technician's Name")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Inspector or person who inspects this equipment';
+                    Editable = false;
+                }
             }
 
-             part(Electrical; "Inspection Checklist Subform")
+            part(General; "Inspection Checklist Subform")
+            {
+                Caption = 'General';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("General");
+                Visible = IsGenerator;
+            }
+            part(Engine; "Inspection Checklist Subform")
+            {
+                Caption = 'Engine';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Engine");
+                Visible = IsGenerator;
+            }
+            part(Fuel; "Inspection Checklist Subform")
+            {
+                Caption = 'Fuel';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Fuel");
+                Visible = IsGenerator;
+            }
+
+ 
+            part(Electrical; "Inspection Checklist Subform")
             {
                 Caption = 'Electrical';
                 ApplicationArea = Basic, Suite;
@@ -184,8 +217,6 @@ page 50061 "Inspection Checklist"
                 SubPageLink = "Document No." = FIELD("No."), Sections = filter(Housekeeping);
                 Visible = IsGenerator;
             }
-
-
 
             part(WalkAround; "Inspection Checklist Subform")
             {
@@ -316,11 +347,12 @@ page 50061 "Inspection Checklist"
                         Ellipsis = true;
                         Promoted = true;
                         PromotedCategory = Process;
+                        ToolTip = 'Create Section Lines for a vehicles';
 
                         trigger OnAction()
                         begin
                             if Confirm('Are you sure you want to create section Lines?', true) then
-                                Rec.GenerateSections();
+                                Rec.GenerateSections1('VEHICLES');
                         end;
                     }
                     action(CreateGen)
@@ -332,11 +364,12 @@ page 50061 "Inspection Checklist"
                         Promoted = true;
                         Ellipsis = true;
                         PromotedCategory = Process;
+                        ToolTip = 'Create Section Lines for a generator';
 
                         trigger OnAction()
                         begin
                             if Confirm('Are you sure you want to create section Lines?', true) then
-                                Rec.GeneratorSections();
+                                Rec.GenerateSections1('GENERATORS');
                         end;
 
                     }
@@ -417,6 +450,11 @@ page 50061 "Inspection Checklist"
         if (Rec."Equipment No." <> '') and (Rec."Week Start Km's" > 0) and Vehicle.Get(Rec."Equipment No.") then
             if Rec."Week Start Km's" > Vehicle."Vehicle Mileage" then begin
                 Vehicle."Vehicle Mileage" := Rec."Week Start Km's";
+                Vehicle.Modify();
+            end;
+        if (Rec."Equipment No." <> '') and (Rec."Current Hours" > 0) and Vehicle.Get(Rec."Equipment No.") then
+            if Rec."Current Hours" > Vehicle."Current Hours" then begin
+                Vehicle."Current Hours" := Rec."Current Hours";
                 Vehicle.Modify();
             end;
     end;

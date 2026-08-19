@@ -2,7 +2,7 @@ report 50007 "Vehicle Inspection CheckList"
 {
     UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
-    DefaultRenderingLayout = LayoutName;
+    DefaultRenderingLayout = Vehicle;
 
     dataset
     {
@@ -27,10 +27,17 @@ report 50007 "Vehicle Inspection CheckList"
             column(Next_Service_at_Mileage; "Next Service at Mileage") { }
             column(CompanyInfo_Name; CompanyInfo.Name) { }
             column(CompanyInfo_Picture; CompanyInfo.Picture) { }
+            column(CompanyInfo_Address;CompanyInfo.Address) { }
+            column(CompanyInfo_Address2;CompanyInfo."Address 2") { }
             column(Inspection_Type; "Inspection Type") { }
             column(ReportTitle; ReportTitle) { }
             column(State; State) { }
-
+            column(Hours;Hours) { }
+            column(Technician;Technician) { }
+            column(Service_Date;"Service Date") { }
+            column(Technician_s_Name;"Technician's Name") { }
+            column(Current_Hours;"Current Hours") { }
+        
             dataitem(WalkAround; "Form Line")
             {
                 DataItemLinkReference = "Form Header";
@@ -53,7 +60,6 @@ report 50007 "Vehicle Inspection CheckList"
                 column(WalkAround_Damaged; Damaged) { }
                 column(WalkAround_Present; Present){ }
 
-            
 
                 trigger OnAfterGetRecord()
                 begin
@@ -209,22 +215,270 @@ report 50007 "Vehicle Inspection CheckList"
                 end;
             }
 
+             dataitem(General; "Form Line")
+            {
+                DataItemLinkReference = "Form Header";
+                DataItemLink = "Document Type" = FIELD("Document Type"),
+                               "Document No." = FIELD("No.");
+                DataItemTableView = where(Sections = filter("General"));
+
+                column(General_Description; Description) { }
+                column(General_Details; Details) { }
+                column(General_Missing; Missing) { }
+                column(General_Damaged; Damaged) { }
+                column(General_Okay; Present) { }
+                column(General_Fair; Fair) { }
+                column(General_Comment; Comment) { }
+                column(General_Status; General_Status) { }
+
+
+
+                trigger OnAfterGetRecord()
+                begin
+                    General_Status := false;
+                    if General.Monday or General.Present or General.Fair or General.Missing or General.Damaged or General.Tuesday or General.Wednesday or General.Thursday or General.Friday or General.Saturday or General.Sunday then
+                       General_Status := true;
+                    // General_Status := true;
+                end;
+
+                trigger OnPreDataItem()
+                begin
+                    General_Status := false;
+                end;
+            }
+
+            dataitem(Engine; "Form Line")
+            {
+                DataItemLinkReference = "Form Header";
+                DataItemLink = "Document Type" = FIELD("Document Type"),
+                               "Document No." = FIELD("No.");
+                DataItemTableView = where(Sections = filter("Engine"));
+
+                column(Engine_Description; Description) { }
+                column(Engine_Details; Details) { }
+                column(Engine_Missing; Missing) { }
+                column(Engine_Damaged; Damaged) { }
+                column(Engine_Okay; Present) { }
+                column(Engine_Fair; Fair) { }
+                
+                column(Engine_Comment; Comment) { }
+                column(Engine_Status; Engine_Status) { }
+
+
+
+                trigger OnAfterGetRecord()
+                begin
+                    Engine_Status := false;
+                    if Engine.Monday or Engine.Present or Engine.Fair or Engine.Missing or Engine.Damaged or Engine.Tuesday or Engine.Wednesday or Engine.Thursday or Engine.Friday or Engine.Saturday or Engine.Sunday then
+                       Engine_Status := true;
+                    // General_Status := true;
+                end;
+
+                trigger OnPreDataItem()
+                begin
+                    Engine_Status := false;
+                end;
+            }
+
+            dataitem(Fuel; "Form Line")
+            {
+                DataItemLinkReference = "Form Header";
+                DataItemLink = "Document Type" = FIELD("Document Type"),
+                               "Document No." = FIELD("No.");
+                DataItemTableView = where(Sections = filter("Fuel"));
+
+                column(Fuel_Description; Description) { }
+                column(Fuel_Details; Details) { }
+                column(Fuel_Missing; Missing) { }
+                column(Fuel_Damaged; Damaged) { }
+                column(Fuel_Okay; Present) { }
+                column(Fuel_Fair; Fair) { }
+                
+                column(Fuel_Comment; Comment) { }
+                column(Fuel_Status; Fuel_Status) { }
+
+
+
+                trigger OnAfterGetRecord()
+                begin
+                    Fuel_Status := false;
+                    if Fuel.Monday or Fuel.Present or Fuel.Fair or Fuel.Missing or Fuel.Damaged or Fuel.Tuesday or Fuel.Wednesday or Fuel.Thursday or Fuel.Friday or Fuel.Saturday or Fuel.Sunday then
+                       Fuel_Status := true;
+                    // Fuel_Status := true;
+                end;
+
+                trigger OnPreDataItem()
+                begin
+                    Fuel_Status := false;
+                end;
+            }
+
+            dataitem(Electrical; "Form Line")
+            {
+                DataItemLinkReference = "Form Header";
+                DataItemLink = "Document Type" = FIELD("Document Type"),
+                               "Document No." = FIELD("No.");
+                DataItemTableView = where(Sections = filter("Electrical"));
+
+                column(Electrical_Description; Description) { }
+                column(Electrical_Details; Details) { }
+                column(Electrical_Missing; Missing) { }
+                column(Electrical_Damaged; Damaged) { }
+                column(Electrical_Okay; Present) { }
+                column(Electrical_Fair; Fair) { }
+                
+                column(Electrical_Comment; Comment) { }
+                column(Electrical_Status; Electrical_Status) { }
+
+
+
+                trigger OnAfterGetRecord()
+                begin
+                    Electrical_Status := false;
+                    if Electrical.Monday or Electrical.Present or Electrical.Fair or Electrical.Missing or Electrical.Damaged or Electrical.Tuesday or Electrical.Wednesday or Electrical.Thursday or Electrical.Friday or Electrical.Saturday or Electrical.Sunday then
+                       Electrical_Status := true;
+                    // Electrical_Status := true;
+                end;
+
+                trigger OnPreDataItem()
+                begin
+                    Electrical_Status := false;
+                end;
+            }
+
+            dataitem(Lubrication; "Form Line")
+            {
+                DataItemLinkReference = "Form Header";
+                DataItemLink = "Document Type" = FIELD("Document Type"),
+                               "Document No." = FIELD("No.");
+                DataItemTableView = where(Sections = filter("Lubrication"));
+
+                column(Lubrication_Description; Description) { }
+                column(Lubrication_Details; Details) { }
+                column(Lubrication_Missing; Missing) { }
+                column(Lubrication_Damaged; Damaged) { }
+                column(Lubrication_Okay; Present) { }
+                column(Lubrication_Fair; Fair) { }
+                column(Lubrication_Comment; Comment) { }
+                column(Lubrication_Status; Lubrication_Status) { }
+
+
+
+                trigger OnAfterGetRecord()
+                begin
+                    Lubrication_Status := false;
+                    if Lubrication.Monday or Lubrication.Present or Lubrication.Fair or Lubrication.Missing or Lubrication.Damaged or Lubrication.Tuesday or Lubrication.Wednesday or Lubrication.Thursday or Lubrication.Friday or Lubrication.Saturday or Lubrication.Sunday then
+                       Lubrication_Status := true;
+                    // Lubrication_Status := true;
+                end;
+
+                trigger OnPreDataItem()
+                begin
+                    Lubrication_Status := false;
+                end;
+            }
+
+            dataitem(Mechanical; "Form Line")
+            {
+                DataItemLinkReference = "Form Header";
+                DataItemLink = "Document Type" = FIELD("Document Type"),
+                               "Document No." = FIELD("No.");
+                DataItemTableView = where(Sections = filter("Mechanical"));
+
+                column(Mechanical_Description; Description) { }
+                column(Mechanical_Details; Details) { }
+                column(Mechanical_Missing; Missing) { }
+                column(Mechanical_Damaged; Damaged) { }
+                column(Mechanical_Okay; Present) { }
+                column(Mechanical_Fair; Fair) { }
+                
+                column(Mechanical_Comment; Comment) { }
+                column(Mechanical_Status; Mechanical_Status) { }
+
+
+                trigger OnAfterGetRecord()
+                begin
+                    Mechanical_Status := false;
+                    if Mechanical.Monday or Mechanical.Present or Mechanical.Fair or Mechanical.Missing or Mechanical.Damaged or Mechanical.Tuesday or Mechanical.Wednesday or Mechanical.Thursday or Mechanical.Friday or Mechanical.Saturday or Mechanical.Sunday then
+                       Mechanical_Status := true;
+                    // Mechanical_Status := true;
+                end;
+
+                trigger OnPreDataItem()
+                begin
+                    Mechanical_Status := false;
+                end;
+            }
+
+            dataitem(Housekeeping; "Form Line")
+            {
+                DataItemLinkReference = "Form Header";
+                DataItemLink = "Document Type" = FIELD("Document Type"),
+                               "Document No." = FIELD("No.");
+                DataItemTableView = where(Sections = filter("Housekeeping"));
+
+                column(Housekeeping_Description; Description) { }
+                column(Housekeeping_Details; Details) { }
+                column(Housekeeping_Missing; Missing) { }
+                column(Housekeeping_Damaged; Damaged) { }
+                column(Housekeeping_Okay; Present) { }
+
+
+                column(Housekeeping_Fair;Fair) {}
+                
+                column(Housekeeping_Comment; Comment) { }
+                column(Housekeeping_Status; Housekeeping_Status) { }
+
+
+                trigger OnAfterGetRecord()
+                begin
+                    Housekeeping_Status := false;
+                    if Housekeeping.Monday or Housekeeping.Present or Housekeeping.Fair or Housekeeping.Missing or Housekeeping.Damaged or Housekeeping.Tuesday or Housekeeping.Wednesday or Housekeeping.Thursday or Housekeeping.Friday or Housekeeping.Saturday or Housekeeping.Sunday then
+                       Housekeeping_Status := true;
+                    // Housekeeping_Status := true;
+                end;
+
+                trigger OnPreDataItem()
+                begin
+                    Housekeeping_Status := false;
+                end;
+            }
+
+            dataitem("Fixed Asset"; "Fixed Asset")
+            {
+                DataItemLinkReference = "Form Header";
+                DataItemLink = "No." = FIELD("Equipment No.");
+                    //"Document No." = FIELD("No.");
+                //DataItemTableView = where("Equipment Status" = filter("Available"));
+
+                //column(Service_Date;"Service Date") { }
+                
+
+
+            }
+
             trigger OnAfterGetRecord()
             begin
                 if "Form Header"."Inspection Type" = "Form Header"."Inspection Type"::"Pre-Trip" then
                     ReportTitle := 'PRE-TRIP VEHICLE INSPECTION CHECKLIST'
                 else if "Form Header"."Inspection Type" = "Form Header"."Inspection Type"::"Post-Trip" then
                     ReportTitle := 'POST-TRIP VEHICLE INSPECTION CHECKLIST';
+                //else if "Form Header"."Equipment Type" = 'VEHICLES' then ReportTitle := 'GENERATOR INSPECTION CHECKLIST';
             end;
         }
     }
 
     rendering
     {
-        layout(LayoutName)
+        layout(Vehicle)
         {
             Type = RDLC;
             LayoutFile = 'vehicleInspectionChecklist.rdl';
+        }
+        layout(Generator)
+        {
+            Type = RDLC;
+            LayoutFile = 'GeneratorChecklist.rdl';
         }
     }
 
@@ -236,12 +490,21 @@ report 50007 "Vehicle Inspection CheckList"
         InsideVehicle_Status: Boolean;
         EmergencyEquipment_Status: Boolean;
         BeforeSettingOff_Status: Boolean;
+        General_Status: Boolean;
+        Engine_Status : Boolean;
+        Fuel_Status : Boolean;
+        Electrical_Status : Boolean;
+        Lubrication_Status : Boolean;
+        Mechanical_Status : Boolean;
+        Housekeeping_Status : Boolean;
 
     trigger OnPreReport()
     var
         myInt: Integer;
+       
     begin
         CompanyInfo.Get();
         CompanyInfo.CalcFields(Picture);
+        
     end;
 }

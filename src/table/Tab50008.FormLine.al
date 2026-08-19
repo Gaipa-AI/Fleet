@@ -344,6 +344,10 @@ table 50008 "Form Line"
 
             // end;
         }
+        field(52; "Fair"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
 
 
     }

@@ -2769,7 +2769,6 @@
                           </Style>
                         </Textbox>
                         <ColSpan>3</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -4253,6 +4252,12 @@ End Function
         <Field Name="CompanyInfo_Picture">
           <DataField>CompanyInfo_Picture</DataField>
         </Field>
+        <Field Name="CompanyInfo_Address">
+          <DataField>CompanyInfo_Address</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Address2">
+          <DataField>CompanyInfo_Address2</DataField>
+        </Field>
         <Field Name="Inspection_Type">
           <DataField>Inspection_Type</DataField>
         </Field>
@@ -4261,6 +4266,24 @@ End Function
         </Field>
         <Field Name="State">
           <DataField>State</DataField>
+        </Field>
+        <Field Name="Hours">
+          <DataField>Hours</DataField>
+        </Field>
+        <Field Name="Technician">
+          <DataField>Technician</DataField>
+        </Field>
+        <Field Name="Service_Date">
+          <DataField>Service_Date</DataField>
+        </Field>
+        <Field Name="Technician_s_Name">
+          <DataField>Technician_s_Name</DataField>
+        </Field>
+        <Field Name="Current_Hours">
+          <DataField>Current_Hours</DataField>
+        </Field>
+        <Field Name="Current_HoursFormat">
+          <DataField>Current_HoursFormat</DataField>
         </Field>
         <Field Name="WalkAround_Description">
           <DataField>WalkAround_Description</DataField>
@@ -4471,6 +4494,174 @@ End Function
         </Field>
         <Field Name="BeforeSettingOff_Present">
           <DataField>BeforeSettingOff_Present</DataField>
+        </Field>
+        <Field Name="General_Description">
+          <DataField>General_Description</DataField>
+        </Field>
+        <Field Name="General_Details">
+          <DataField>General_Details</DataField>
+        </Field>
+        <Field Name="General_Missing">
+          <DataField>General_Missing</DataField>
+        </Field>
+        <Field Name="General_Damaged">
+          <DataField>General_Damaged</DataField>
+        </Field>
+        <Field Name="General_Okay">
+          <DataField>General_Okay</DataField>
+        </Field>
+        <Field Name="General_Fair">
+          <DataField>General_Fair</DataField>
+        </Field>
+        <Field Name="General_Comment">
+          <DataField>General_Comment</DataField>
+        </Field>
+        <Field Name="General_Status">
+          <DataField>General_Status</DataField>
+        </Field>
+        <Field Name="Engine_Description">
+          <DataField>Engine_Description</DataField>
+        </Field>
+        <Field Name="Engine_Details">
+          <DataField>Engine_Details</DataField>
+        </Field>
+        <Field Name="Engine_Missing">
+          <DataField>Engine_Missing</DataField>
+        </Field>
+        <Field Name="Engine_Damaged">
+          <DataField>Engine_Damaged</DataField>
+        </Field>
+        <Field Name="Engine_Okay">
+          <DataField>Engine_Okay</DataField>
+        </Field>
+        <Field Name="Engine_Fair">
+          <DataField>Engine_Fair</DataField>
+        </Field>
+        <Field Name="Engine_Comment">
+          <DataField>Engine_Comment</DataField>
+        </Field>
+        <Field Name="Engine_Status">
+          <DataField>Engine_Status</DataField>
+        </Field>
+        <Field Name="Fuel_Description">
+          <DataField>Fuel_Description</DataField>
+        </Field>
+        <Field Name="Fuel_Details">
+          <DataField>Fuel_Details</DataField>
+        </Field>
+        <Field Name="Fuel_Missing">
+          <DataField>Fuel_Missing</DataField>
+        </Field>
+        <Field Name="Fuel_Damaged">
+          <DataField>Fuel_Damaged</DataField>
+        </Field>
+        <Field Name="Fuel_Okay">
+          <DataField>Fuel_Okay</DataField>
+        </Field>
+        <Field Name="Fuel_Fair">
+          <DataField>Fuel_Fair</DataField>
+        </Field>
+        <Field Name="Fuel_Comment">
+          <DataField>Fuel_Comment</DataField>
+        </Field>
+        <Field Name="Fuel_Status">
+          <DataField>Fuel_Status</DataField>
+        </Field>
+        <Field Name="Electrical_Description">
+          <DataField>Electrical_Description</DataField>
+        </Field>
+        <Field Name="Electrical_Details">
+          <DataField>Electrical_Details</DataField>
+        </Field>
+        <Field Name="Electrical_Missing">
+          <DataField>Electrical_Missing</DataField>
+        </Field>
+        <Field Name="Electrical_Damaged">
+          <DataField>Electrical_Damaged</DataField>
+        </Field>
+        <Field Name="Electrical_Okay">
+          <DataField>Electrical_Okay</DataField>
+        </Field>
+        <Field Name="Electrical_Fair">
+          <DataField>Electrical_Fair</DataField>
+        </Field>
+        <Field Name="Electrical_Comment">
+          <DataField>Electrical_Comment</DataField>
+        </Field>
+        <Field Name="Electrical_Status">
+          <DataField>Electrical_Status</DataField>
+        </Field>
+        <Field Name="Lubrication_Description">
+          <DataField>Lubrication_Description</DataField>
+        </Field>
+        <Field Name="Lubrication_Details">
+          <DataField>Lubrication_Details</DataField>
+        </Field>
+        <Field Name="Lubrication_Missing">
+          <DataField>Lubrication_Missing</DataField>
+        </Field>
+        <Field Name="Lubrication_Damaged">
+          <DataField>Lubrication_Damaged</DataField>
+        </Field>
+        <Field Name="Lubrication_Okay">
+          <DataField>Lubrication_Okay</DataField>
+        </Field>
+        <Field Name="Lubrication_Fair">
+          <DataField>Lubrication_Fair</DataField>
+        </Field>
+        <Field Name="Lubrication_Comment">
+          <DataField>Lubrication_Comment</DataField>
+        </Field>
+        <Field Name="Lubrication_Status">
+          <DataField>Lubrication_Status</DataField>
+        </Field>
+        <Field Name="Mechanical_Description">
+          <DataField>Mechanical_Description</DataField>
+        </Field>
+        <Field Name="Mechanical_Details">
+          <DataField>Mechanical_Details</DataField>
+        </Field>
+        <Field Name="Mechanical_Missing">
+          <DataField>Mechanical_Missing</DataField>
+        </Field>
+        <Field Name="Mechanical_Damaged">
+          <DataField>Mechanical_Damaged</DataField>
+        </Field>
+        <Field Name="Mechanical_Okay">
+          <DataField>Mechanical_Okay</DataField>
+        </Field>
+        <Field Name="Mechanical_Fair">
+          <DataField>Mechanical_Fair</DataField>
+        </Field>
+        <Field Name="Mechanical_Comment">
+          <DataField>Mechanical_Comment</DataField>
+        </Field>
+        <Field Name="Mechanical_Status">
+          <DataField>Mechanical_Status</DataField>
+        </Field>
+        <Field Name="Housekeeping_Description">
+          <DataField>Housekeeping_Description</DataField>
+        </Field>
+        <Field Name="Housekeeping_Details">
+          <DataField>Housekeeping_Details</DataField>
+        </Field>
+        <Field Name="Housekeeping_Missing">
+          <DataField>Housekeeping_Missing</DataField>
+        </Field>
+        <Field Name="Housekeeping_Damaged">
+          <DataField>Housekeeping_Damaged</DataField>
+        </Field>
+        <Field Name="Housekeeping_Okay">
+          <DataField>Housekeeping_Okay</DataField>
+        </Field>
+        <Field Name="Housekeeping_Fair">
+          <DataField>Housekeeping_Fair</DataField>
+        </Field>
+        <Field Name="Housekeeping_Comment">
+          <DataField>Housekeeping_Comment</DataField>
+        </Field>
+        <Field Name="Housekeeping_Status">
+          <DataField>Housekeeping_Status</DataField>
         </Field>
       </Fields>
       <Query>

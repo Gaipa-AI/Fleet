@@ -984,7 +984,6 @@ page 50000 "Fleet Management Role Center"
                 RunObject = Page "Vehicle Movement Logs";
             }
             
-            
             action(CrewLocations)
             {
                 Caption = 'Crew Locations';
@@ -1014,6 +1013,13 @@ page 50000 "Fleet Management Role Center"
                 Caption = 'Stock Movement';
                 Image = List;
                 RunObject = Report "Stock Movement Report";
+            }
+
+            action(OtherInspections)
+            {
+                Caption = 'Other Inspections';
+                Image = List;      
+                RunObject = Page "Inspection Checklists 2";
             }
 
         }
