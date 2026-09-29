@@ -307,6 +307,11 @@ table 50013 "Cash Purchase Line"
         end;
     end;
 }
+     field(30;"Approver's Remarks"; Text[350])
+     {
+        Caption = 'Approver remarks';
+        DataClassification = ToBeClassified;
+     }
     }
     keys
     {

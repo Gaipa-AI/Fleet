@@ -24,34 +24,76 @@ page 50060 "Inspection Checklist Subform"
                     ToolTip = 'Specifies the value of the Details field.', Comment = '%';
                 }
                 
-                field(Present; Rec.Present)
+                // field(Present; Rec.Present)
+                // {
+                //     Caption = 'Good';
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
+
+                // }
+                field(Mon; Rec.Mon)
                 {
-                    Caption = 'Good';
+                    Caption = 'Monday';
                     ApplicationArea = All;
                     ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
 
                 }
-                field(Fair;Rec.Fair)
+                field(Tue; Rec.Tue)
                 {
-                    Caption = 'Fair';
+                    Caption = 'Tuesday';
                     ApplicationArea = All;
-                    ToolTip = 'Specifies if that vehicle part is fair', Comment = '%';
-
+                    ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
                 }
-
-                field(Missing; Rec.Missing)
+                field(Wed; Rec.Wed)
                 {
+                    Caption = 'Wednesday';
                     ApplicationArea = All;
-                    ToolTip = 'Specifies if that vehicle part is missing and needed to be replaced', Comment = '%';
-
+                    ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
                 }
-
-                field(Damaged; Rec.Damaged)
+                field(Thur; Rec.Thurs)
                 {
+                    Caption = 'Thursday';
                     ApplicationArea = All;
-                    ToolTip = 'Specifies if that part of the vehicle is damaged or poor', Comment = '%';
-
+                    ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
                 }
+                field(Fri; Rec.Fri)
+                {
+                    Caption = 'Friday';
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
+                }
+                field(Sat; Rec.Sat)
+                {
+                    Caption = 'Saturday';
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
+                }
+                field(Sun; Rec.Sun)
+                {
+                    Caption = 'Sunday';
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies if that vehicle part is okay or good to go', Comment = '%';
+                }
+                // field(Fair;Rec.Fair)
+                // {
+                //     Caption = 'Fair';
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies if that vehicle part is fair', Comment = '%';
+                // }
+
+                // field(Missing; Rec.Missing)
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies if that vehicle part is missing and needed to be replaced', Comment = '%';
+
+                // }
+
+                // field(Damaged; Rec.Damaged)
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies if that part of the vehicle is damaged or poor', Comment = '%';
+
+                // 
 
                 field(Comment; Rec.Comment)
                 {

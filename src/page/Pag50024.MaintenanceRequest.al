@@ -547,7 +547,8 @@ page 50024 "Maintenance Request"
                         //Send email implemented
                         customFunction.OpenApprovalEntriesMR(Rec);
                         Rec.CheckDocumentRelease(Rec);
-                        Rec.SendRequisitionApprovedEmail(Rec);
+                        
+                        //Rec.SendRequisitionApprovedEmail(Rec);
                         // end;
 
                     end;
@@ -573,15 +574,15 @@ page 50024 "Maintenance Request"
                         CurrPage.Update();
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
-                            ApprovalComments.Reset();
-                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Maintenance Request");
+                            // ApprovalComments.Reset();
+                            // ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            // ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Maintenance Request");
                             Rec.Status := Rec.Status::Rejected;
                             if ApprovalComments.FindFirst() then begin
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 
                                 customFunction.RejectApprovalRequestMR(Rec);
-                                Rec.SendRejectEmail(Rec);
+                                //Rec.SendRejectEmail(Rec);
                             end else begin
                                 ApprovalComments2.Reset();
                                 ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Maintenance Request");

@@ -31,33 +31,33 @@ table 50006 "Maintenance Line"
             else
             if (Type = const("G/L Account")) "G/L Account" where("Direct Posting" = const(true), "Account Type" = const(Posting), Blocked = const(false))
             else
-            if (Type = const("Fixed Asset")) "Fixed Asset"
-            else
-            if (Type = const(Item), "Document Type" = filter("Maintenance Request" | "Job Card")) Item where(Blocked = const(false))
-            else
-            if (Type = const(Resource)) Resource;
+            //if (Type = const("Fixed Asset")) "Fixed Asset"
+            //else
+            if (Type = const(Item), "Document Type" = filter("Maintenance Request" | "Job Card")) Item where(Blocked = const(false));
+            //else
+            //if (Type = const(Resource)) Resource;
 
-            trigger OnValidate()
-            var
-                myInt: Integer;
-            begin
-                TestField("Document No.");
-                GetMaintenanceHeader();
-                TestStatusOpen();
+            // trigger OnValidate()
+            // var
+            //     myInt: Integer;
+            // begin
+            //     TestField("Document No.");
+            //     GetMaintenanceHeader();
+            //     TestStatusOpen();
 
-                case Type of
-                    Type::" ":
-                        CopyFromStandardText();
-                    Type::"G/L Account":
-                        CopyFromGLAccount();
-                    Type::Item:
-                        CopyFromItem();
-                    Type::Resource:
-                        CopyFromResource();
-                    Type::"Fixed Asset":
-                        CopyFromFixedAsset();
-                end;
-            end;
+            //     case Type of
+            //         Type::" ":
+            //             CopyFromStandardText();
+            //         Type::"G/L Account":
+            //             CopyFromGLAccount();
+            //         Type::Item:
+            //             CopyFromItem();
+            //         Type::Resource:
+            //             CopyFromResource();
+            //         Type::"Fixed Asset":
+            //             CopyFromFixedAsset();
+            //     end;
+            // end;
         }
         field(6; Description; Text[200])
         {
@@ -132,6 +132,7 @@ table 50006 "Maintenance Line"
 
     trigger OnInsert()
     begin
+       // Rec.Type := Rec.Type::Item;
 
     end;
 

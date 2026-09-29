@@ -66,8 +66,8 @@ table 50007 "Form Header"
         }
         field(7; "Assigned Driver"; Code[20])
         {
-             TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'), "Driver Status" = filter(Active), "License expired" = const(false),"Defensive Driving Days" = filter(>0), "Medical Fitness Days" = filter(>0));
-             //TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'), "Driver Status" = filter(Active), "Days to License expiry" = filter(>=0D|''), "Defensive Driving Days" = filter(>=0D|''), "Medical Fitness Days" = filter(>=0D|''));
+             TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'), "Driver Status" = filter(Active));
+             //, "License expired" = const(false),"Defensive Driving Days" = filter(>0), "Medical Fitness Days" = filter(>0));
             
             trigger OnValidate()
             var
@@ -82,7 +82,12 @@ table 50007 "Form Header"
                     //check if the assigned driver has a valid drivers license
                     Employee.TestField("License Validity End date");
                     if Employee."License Validity End date" < Today then
-                        Error('The assigned driver %1 has an expired drivers license. Please assign another driver.', Employee.FullName())
+                        //Error('The assigned driver %1 has an expired drivers license. Please assign another driver.', Employee.FullName());
+                        begin
+                        Message('Note that this driver has an expired drivers license', Employee.FullName());
+                        Rec."Driver's License" := Rec."Driver's License"::EXPIRED;
+
+                        end
                     else begin
                         Rec."License Expiry Date" := Employee."License Validity End date";
                         Rec."Driver's License" := Rec."Driver's License"::VALID;
@@ -90,8 +95,12 @@ table 50007 "Form Header"
 
                     //check if the assigned driver has a valid defensive driving certificate
                     Employee.TestField("DefensiveDrive ValidEndDate");
-                    if Employee."DefensiveDrive ValidEndDate" < Today then
-                        Error('The assigned driver %1 has an expired defensive driving certificate. Please assign another driver.', Employee.FullName())
+                    if Employee."DefensiveDrive ValidEndDate" < Today then 
+                        begin
+                        //Error('The assigned driver %1 has an expired defensive driving certificate. Please assign another driver.', Employee.FullName());
+                        Message('The assigned driver %1 has an expired defensive driving certificate. Advised assign another driver.', Employee.FullName());
+                        Rec."Defensive Driving Certificate" := Rec."Defensive Driving Certificate"::EXPIRED
+                        end
                     else begin
                         Rec."Defensive Driving Exp. Date" := Employee."DefensiveDrive ValidEndDate";
                         Rec."Defensive Driving Certificate" := Rec."Defensive Driving Certificate"::VALID;
@@ -100,10 +109,16 @@ table 50007 "Form Header"
                     //check if the assigned driver has a valid medical fitness certificate
                     Employee.TestField("Fitness Validity End Date");
                     if Employee."Fitness Validity End Date" < Today then
-                        Error('The assigned driver %1 has an expired medical fitness certificate. Please assign another driver.', Employee.FullName())
+                        begin
+                        // Error('The assigned driver %1 has an expired medical fitness certificate. Please assign another driver.', Employee.FullName())
+                        
+                        Message('The assigned driver %1 has an expired medical fitness certificate. Please assign another driver.', Employee.FullName());
+                        Rec."Medical Fitness Certificate" := Rec."Medical Fitness Certificate"::EXPIRED
+                        end 
                     else begin
                         Rec."Medical Fitness Certificate" := Rec."Medical Fitness Certificate"::VALID;
                     end;
+
 
                 end else begin
                     "Assigned Driver Name" := '';
@@ -540,29 +555,29 @@ table 50007 "Form Header"
             else
             if ("Line To Invoice Type" = const("G/L Account")) "G/L Account" where("Direct Posting" = const(true), "Account Type" = const(Posting), Blocked = const(false))
             else
-            if ("Line To Invoice Type" = const("Fixed Asset")) "Fixed Asset"
-            else
-            if ("Line To Invoice Type" = const(Item)) Item where(Blocked = const(false))
-            else
-            if ("Line To Invoice Type" = const(Resource)) Resource;
+            // if ("Line To Invoice Type" = const("Fixed Asset")) "Fixed Asset"
+            // else
+            if ("Line To Invoice Type" = const(Item)) Item where(Blocked = const(false));
+            //else
+            // if ("Line To Invoice Type" = const(Resource)) Resource;
 
-            trigger OnValidate()
-            begin
-                Rec.TestField(Converted, false);
-                Rec.TestField(Status, Rec.Status::Released);
-                case "Line To Invoice Type" of
-                    "Line To Invoice Type"::" ":
-                        CopyFromStandardText();
-                    "Line To Invoice Type"::"G/L Account":
-                        CopyFromGLAccount();
-                    "Line To Invoice Type"::Item:
-                        CopyFromItem();
-                    "Line To Invoice Type"::Resource:
-                        CopyFromResource();
-                    "Line To Invoice Type"::"Fixed Asset":
-                        CopyFromFixedAsset();
-                end;
-            end;
+            // trigger OnValidate()
+            // begin
+            //     Rec.TestField(Converted, false);
+            //     Rec.TestField(Status, Rec.Status::Released);
+            //     case "Line To Invoice Type" of
+            //         "Line To Invoice Type"::" ":
+            //             CopyFromStandardText();
+            //         "Line To Invoice Type"::"G/L Account":
+            //             CopyFromGLAccount();
+            //         "Line To Invoice Type"::Item:
+            //             CopyFromItem();
+            //         "Line To Invoice Type"::Resource:
+            //             CopyFromResource();
+            //         "Line To Invoice Type"::"Fixed Asset":
+            //             CopyFromFixedAsset();
+            //     end;
+            // end;
         }
         field(63; Description; Text[100])
         {
@@ -610,8 +625,8 @@ table 50007 "Form Header"
         }
         field(73; "Driver No."; Code[20])
         {
-            TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'), "Driver Status" = filter(Active), "License expired" = const(false), "Blocked" = const(false));
-            //,"Defensive Driving Days" = filter(>0), "Medical Fitness Days" = filter(>0)
+            TableRelation = Employee."No." where("Employee Type" = filter('DRIVER'), "Driver Status" = filter(Active),"Blocked" = const(false));
+            //,"Defensive Driving Days" = filter(>0), "Medical Fitness Days" = filter(>0) "License expired" = const(false), 
 
             trigger OnValidate()
             var
@@ -874,16 +889,30 @@ table 50007 "Form Header"
 
         field(125; "Notifier No."; Code[20])
         {
-            TableRelation = Employee."No.";
+            // TableRelation = Employee."No.";
+            // trigger OnValidate()
+            // var
+            //     Employee: Record Employee;
+            // begin
+            //     if Employee.Get(Rec."Notifier No.") then begin
+            //         Rec."Notifier Name" := Employee.FullName();
+            //         Rec."Notifier Email" := Employee."Company E-Mail";
+            //         Rec."Notifier Contact" := Employee."Phone No.";
+            //         Rec."Notifier Title" := Employee."Job Title";
+            //         Rec.Modify();
+            //     end;
+            // end;
+            TableRelation = Persons."Person ID";
             trigger OnValidate()
             var
-                Employee: Record Employee;
+                Employee: Record Persons;
             begin
                 if Employee.Get(Rec."Notifier No.") then begin
-                    Rec."Notifier Name" := Employee.FullName();
-                    Rec."Notifier Email" := Employee."Company E-Mail";
-                    Rec."Notifier Contact" := Employee."Phone No.";
-                    Rec."Notifier Title" := Employee."Job Title";
+                    Rec."Notifier Name" := Employee.name;
+                    Rec."Notifier Email" := Employee."email";
+                    Rec."Notifier Contact" := Employee."contact";
+                    Rec."Notifier Title" := Employee."title";
+                    Rec."Notifier Work Location" := Employee."work location";
                     Rec.Modify();
                 end;
             end;
@@ -892,7 +921,7 @@ table 50007 "Form Header"
         {
             trigger OnValidate()
             begin
-                Rec.TestField("Inspection Type");
+                //Rec.TestField("Inspection Type");
                 if "Week Start Km's" <> 0 then
                     if "Week End Km's" <> 0 then
                         if "Week End Km's" < "Week Start Km's" then
@@ -905,7 +934,7 @@ table 50007 "Form Header"
             DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
-                Rec.TestField("Inspection Type");
+                //Rec.TestField("Inspection Type");
                 if "Week End Km's" <> 0 then
                     if "Week Start Km's" > "Week End Km's" then
                         Error('Week Start Kms can not be greater than the week End KMs');
@@ -1094,7 +1123,7 @@ table 50007 "Form Header"
         }
         field(164; "Inspection Type"; Option)
         {
-            OptionMembers = " ","Pre-Trip","Post-Trip";
+            OptionMembers = " ","Vehicle","Generator","Back Hoe","Self-Loader";
         }
         field(165; "Set out"; Boolean)
         {
@@ -1163,6 +1192,11 @@ table 50007 "Form Header"
         {
             DataClassification = ToBeClassified;
             //Editable = true;
+            trigger OnValidate()
+            begin
+                if "State" = "State"::Fixed then
+                    Error('Fixed can only be set by the system.');
+            end;
 
         }
         field(178; "Incident Posted"; Boolean)
@@ -1260,6 +1294,12 @@ table 50007 "Form Header"
         field(191;"Technician's Name"; Text[250])
         {
             Caption = 'Technician Name';
+            DataClassification = ToBeClassified;
+
+        }
+        field(192; "User State"; Enum State)
+        {
+            Caption = 'User State';
             DataClassification = ToBeClassified;
 
         }

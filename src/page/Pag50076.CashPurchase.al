@@ -884,7 +884,8 @@ page 50076"Cash Purchase"
     //     else
     //         IsAdmin := false;
     // end;
-    trigger OnAfterGetCurrRecord()begin
+    trigger OnAfterGetCurrRecord()
+    begin
         SetControlAppearance();
     end;
     local procedure CheckDocumentforClosure(): Boolean var CashPurchaseLine: Record "Cash Purchase Line";
@@ -899,7 +900,8 @@ page 50076"Cash Purchase"
             Rec.Modify;
         end;
     end;
-    local procedure SetControlAppearance()begin
+    local procedure SetControlAppearance()
+    begin
         OpenApprovalEntriesExistForCurrUser:=ApprovalsMgmt.HasOpenApprovalEntriesForCurrentUser(Rec.RecordId);
         OpenApprovalEntriesExist:=ApprovalsMgmt.HasOpenApprovalEntries(Rec.RecordId);
         CanCancelApprovalForRecord:=ApprovalsMgmt.CanCancelApprovalForRecord(Rec.RecordId);

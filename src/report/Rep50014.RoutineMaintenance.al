@@ -25,9 +25,11 @@ report 50014 "Routine Maintenance"
             
             column(Vehicle_RegNo; "Registration No.") { }
             column(Vehicle_Type; "Equipment Type") { }
-            column(Service_Interval;"Service Interval"){}
-            column(Service_Date;"Service Date"){}
-            column(Vehicle_Equipment_Location;"FA Location Code"){}
+            column(Service_Interval;"Service Interval") { }
+            column(Service_Date;"Service Date") { }
+            column(Previous_Service_Mileage;"Previous Service Mileage"){ }
+            column(Previous_Service_Hours;"Previous Service Hours") { }
+            column(Vehicle_Equipment_Location;"FA Location Code") { }
            
             
             column(Next_Service_Date;"Next Service Date"){}

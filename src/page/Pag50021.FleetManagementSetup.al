@@ -175,6 +175,11 @@ page 50021 "Fleet Management Setup"
                     ApplicationArea = All;
                     ToolTip = 'Template Nos for the equipment template page';
                 }
+                field("Person IDs";Rec."Person IDs")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Person Ids for the persons page';
+                }
             }
         }
     }

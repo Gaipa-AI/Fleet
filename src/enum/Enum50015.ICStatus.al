@@ -1,16 +1,23 @@
 enum 50015 "State"
 {
-    Extensible = false;
-     value(0; "Good Condition")
+    Extensible = true;
+
+    value(0; " ")
+    {
+        Caption = ' ';
+    }
+    value(1; "Good Condition")
     {
         Caption = 'Good condition';
     }
-     value(1; Faulty)
+     value(2; Faulty)
     {
         Caption = 'Faulty';
     }
-     value(2; Fixed)
-    {
-        Caption = 'Fixed';
-    }
+    // value(3; Fixed)
+    // {
+    //     Caption = 'Fixed';
+    // }
+    
+
 }

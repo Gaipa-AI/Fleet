@@ -366,8 +366,8 @@ page 50007 "Fuel Requisition"
                     Image = TransferToGeneralJournal;
                     trigger OnAction();
                     var
-                        BankReconn: Record "Bank Acc. Reconciliation";
-                        PaymentJnl: Record "Gen. Journal Line";
+                        //BankReconn: Record "Bank Acc. Reconciliation";
+                        //PaymentJnl: Record "Gen. Journal Line";
                     begin
                         Rec.TestField(Status, Rec.Status::Released);
                         Rec.TESTFIELD("No.");
@@ -439,7 +439,9 @@ page 50007 "Fuel Requisition"
                     trigger OnAction();
                     var
                         ReqnHeader: Record "ADT Requisition Header";
-                        RptStoreReqn: Report "Fuel Requisition";
+                        // RptStoreReqn: Report "Fuel Requisition";
+                        RptStoreReqn: Report "Consumption";
+
                     begin
                         ReqnHeader.SETRANGE("Document Type", ReqnHeader."Document Type"::"Store Requisition");
                         ReqnHeader.SETRANGE("No.", Rec."No.");
@@ -475,6 +477,7 @@ page 50007 "Fuel Requisition"
 
                         Rec.TESTFIELD("Request-By No.");
                         Rec.TestField(Status, Rec.Status::Open);
+                        //Rec.TestField("Location Code");
 
                         IF Rec."Prepared by" <> USERID THEN
                             ERROR('The selected request can only be sent for approval by the initiator %1', Rec."Prepared by");
@@ -614,6 +617,7 @@ page 50007 "Fuel Requisition"
                     begin
                         CurrPage.Update();
                         Rec.CalcFields("Total Cost");
+                        //Rec.TestField("Location Code",'Location Code must have a value');
                         if Rec.Status = Rec.Status::Released then
                             Error('This document is already released');
                         if Rec.Status = Rec.Status::Open then
@@ -647,7 +651,7 @@ page 50007 "Fuel Requisition"
                         //Send email implemented
                         customFunction.OpenApprovalEntriesPRQ(Rec);
                         Rec.CheckDocumentRelease(Rec);
-                        Rec.SendRequisitionApprovedEmail(Rec);
+                        //Rec.SendRequisitionApprovedEmail(Rec);
                         // end;
 
                     end;
@@ -687,15 +691,15 @@ page 50007 "Fuel Requisition"
                         CurrPage.Update();
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
-                            ApprovalComments.Reset();
-                            ApprovalComments."No." := Rec."No.";
-                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
+                            // ApprovalComments.Reset();
+                            // ApprovalComments."No." := Rec."No.";
+                            // ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            // ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
                             if ApprovalComments.FindFirst() then begin
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 Rec.Status := Rec.Status::Rejected;
                                 customFunction.RejectApprovalRequestPRQ(Rec);
-                                Rec.SendRejectEmail(Rec);
+                                //Rec.SendRejectEmail(Rec);
                             end else begin
                                 ApprovalComments2.Reset();
                                 ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Purchase Requisition");

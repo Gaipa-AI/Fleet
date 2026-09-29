@@ -105,6 +105,12 @@ page 50077 "Cash Purchase Line"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Posted field.';
                 }
+                field(Remarks;Rec."Approver's Remarks")
+                {
+                    ToolTip = 'Approvers remarks/comments';
+                    ApplicationArea = All;
+                  
+                }
                 field("Order No."; Rec."Order No.")
                 {
                     Caption = 'Ext. Document No.';

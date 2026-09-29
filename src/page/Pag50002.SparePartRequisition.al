@@ -204,7 +204,7 @@ page 50002 "Spare Part Requisition"
                 // {
                 //     ApplicationArea = All;
                 // }
-                
+
                 field(Archived; Rec.Archived)
                 {
                     ApplicationArea = All;
@@ -338,7 +338,7 @@ page 50002 "Spare Part Requisition"
                         RunPageLink = "Purchase Requisition No." = FIELD("No.");
                         RunPageView = SORTING("Document Type", "No.")
                                       WHERE("Document Type" = CONST(Quote));
-                        
+
                     }
                     action("Purchase Orders")
                     {
@@ -483,8 +483,8 @@ page 50002 "Spare Part Requisition"
                                 ERROR('This Purchase Requisition Has been fully converted into an Quote(s)');
                         END;
                         MakePurchaseQuote();
-                       
-                       
+
+
                     end;
                 }
                 action("Make Order from All Requisitions")
@@ -544,7 +544,7 @@ page 50002 "Spare Part Requisition"
                         END;
                     end;
                 }
-            
+
                 separator("....")
                 {
                 }
@@ -640,7 +640,7 @@ page 50002 "Spare Part Requisition"
                         customCodeunit: Codeunit "Fleet Management";
                     begin
                         Rec.CalcFields("Requisition Lines Total");
-
+                        Rec.TestField("Location Code");
                         Rec.TESTFIELD("Request-By No.");
                         Rec.TESTFIELD("Posting Date");
                         Rec.TESTFIELD("Shortcut Dimension 1 Code");
@@ -662,7 +662,7 @@ page 50002 "Spare Part Requisition"
                                 ApprovalsMgmtCut.OnSendClaimForApprovalPRQ(Rec);
                                 customCodeunit.modifyApprovalEntryPRQ(Rec);
                             end;
-                            Rec.SendRequisitionApprovedEmail(Rec)
+                            //Rec.SendRequisitionApprovedEmail(Rec)
                         end;
                     end;
                 }
@@ -772,7 +772,7 @@ page 50002 "Spare Part Requisition"
                         Txt002: Label 'Please make Sure you have at least one line in the Requisition Lines';
                         UserSetup: Record "User Setup";
                         ApprovalDoc: Codeunit "Fleet Management";
-                        ADTLine : Record "ADT Requisition Line";
+                        ADTLine: Record "ADT Requisition Line";
                     begin
                         if Rec.Status = Rec.Status::Released then
                             Error('This document is already released');
@@ -782,7 +782,7 @@ page 50002 "Spare Part Requisition"
                         Rec.TestField("Location Code");
                         Rec.TestField("Requisition Lines Total");
                         Rec.TestField("Maintenance Request No.");
-                        
+
 
                         ClaimCount := 0;
                         ApprovalEntry.Reset();
@@ -846,14 +846,14 @@ page 50002 "Spare Part Requisition"
                         Rec.TestField("Maintenance Request No.");
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
-                            ApprovalComments.Reset();
-                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
+                            // ApprovalComments.Reset();
+                            // ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            // ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
                             if ApprovalComments.FindFirst() then begin
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 Rec.Status := Rec.Status::Rejected;
                                 customFunction.RejectApprovalRequestPRQ(Rec);
-                                Rec.SendRejectEmail(Rec);
+                                //Rec.SendRejectEmail(Rec);
                             end else begin
                                 ApprovalComments2.Reset();
                                 ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Purchase Requisition");
@@ -1157,7 +1157,7 @@ page 50002 "Spare Part Requisition"
         ItemJournalBatch: Record "Item Journal Batch";
         ItemJournalPage: Page "Item Journal";
         ItemJnlPost: Codeunit "Item Jnl.-Post";
-        
+
     begin
         ItemJnlLine.RESET;
         ItemJnlLine.SETFILTER("Journal Template Name", JournalTemplate);
@@ -1191,7 +1191,7 @@ page 50002 "Spare Part Requisition"
                 IF StoreReqLine."Qty To Transfer to Item Jnl" > InvtQty THEN
                     ERROR('Item No %1 %2 has no sufficient stock in Inventory:Inventory has %3 at location %4 regarding only quantity requested to be transferred', StoreReqLine."No.",
                     StoreReqLine."Description", InvtQty, StoreReqLine."Location Code");
-                
+
 
                 RequisitionHeader.Get(StoreReqLine."Document Type", StoreReqLine."Request Type", StoreReqLine."Document No.");
 
@@ -1241,7 +1241,7 @@ page 50002 "Spare Part Requisition"
             if Confirm(Message, true) then begin
                 ItemJournalLines.SetRange("Journal Template Name", JournalTemplate);
                 ItemJournalLines.SetRange("Journal Batch Name", JournalBatch);
-               if ItemJnlLine.FindSet() then
+                if ItemJnlLine.FindSet() then
                     ItemJnlPost.Run(ItemJnlLine);
 
                 // if ItemJournalLines.FindFirst() then begin
@@ -1249,7 +1249,7 @@ page 50002 "Spare Part Requisition"
                 //     ItemJournalPage.SetRecord(ItemJournalLines);
                 //     ItemJournalPage.Run();
                 // end
-                
+
             end;
         END ELSE
             ERROR('There are no lines to Consume from Stock');

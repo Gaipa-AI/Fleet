@@ -743,10 +743,11 @@ page 50055 "Incident Form"
                             ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
                             Rec.ReleaseTheApprovedDoc();
                         end;
-                        //Send email implemented
                         customFunction.OpenApprovalEntriesFM(Rec);
                         Rec.CheckDocumentRelease(Rec);
-                        Rec.SendRequisitionApprovedEmail(Rec);
+                        //Send email implemented
+        
+                        //Rec.SendRequisitionApprovedEmail(Rec);
 
                         //if Confirm('Are you sure you want to post this incident?', true) then
                         //Rec."Incident Posted" := true;
@@ -780,23 +781,23 @@ page 50055 "Incident Form"
 
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
-                            ApprovalComments.Reset();
-                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Incident Notification Form");
+                            // ApprovalComments.Reset();
+                            // ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            // ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Incident Notification Form");
 
                             if ApprovalComments.FindFirst() then begin
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 Rec.Status := Rec.Status::Rejected;
                                 customFunction.RejectApprovalRequestFM(Rec);
                                 // customFunction.GetSetFormStatusToRejectedCode(Rec);
-                                Rec.SendRejectEmail(Rec);
+                                //Rec.SendRejectEmail(Rec);
                             end else begin
-                                ApprovalComments2.Reset();
-                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Incident Notification Form");
-                                ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
-                                ApprovalComments2.SetRange("Document Line No.", 0);
-                                approvalComment.SetTableView(ApprovalComments2);
-                                approvalComment.Run();
+                                // ApprovalComments2.Reset();
+                                // ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Incident Notification Form");
+                                // ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
+                                // ApprovalComments2.SetRange("Document Line No.", 0);
+                                // approvalComment.SetTableView(ApprovalComments2);
+                                // approvalComment.Run();
                             end;
                         end;
                     end;

@@ -237,6 +237,16 @@ page 50000 "Fleet Management Role Center"
             {
                 Caption = 'Checklists';
 
+                group(Vehicles)
+                {
+                action("BlankInspections")
+                {
+                    Caption = 'Open';
+                    Image = List;
+                    RunObject = Page "Inspection Checklists";
+                    RunPageView = where("State" = const(" "));
+                }
+
                 action("GoodInspections")
                 {
                     Caption = 'Good Condition';
@@ -257,6 +267,85 @@ page 50000 "Fleet Management Role Center"
                     Image = List;
                     RunObject = Page "Inspection Checklists";
                     RunPageView = where("State" = const("Fixed"));
+                }
+                }
+                group(Generators)
+                {
+
+                action("Open Generators")
+                {
+                    Caption = 'Open';
+                    Image = List;
+                    RunObject = Page "Generator Checklists";
+                    RunPageView = where("State" = const(" "), "Inspection Type" = filter('Generator'));
+                }
+
+                action("GoodGenerators")
+                {
+                    Caption = 'Good Condition';
+                    Image = List;
+                    RunObject = Page "Generator Checklists";
+                    RunPageView = where("State" = const("Good Condition"), "Inspection Type" = filter('Generator'));
+                }
+                action("FaultyGenerators")
+                {
+                    Caption = 'Faulty';
+                    Image = List;
+                    RunObject = Page "Generator Checklists";
+                    RunPageView = where("State" = const("Faulty"), "Inspection Type" = filter('Generator'));
+                }
+                action("FixedGenerators")
+                {
+                    Caption = 'Fixed';
+                    Image = List;
+                    RunObject = Page "Generator Checklists";
+                    RunPageView = where("State" = const("Fixed"),"Inspection Type" = filter('Generator'));
+                }
+
+                }
+                group(HIAB)
+                {
+                action("HIABInspections")
+                {
+                    Caption = 'HIAB';
+                    Image = List;
+                    RunObject = Page "Inspection Checklists 2";
+                    RunPageView = where("Driver No." = filter(<>''),"Inspection Type" = filter(<>'Generator'));
+                }
+                action("SelfLoader")
+                {
+                    Caption = 'Self Loader';
+                    Image = List;
+                    RunObject = Page "Inspection Checklists 2";
+                    RunPageView = where("Driver No." = filter(<>''),"Inspection Type" = filter(<>'Generator'));
+                    //RunPageView = where("State" = const("Fixed"), "Equipment Type" = filter('TRUCKS'));
+                }
+
+                }
+                group(SelfLoafer)
+                {
+                    action("ExInspections")
+                    {
+                        Caption = 'Good Condition';
+                        Image = List;
+                        RunObject = Page "Inspection Checklists 2";
+                        RunPageView = where("State" = const("Good Condition"), "Equipment Type" = filter('TRUCKS'),"Inspection Type" = filter(<>'Generator'));
+                    }
+                    action("HiInspections")
+                    {
+                        Caption = 'Faulty';
+                        Image = List;
+                        RunObject = Page "Inspection Checklists 2";
+                        RunPageView = where("State" = const("Faulty"), "Equipment Type" = filter('TRUCKS'),"Inspection Type" = filter(<>'Generator'));
+                    }
+                    action("ExaInspections")
+                    {
+                        Caption = 'Fixed';
+                        Image = List;
+                        RunObject = Page "Inspection Checklists 2";
+                        RunPageView = where("State" = const("Fixed"), "Equipment Type" = filter('TRUCKS'),"Inspection Type" = filter(<>'Generator'));
+                    }
+
                 }
 
             }
@@ -539,6 +628,7 @@ page 50000 "Fleet Management Role Center"
                             RunObject = page "Fuel Requisitions";
                             RunPageView = where(Status = filter(Open), Archived = filter(false));
                             Image = List;
+                            
                         }
                         action("Pending Approvals Fuel Requisition")
                         {
@@ -1024,4 +1114,8 @@ page 50000 "Fleet Management Role Center"
 
         }
     }
+
+    var 
+    //UserID: UserID()
+
 }

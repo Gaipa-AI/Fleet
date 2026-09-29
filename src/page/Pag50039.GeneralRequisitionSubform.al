@@ -362,6 +362,12 @@ page 50039 "General Requisition Subform"
                         CurrPage.UPDATE;
                     end;
                 }
+                field(Remarks;Rec.Remarks)
+                {
+                    ToolTip = 'Approvers remarks/comments';
+                    ApplicationArea = All;
+                  
+                }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     ApplicationArea = All;

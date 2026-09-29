@@ -62,7 +62,8 @@ report 50024 "Extra Checklist"
                 trigger OnAfterGetRecord()
                 begin
                     General_Status := false;
-                    if General.Monday or General.Missing or General.Damaged or General.Tuesday or General.Wednesday or General.Thursday or General.Friday or General.Saturday or General.Sunday then
+                    //if General.Monday or 
+                    if General.Missing or General.Damaged or General.Tuesday or General.Wednesday or General.Thursday or General.Friday or General.Saturday or General.Sunday then
                        General_Status := true;
                     // General_Status := true;
                 end;

@@ -75,4 +75,21 @@ pageextension 50000 "User Setup FL" extends "User setup"
         }
 
     }
+
+    actions
+    {
+        addfirst(Creation)
+        {
+            action("User Location")
+            {
+                ApplicationArea = Basic;
+                Caption = 'User Location';
+                Image = User;
+                Promoted = true;
+                PromotedCategory = Process;
+                RunObject = page "User Location Setup";
+                RunPageLink = "User ID"=field("User ID");
+            }
+        }
+    }
 }

@@ -14,6 +14,7 @@ page 50033 "Equipment HandOver Form"
         {
             group(General)
             {
+                Editable = StatusEditable;
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
@@ -162,6 +163,7 @@ page 50033 "Equipment HandOver Form"
 
             group(Condition)
             {
+                Editable = StatusEditable;
                 field("Any Dents"; Rec."Any Dents")
                 {
                     ApplicationArea = All;
@@ -210,6 +212,7 @@ page 50033 "Equipment HandOver Form"
             }
             group(Service)
             {
+                Editable = StatusEditable;
                 field("Fuel Level"; Rec."Fuel Level")
                 {
                     ApplicationArea = All;
@@ -229,12 +232,14 @@ page 50033 "Equipment HandOver Form"
             part(Items; "Equipment HandOver Subform")
             {
                 Caption = 'Items';
-                Editable = PreviewMode;
+                //Editable = PreviewMode;
+                Editable = StatusEditable;
                 ApplicationArea = Basic, Suite;
                 SubPageLink = "Document No." = FIELD("No.");
             }
             group(Driver)
             {
+                Editable = StatusEditable;
                 field("Driver's License"; Rec."Driver's License")
                 {
                     ApplicationArea = All;
@@ -824,6 +829,22 @@ page 50033 "Equipment HandOver Form"
         //Ap.RejectApprovalRequestsForRecord();;
     end;
 
+    local procedure SetDocumentBasedonStatus()
+    begin
+        if Rec."Driver Assigned" = false then StatusEditable := true 
+        else StatusEditable := false;
+        // if Rec.Status = Rec.Status::Open then StatusEditable:=true
+        // else
+        //     StatusEditable:=false;
+        // PostEditable:=false;
+        // if not Rec.Posted then PostEditable:=true;
+    end;
+
+    trigger OnAfterGetCurrRecord()
+    begin
+        SetDocumentBasedonStatus();
+    end;
+
 
     var
         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
@@ -844,4 +865,5 @@ page 50033 "Equipment HandOver Form"
         PreviewMode: Boolean;
 
         Ap : Codeunit "Approvals Mgmt.";
+        StatusEditable: Boolean;
 }

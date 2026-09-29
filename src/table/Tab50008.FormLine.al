@@ -348,6 +348,34 @@ table 50008 "Form Line"
         {
             DataClassification = ToBeClassified;
         }
+        field(53; Mon; Enum Condition)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(54; Tue; Enum Condition)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(55; Wed; Enum Condition)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(56; Thurs; Enum Condition)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(57; Fri; Enum Condition)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(58; Sat; Enum Condition)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(59; Sun; Enum Condition)
+        {
+            DataClassification = ToBeClassified;
+        }
 
 
     }

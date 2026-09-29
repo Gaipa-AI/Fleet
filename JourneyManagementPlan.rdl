@@ -3428,52 +3428,50 @@
         <Height>9.82861in</Height>
         <Style />
       </Body>
-      <Width>8.34251in</Width>
+      <Width>8.49875in</Width>
       <Page>
         <PageHeader>
-          <Height>1.57639in</Height>
+          <Height>1.13889in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Image Name="Image1">
+            <Image Name="Image2">
               <Source>Database</Source>
               <Value>=First(Fields!CompanyInfo_Picture.Value, "DataSet_Result")</Value>
               <MIMEType>image/jpeg</MIMEType>
               <Sizing>FitProportional</Sizing>
-              <Top>0.36333in</Top>
-              <Left>0.21056in</Left>
-              <Height>1.0625in</Height>
-              <Width>1.22222in</Width>
+              <Top>0.12375in</Top>
+              <Left>0.37375in</Left>
+              <Height>0.88542in</Height>
+              <Width>1.3125in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
               </Style>
             </Image>
-            <Textbox Name="Textbox197">
+            <Textbox Name="Textbox2">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Label>company</Label>
                       <Value>=First(Fields!CompanyInfo_Name.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
+                      <Style />
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Left</TextAlign>
+                    <TextAlign>Right</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox197</rd:DefaultName>
-              <Top>0.36333in</Top>
-              <Left>4.9675in</Left>
-              <Height>0.20139in</Height>
-              <Width>3.375in</Width>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.10986in</Top>
+              <Left>6.59945in</Left>
+              <Height>0.25in</Height>
+              <Width>1.74305in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -3485,30 +3483,28 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox198">
+            <Textbox Name="Textbox7">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Today()</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Format>dd/MM/yyyy</Format>
-                      </Style>
+                      <Label>document_no</Label>
+                      <Value>=First(Fields!No_.Value, "DataSet_Result")</Value>
+                      <Style />
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Left</TextAlign>
+                    <TextAlign>Right</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox197</rd:DefaultName>
-              <Top>0.56472in</Top>
-              <Left>4.9675in</Left>
-              <Height>0.20139in</Height>
-              <Width>3.375in</Width>
+              <rd:DefaultName>Textbox7</rd:DefaultName>
+              <Top>0.38764in</Top>
+              <Left>6.59945in</Left>
+              <Height>0.25in</Height>
+              <Width>1.74305in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -3520,29 +3516,28 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox199">
+            <Textbox Name="Textbox8">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=User!UserID</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
+                      <Label>date</Label>
+                      <Value>=Today()</Value>
+                      <Style />
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Left</TextAlign>
+                    <TextAlign>Right</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox197</rd:DefaultName>
-              <Top>0.78in</Top>
-              <Left>4.9675in</Left>
-              <Height>0.20139in</Height>
-              <Width>3.375in</Width>
+              <rd:DefaultName>Textbox8</rd:DefaultName>
+              <Top>0.65153in</Top>
+              <Left>6.59945in</Left>
+              <Height>0.25in</Height>
+              <Width>1.74305in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -3554,52 +3549,6 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox200">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!No_.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox197</rd:DefaultName>
-              <Top>0.98139in</Top>
-              <Left>4.9675in</Left>
-              <Height>0.20139in</Height>
-              <Width>3.375in</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Line Name="Line1">
-              <Top>1.48833in</Top>
-              <Left>0.21056in</Left>
-              <Height>0in</Height>
-              <Width>8.13194in</Width>
-              <ZIndex>5</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Line>
           </ReportItems>
           <Style>
             <Border>

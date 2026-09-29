@@ -4,9 +4,9 @@ codeunit 50011 "Automation"
     trigger OnRun()
     begin
         //UpdateFixedAssets();
-        GetMileage();
+        //GetMileage();
         UpdateExpiryDays();
-        LicenseExpiry();
+        //LicenseExpiry();
     end;
 
     

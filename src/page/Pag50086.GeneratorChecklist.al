@@ -1,0 +1,354 @@
+page 50086 "Generator Checklist"
+{
+    ApplicationArea = All;
+    Caption = 'Generator Checklist';
+    PageType = Card;
+    SourceTable = "Form Header";
+    UsageCategory = Administration;
+    
+    layout
+    {
+        area(Content)
+        {
+            group(GeneralContent)
+            {
+                Caption = 'General';
+                
+                field("No."; Rec."No.")
+                {
+                    ToolTip = 'Specifies the value of the No. field.', Comment = '%';
+                    ApplicationArea = All;
+                    trigger OnAssistEdit();
+                    begin
+                        IF Rec.AssistEdit(xRec) THEN
+                            CurrPage.UPDATE;
+                    end;
+                }
+                field("Equipment No."; Rec."Equipment No.")
+                {
+                    ToolTip = 'Specifies the value of the Equipment No. field.', Comment = '%';
+                    ApplicationArea = All;
+                    Caption = 'Equipment No.';
+
+                    trigger OnValidate()
+                    begin
+                        if Rec."Equipment No." <> '' then
+                            UpdateLastVehicleInspection();
+                    end;
+                }
+                field("Equipment Name"; Rec."Equipment Name")
+                {
+                    ToolTip = 'Specifies the value of the Equipment Name field.', Comment = '%';
+                }
+                field("Equipment RegNo"; Rec."Equipment RegNo")
+                {
+                    ToolTip = 'Specifies the value of the Equipment RegNo field.', Comment = '%';
+                }
+                field("Equipment Model"; Rec."Equipment Model")
+                {
+                    ToolTip = 'Specifies the value of the Equipment Model field.', Comment = '%';
+                }
+                field("Equipment Serial No."; Rec."Equipment Serial No.")
+                {
+                    ToolTip = 'Specifies the value of the Equipment Serial No. field.', Comment = '%';
+                }
+                field("Equipment Type"; Rec."Equipment Type")
+                {
+                    ToolTip = 'Specifies the value of the Equipment Type field.', Comment = '%';
+                }
+                field("Current Hours";Rec."Current Hours")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Current hour mileage of equipment';
+                    //Visible = IsGenerator;
+                    //Visible = IsSeen;
+                }
+                field(Capacity;Rec.Capacity)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Voltage capacity of generator';
+                    Editable = false;
+
+                }
+                field(Department; Rec.Department)
+                {
+                    ToolTip = 'Specifies the value of the Department field.', Comment = '%';
+                    ApplicationArea = All;
+                }
+                field("Crew Location"; Rec."Crew Location")
+                {
+                    ToolTip = 'Specifies the value of the Crew Location field.', Comment = '%';
+                    ApplicationArea = All;
+                }
+                field("Inspection Type";Rec."Inspection Type")
+                {
+                    ApplicationArea = All;
+                }
+                field("Service Date";Rec."Service Date")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Date equipment was last serviced';
+                    Editable = false;
+                }
+                field("Next Service Due";Rec."Next Service Due")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Due for servicing in hours';
+                    Editable = false;
+                }
+                field("Week Start Date"; Rec."Week Start Date")
+                {
+                    ToolTip = 'Specifies the value of the Week Start Date field.', Comment = '%';
+                    ApplicationArea = All;
+                    Caption = 'Inspection Date';
+                }
+                field("State"; Rec."State")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Vehicle State';
+                    Editable = IsEditable;
+                }
+                field("Last Inspected"; Rec."Last Vehicle Inspection")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Date when this vehicle was last inspected';
+                    Editable = false;
+
+                }
+                field(Technician;Rec.Technician)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Inspector or person who inspects this equipment';
+                }
+                field("Technician's Name";Rec."Technician's Name")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Inspector or person who inspects this equipment';
+                    Editable = false;
+                }
+            }
+
+            part(General; "Inspection Checklist Subform")
+            {
+                Caption = 'General';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("General");
+                
+            }
+            part(Engine; "Inspection Checklist Subform")
+            {
+                Caption = 'Engine';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Engine");
+                
+            }
+            part(Fuel; "Inspection Checklist Subform")
+            {
+                Caption = 'Fuel';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Fuel");
+                
+            }
+
+ 
+            part(Electrical; "Inspection Checklist Subform")
+            {
+                Caption = 'Electrical';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Electrical");
+                
+            }
+            part(Lubrication; "Inspection Checklist Subform")
+            {
+                Caption = 'Lubrication';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Lubrication");
+                
+            }
+            part(Mechanical; "Inspection Checklist Subform")
+            {
+                Caption = 'Mechanical';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter("Mechanical");
+                
+            }
+            part(Housekeeping; "Inspection Checklist Subform")
+            {
+                Caption = 'Housekeeping';
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "Document No." = FIELD("No."), Sections = filter(Housekeeping);
+                
+            }
+
+            
+        
+
+            group(Generator)
+            {
+                Caption = 'Additional Information';
+                field("Next Service at Hours"; Rec."Next Service Due")
+                {
+                    ToolTip = 'Specifies the value of the Next Service at Mileage field.', Comment = '%';
+                }
+            }
+        }
+        // area(Factboxes)
+        // {
+        //     part("Attached Documents"; "Doc. Attachment List Factbox")
+        //     {
+        //         ApplicationArea = All;
+        //         Caption = 'Attachments';
+        //         SubPageLink = "Table ID" = CONST(Database::"Form Header"), "No." = FIELD("No.");
+        //     }
+        //     systempart(Links; Links)
+        //     {
+        //         ApplicationArea = RecordLinks;
+        //     }
+        //     systempart(Notes; Notes)
+        //     {
+        //         ApplicationArea = Notes;
+        //     }
+        // }
+    }
+    actions
+    {
+        area(Processing)
+        {
+            //group(Request)
+            //{
+                action("Comments")
+                {
+                    Caption = 'Comments';
+                    Image = ViewComments;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = filter("Equipment Inspection"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
+                }
+                action(DocAttach)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Attachments';
+                    Image = Attach;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ToolTip = 'Add a file as an attachment. You can attach images as well as documents.';
+
+                    trigger OnAction()
+                    var
+                        DocumentAttachmentDetails: Page "Document Attachment Details";
+                        RecRef: RecordRef;
+                    begin
+                        RecRef.GetTable(Rec);
+                        DocumentAttachmentDetails.OpenForRecRef(RecRef);
+                        DocumentAttachmentDetails.RunModal;
+                    end;
+                }
+                group(CreateSections)
+                {
+                    Caption = 'Create Section Lines';
+                    //Image = CreateDocument;
+                    ShowAs = SplitButton;
+                    
+                    action(CreateGen)
+                    {
+                        ApplicationArea = Suite;
+                        Caption = 'Create Section Lines';
+                        //Caption = 'Generator';
+                        Image = CreateDocument;
+                        Promoted = true;
+                        Ellipsis = true;
+                        PromotedCategory = Process;
+                        ToolTip = 'Create Section Lines for a generator';
+
+                        trigger OnAction()
+                        begin
+                            if Confirm('Are you sure you want to create section Lines?', true) then
+                                Rec.GenerateSections1('GENERATORS');
+                        end;
+
+                    }
+                }
+                action(Print)
+                {
+                    Caption = 'Print';
+                    Image = Print;
+                    Promoted = true;
+                    PromotedCategory = Report;
+                    PromotedIsBig = true;
+
+                    trigger OnAction();
+                    var
+                        ReqnHeader: Record "Form Header";
+                        RptStoreReqn: Report "Vehicle Inspection CheckList";
+                    begin
+                        ReqnHeader.SETRANGE("Document Type", ReqnHeader."Document Type"::"Equipment Inspection");
+                        ReqnHeader.SETRANGE("No.", Rec."No.");
+                        RptStoreReqn.SETTABLEVIEW(ReqnHeader);
+                        RptStoreReqn.RUNMODAL;
+                    end;
+                }
+            //}
+        }
+    }
+
+    trigger OnInsertRecord(BelowxRec: Boolean): Boolean
+    begin
+        Rec."Inspection Type":= Rec."Inspection Type"::Generator;
+    end;
+
+    trigger OnModifyRecord(): Boolean
+    begin
+        UpdateVehicleOdometer();
+    end;
+
+    local procedure UpdateLastVehicleInspection()
+    var
+        PrevChecklist: Record "Form Header";
+        LastInspectionDate: Date;
+    begin
+        if Rec."Equipment No." = '' then
+            exit;
+
+        PrevChecklist.Reset();
+        PrevChecklist.SetRange("Document Type", PrevChecklist."Document Type"::"Equipment Inspection");
+        PrevChecklist.SetRange("Equipment No.", Rec."Equipment No.");
+        if Rec."No." <> '' then
+            PrevChecklist.SetFilter("No.", '<>%1', Rec."No.");
+
+        LastInspectionDate := 0D;
+        if PrevChecklist.FindSet() then
+            repeat
+                if PrevChecklist."Week Start Date" > LastInspectionDate then
+                    LastInspectionDate := PrevChecklist."Week Start Date";
+            until PrevChecklist.Next() = 0;
+
+        Rec."Last Vehicle Inspection" := LastInspectionDate;
+    end;
+
+    local procedure UpdateVehicleOdometer()
+    var
+        Vehicle: Record "Fixed Asset";
+    begin
+        if (Rec."Equipment No." <> '') and (Rec."Week Start Km's" > 0) and Vehicle.Get(Rec."Equipment No.") then
+            if Rec."Week Start Km's" > Vehicle."Vehicle Mileage" then begin
+                Vehicle."Vehicle Mileage" := Rec."Week Start Km's";
+                Vehicle.Modify();
+            end;
+        if (Rec."Equipment No." <> '') and (Rec."Current Hours" > 0) and Vehicle.Get(Rec."Equipment No.") then
+            if Rec."Current Hours" > Vehicle."Current Hours" then begin
+                Vehicle."Current Hours" := Rec."Current Hours";
+                Vehicle.Modify();
+            end;
+    end;
+
+    var
+        myInt: Integer;
+        IsEditable: Boolean;
+        IsVehicle : Boolean;
+        IsGenerator: Boolean;
+        IsSeen: Boolean;
+
+}

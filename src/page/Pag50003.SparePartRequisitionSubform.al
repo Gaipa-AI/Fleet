@@ -329,21 +329,25 @@ page 50003 "Spare Part Requisition Subform"
                 field("Transfer to Item Jnl"; Rec."Transfer to Item Jnl")
                 {
                     ApplicationArea = All;
+                    Caption = 'Consume from Inventory';
                 }
                 field("Qty To Transfer to Item Jnl"; Rec."Qty To Transfer to Item Jnl")
                 {
                     ApplicationArea = All;
+                    Caption = 'Qty to consume from Inventory';
                 }
                 field("Total Qty To Item Jnl"; Rec."Total Qty To Item Jnl")
                 {
                     ApplicationArea = All;
-                    Caption = 'Total Issued to Journal';
+                    //Caption = 'Total Issued to Journal';
                     Editable = false;
+                    Caption = 'Total Qty consumed from Inventory';
                 }
                 field("Transferred To Item Jnl"; Rec."Transferred To Item Jnl")
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Caption = 'Consumed from Inventory';
                 }
 
                 field(Transferred; Rec.Transfered)
@@ -351,6 +355,7 @@ page 50003 "Spare Part Requisition Subform"
                     ApplicationArea = All;
                     Visible = false;
                     Editable = true;
+                    Caption = 'Consumed';
                 }
                 field("Unit Cost"; Rec."Unit Cost")
                 {
@@ -376,6 +381,12 @@ page 50003 "Spare Part Requisition Subform"
                     begin
                         CurrPage.UPDATE;
                     end;
+                }
+                field(Remarks;Rec.Remarks)
+                {
+                    ToolTip = 'Approvers remarks/comments';
+                    ApplicationArea = All;
+                  
                 }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {

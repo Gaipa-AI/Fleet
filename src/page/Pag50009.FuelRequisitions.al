@@ -109,15 +109,22 @@ page 50009 "Fuel Requisitions"
     trigger OnOpenPage();
     begin
         Rec.SETRANGE("Document Type", Rec."Document Type"::"Store Requisition");
-        Rec.FILTERGROUP(2);
-        Rec.SETRANGE("Prepared by", USERID);
-        Rec.FILTERGROUP(0);
+        //Rec.FILTERGROUP(2);
+        // Rec.SETRANGE("Prepared by", USERID);
+        //Rec.SETRANGE("Current Approver", USERID);
+        //Rec.FILTERGROUP(0);
+        
+        if Rec.Status = Rec.Status::Released then begin
+         Rec.SETFILTER("Current Approver", USERID)
+         //Rec.SETFILTER("Prepared by", USERID);
+        end
+        else Rec.SETRANGE("Prepared by", USERID);
 
-        IF UserMgt.GetPurchasesFilter() <> '' THEN BEGIN
-            Rec.FILTERGROUP(2);
-            Rec.SETRANGE("Responsibility Center", UserMgt.GetPurchasesFilter());
-            Rec.FILTERGROUP(0);
-        END;
+        // IF UserMgt.GetPurchasesFilter() <> '' THEN BEGIN
+        //     Rec.FILTERGROUP(2);
+        //     Rec.SETRANGE("Responsibility Center", UserMgt.GetPurchasesFilter());
+        //     Rec.FILTERGROUP(0);
+        // END;
     end;
 
     var

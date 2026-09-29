@@ -45,6 +45,14 @@ report 50007 "Vehicle Inspection CheckList"
                                "Document No." = FIELD("No.");
                 DataItemTableView = where(Sections = filter("Walk Around"));
 
+
+                column(Mon;Mon){}
+                column(Tue;Tue){}
+                column(Wed;Wed){}
+                column(Thurs;Thurs){}
+                column(Fri;Fri){}
+                column(Sat;Sat){}
+                column(Sun;Sun){}
                 column(WalkAround_Description; Description) { }
                 column(WalkAround_Details; Details) { }
                 column(WalkAround_Monday; Monday) { }
@@ -64,8 +72,17 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     WalkAround_Status := false;
-                    if WalkAround.Monday or WalkAround.Missing or WalkAround.Damaged or WalkAround.Tuesday or WalkAround.Wednesday or WalkAround.Thursday or WalkAround.Friday or WalkAround.Saturday or WalkAround.Sunday then
-                        WalkAround_Status := true;
+                    //if WalkAround.Monday or 
+                    // if WalkAround.Missing or WalkAround.Damaged or WalkAround.Tuesday or WalkAround.Wednesday or WalkAround.Thursday or WalkAround.Friday or WalkAround.Saturday or WalkAround.Sunday then
+                    //     WalkAround_Status := true;
+                    if (WalkAround.Mon <> WalkAround.Mon::" ") or
+                        (WalkAround.Tue <> WalkAround.Tue::" ") or
+                        (WalkAround.Wed <> WalkAround.Wed::" ") or
+                        (WalkAround.Thurs <> WalkAround.Thurs::" ") or
+                        (WalkAround.Fri <> WalkAround.Fri::" ") or
+                        (WalkAround.Sat <> WalkAround.Sat::" ") or
+                        (WalkAround.Sun <> WalkAround.Sun::" ") then
+                            WalkAround_Status := true;
                     // WalkAround_Status := true;
                 end;
 
@@ -81,6 +98,14 @@ report 50007 "Vehicle Inspection CheckList"
                 DataItemLink = "Document Type" = FIELD("Document Type"),
                                "Document No." = FIELD("No.");
                 DataItemTableView = where(Sections = filter("Under Bonnet"));
+
+                column(Under_Mon;Mon){}
+                column(Under_Tue;Tue){}
+                column(Under_Wed;Wed){}
+                column(Under_Thurs;Thurs){}
+                column(Under_Fri;Fri){}
+                column(Under_Sat;Sat){}
+                column(Under_Sun;Sun){}
 
                 column(UnderBonnet_Description; Description) { }
                 column(UnderBonnet_Details; Details) { }
@@ -101,8 +126,18 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     UnderBonnet_Status := false;
-                    if UnderBonnet.Monday or UnderBonnet.Missing or UnderBonnet.Damaged or UnderBonnet.Tuesday or UnderBonnet.Wednesday or UnderBonnet.Thursday or UnderBonnet.Friday or UnderBonnet.Saturday or UnderBonnet.Sunday then
-                        UnderBonnet_Status := true;
+                    //if UnderBonnet.Monday or
+                    if (UnderBonnet.Mon <> UnderBonnet.Mon::" ") or
+                        (UnderBonnet.Tue <> UnderBonnet.Tue::" ") or
+                        (UnderBonnet.Wed <> UnderBonnet.Wed::" ") or
+                        (UnderBonnet.Thurs <> UnderBonnet.Thurs::" ") or
+                        (UnderBonnet.Fri <> UnderBonnet.Fri::" ") or
+                        (UnderBonnet.Sat <> UnderBonnet.Sat::" ") or
+                        (UnderBonnet.Sun <> UnderBonnet.Sun::" ") then
+                            UnderBonnet_Status := true;
+
+                    // if  UnderBonnet.Missing or UnderBonnet.Damaged or UnderBonnet.Tuesday or UnderBonnet.Wednesday or UnderBonnet.Thursday or UnderBonnet.Friday or UnderBonnet.Saturday or UnderBonnet.Sunday then
+                    //     UnderBonnet_Status := true;
                 end;
 
                 trigger OnPreDataItem()
@@ -117,6 +152,14 @@ report 50007 "Vehicle Inspection CheckList"
                 DataItemLink = "Document Type" = FIELD("Document Type"),
                                "Document No." = FIELD("No.");
                 DataItemTableView = where(Sections = filter("Inside Vehicle"));
+
+                column(Inside_Mon;Mon){}
+                column(Inside_Tue;Tue){}
+                column(Inside_Wed;Wed){}
+                column(Inside_Thurs;Thurs){}
+                column(Inside_Fri;Fri){}
+                column(Inside_Sat;Sat){}
+                column(Inside_Sun;Sun){}
 
                 column(InsideVehicle_Description; Description) { }
                 column(InsideVehicle_Details; Details) { }
@@ -136,10 +179,19 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     InsideVehicle_Status := false;
-                    if InsideVehicle.Monday or InsideVehicle.Missing or InsideVehicle.Damaged or InsideVehicle.Present or InsideVehicle.Tuesday or InsideVehicle.Wednesday or InsideVehicle.Thursday or InsideVehicle.Friday or InsideVehicle.Saturday or InsideVehicle.Sunday then
-                        InsideVehicle_Status := true;
+                    //if InsideVehicle.Monday or 
+                    // if InsideVehicle.Missing or InsideVehicle.Damaged or InsideVehicle.Present or InsideVehicle.Tuesday or InsideVehicle.Wednesday or InsideVehicle.Thursday or InsideVehicle.Friday or InsideVehicle.Saturday or InsideVehicle.Sunday then
+                    //     InsideVehicle_Status := true;
+                    
+                    if (InsideVehicle.Mon <> InsideVehicle.Mon::" ") or
+                        (InsideVehicle.Tue <> InsideVehicle.Tue::" ") or
+                        (InsideVehicle.Wed <> InsideVehicle.Wed::" ") or
+                        (InsideVehicle.Thurs <> InsideVehicle.Thurs::" ") or
+                        (InsideVehicle.Fri <> InsideVehicle.Fri::" ") or
+                        (InsideVehicle.Sat <> InsideVehicle.Sat::" ") or
+                        (InsideVehicle.Sun <> InsideVehicle.Sun::" ") then
+                            InsideVehicle_Status := true;
                 end;
-
                 trigger OnPreDataItem()
                 begin
                     InsideVehicle_Status := false;
@@ -152,6 +204,13 @@ report 50007 "Vehicle Inspection CheckList"
                 DataItemLink = "Document Type" = FIELD("Document Type"),
                                "Document No." = FIELD("No.");
                 DataItemTableView = where(Sections = filter("Emergency Equipment"));
+                column(Emergency_Mon;Mon){}
+                column(Emergency_Tue;Tue){}
+                column(Emergency_Wed;Wed){}
+                column(Emergency_Thurs;Thurs){}
+                column(Emergency_Fri;Fri){}
+                column(Emergency_Sat;Sat){}
+                column(Emergency_Sun;Sun){}
 
                 column(EmergencyEquipment_Description; Description) { }
                 column(EmergencyEquipment_Details; Details) { }
@@ -171,8 +230,18 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     EmergencyEquipment_Status := false;
-                    if EmergencyEquipment.Monday or EmergencyEquipment.Missing or EmergencyEquipment.Damaged or EmergencyEquipment.Present or EmergencyEquipment.Tuesday or EmergencyEquipment.Wednesday or EmergencyEquipment.Thursday or EmergencyEquipment.Friday or EmergencyEquipment.Saturday or EmergencyEquipment.Sunday then
-                        EmergencyEquipment_Status := true;
+                    //if EmergencyEquipment.Monday or 
+                    // if EmergencyEquipment.Missing or EmergencyEquipment.Damaged or EmergencyEquipment.Present or EmergencyEquipment.Tuesday or EmergencyEquipment.Wednesday or EmergencyEquipment.Thursday or EmergencyEquipment.Friday or EmergencyEquipment.Saturday or EmergencyEquipment.Sunday then
+                    //     EmergencyEquipment_Status := true;
+                    
+                    if (EmergencyEquipment.Mon <> EmergencyEquipment.Mon::" ") or
+                        (EmergencyEquipment.Tue <> EmergencyEquipment.Tue::" ") or
+                        (EmergencyEquipment.Wed <> EmergencyEquipment.Wed::" ") or
+                        (EmergencyEquipment.Thurs <> EmergencyEquipment.Thurs::" ") or
+                        (EmergencyEquipment.Fri <> EmergencyEquipment.Fri::" ") or
+                        (EmergencyEquipment.Sat <> EmergencyEquipment.Sat::" ") or
+                        (EmergencyEquipment.Sun <> EmergencyEquipment.Sun::" ") then
+                            EmergencyEquipment_Status := true;
                 end;
 
                 trigger OnPreDataItem()
@@ -201,12 +270,28 @@ report 50007 "Vehicle Inspection CheckList"
                 column(BeforeSettingOff_Missing; Missing) { }
                 column(BeforeSettingOff_Damaged; Damaged) { }
                 column(BeforeSettingOff_Present; Present){ }
+                column(Before_Mon; Mon){ }
+                column(Before_Tue; Tue){ }
+                column(Before_Wed; Wed){ }
+                column(Before_Thurs; Thurs){ }
+                column(Before_Fri; Fri){ }
+                column(Before_Sat; Sat){ }
+                column(Before_Sun; Sun){ }
 
                 trigger OnAfterGetRecord()
                 begin
                     BeforeSettingOff_Status := false;
-                    if BeforeSettingOff.Monday or BeforeSettingOff.Missing or BeforeSettingOff.Damaged or BeforeSettingOff.Present or BeforeSettingOff.Tuesday or BeforeSettingOff.Wednesday or BeforeSettingOff.Thursday or BeforeSettingOff.Friday or BeforeSettingOff.Saturday or BeforeSettingOff.Sunday then
-                        BeforeSettingOff_Status := true;
+                    //if BeforeSettingOff.Monday or 
+                    // if BeforeSettingOff.Missing or BeforeSettingOff.Damaged or BeforeSettingOff.Present or BeforeSettingOff.Tuesday or BeforeSettingOff.Wednesday or BeforeSettingOff.Thursday or BeforeSettingOff.Friday or BeforeSettingOff.Saturday or BeforeSettingOff.Sunday then
+                    //     BeforeSettingOff_Status := true;
+                    if (BeforeSettingOff.Mon <> BeforeSettingOff.Mon::" ") or
+                        (BeforeSettingOff.Tue <> BeforeSettingOff.Tue::" ") or
+                        (BeforeSettingOff.Wed <> BeforeSettingOff.Wed::" ") or
+                        (BeforeSettingOff.Thurs <> BeforeSettingOff.Thurs::" ") or
+                        (BeforeSettingOff.Fri <> BeforeSettingOff.Fri::" ") or
+                        (BeforeSettingOff.Sat <> BeforeSettingOff.Sat::" ") or
+                        (BeforeSettingOff.Sun <> BeforeSettingOff.Sun::" ") then
+                            BeforeSettingOff_Status := true;
                 end;
 
                 trigger OnPreDataItem()
@@ -230,15 +315,31 @@ report 50007 "Vehicle Inspection CheckList"
                 column(General_Fair; Fair) { }
                 column(General_Comment; Comment) { }
                 column(General_Status; General_Status) { }
+                // column(General_Mon; Mon){ }
+                // column(General_Tue; Tue){ }
+                // column(General_Wed; Wed){ }
+                // column(General_Thurs; Thurs){ }
+                // column(General_Fri; Fri){ }
+                // column(General_Sat; Sat){ }
+                // column(General_Sun; Sun){ }
 
 
 
                 trigger OnAfterGetRecord()
                 begin
                     General_Status := false;
-                    if General.Monday or General.Present or General.Fair or General.Missing or General.Damaged or General.Tuesday or General.Wednesday or General.Thursday or General.Friday or General.Saturday or General.Sunday then
+                    //if  
+                    if  General.Present or General.Fair or General.Missing or General.Damaged or General.Tuesday or General.Wednesday or General.Thursday or General.Friday or General.Saturday or General.Sunday then
                        General_Status := true;
-                    // General_Status := true;
+                    //General_Status := true;
+                    // if (General.Mon <> General.Mon::" ") or
+                    //     (General.Tue <> General.Tue::" ") or
+                    //     (General.Wed <> General.Wed::" ") or
+                    //     (General.Thurs <> General.Thurs::" ") or
+                    //     (General.Fri <> General.Fri::" ") or
+                    //     (General.Sat <> General.Sat::" ") or
+                    //     (General.Sun <> General.Sun::" ") then
+                    //         General_Status := true;
                 end;
 
                 trigger OnPreDataItem()
@@ -260,7 +361,6 @@ report 50007 "Vehicle Inspection CheckList"
                 column(Engine_Damaged; Damaged) { }
                 column(Engine_Okay; Present) { }
                 column(Engine_Fair; Fair) { }
-                
                 column(Engine_Comment; Comment) { }
                 column(Engine_Status; Engine_Status) { }
 
@@ -269,7 +369,8 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     Engine_Status := false;
-                    if Engine.Monday or Engine.Present or Engine.Fair or Engine.Missing or Engine.Damaged or Engine.Tuesday or Engine.Wednesday or Engine.Thursday or Engine.Friday or Engine.Saturday or Engine.Sunday then
+                    //if Engine.Monday or 
+                    if Engine.Present or Engine.Fair or Engine.Missing or Engine.Damaged or Engine.Tuesday or Engine.Wednesday or Engine.Thursday or Engine.Friday or Engine.Saturday or Engine.Sunday then
                        Engine_Status := true;
                     // General_Status := true;
                 end;
@@ -302,7 +403,8 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     Fuel_Status := false;
-                    if Fuel.Monday or Fuel.Present or Fuel.Fair or Fuel.Missing or Fuel.Damaged or Fuel.Tuesday or Fuel.Wednesday or Fuel.Thursday or Fuel.Friday or Fuel.Saturday or Fuel.Sunday then
+                    //if Fuel.Monday or 
+                    if Fuel.Present or Fuel.Fair or Fuel.Missing or Fuel.Damaged or Fuel.Tuesday or Fuel.Wednesday or Fuel.Thursday or Fuel.Friday or Fuel.Saturday or Fuel.Sunday then
                        Fuel_Status := true;
                     // Fuel_Status := true;
                 end;
@@ -335,7 +437,8 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     Electrical_Status := false;
-                    if Electrical.Monday or Electrical.Present or Electrical.Fair or Electrical.Missing or Electrical.Damaged or Electrical.Tuesday or Electrical.Wednesday or Electrical.Thursday or Electrical.Friday or Electrical.Saturday or Electrical.Sunday then
+                    //if Electrical.Monday or 
+                    if Electrical.Present or Electrical.Fair or Electrical.Missing or Electrical.Damaged or Electrical.Tuesday or Electrical.Wednesday or Electrical.Thursday or Electrical.Friday or Electrical.Saturday or Electrical.Sunday then
                        Electrical_Status := true;
                     // Electrical_Status := true;
                 end;
@@ -367,7 +470,8 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     Lubrication_Status := false;
-                    if Lubrication.Monday or Lubrication.Present or Lubrication.Fair or Lubrication.Missing or Lubrication.Damaged or Lubrication.Tuesday or Lubrication.Wednesday or Lubrication.Thursday or Lubrication.Friday or Lubrication.Saturday or Lubrication.Sunday then
+                    //if Lubrication.Monday or 
+                    if Lubrication.Present or Lubrication.Fair or Lubrication.Missing or Lubrication.Damaged or Lubrication.Tuesday or Lubrication.Wednesday or Lubrication.Thursday or Lubrication.Friday or Lubrication.Saturday or Lubrication.Sunday then
                        Lubrication_Status := true;
                     // Lubrication_Status := true;
                 end;
@@ -399,7 +503,8 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     Mechanical_Status := false;
-                    if Mechanical.Monday or Mechanical.Present or Mechanical.Fair or Mechanical.Missing or Mechanical.Damaged or Mechanical.Tuesday or Mechanical.Wednesday or Mechanical.Thursday or Mechanical.Friday or Mechanical.Saturday or Mechanical.Sunday then
+                    //if Mechanical.Monday or 
+                    if Mechanical.Present or Mechanical.Fair or Mechanical.Missing or Mechanical.Damaged or Mechanical.Tuesday or Mechanical.Wednesday or Mechanical.Thursday or Mechanical.Friday or Mechanical.Saturday or Mechanical.Sunday then
                        Mechanical_Status := true;
                     // Mechanical_Status := true;
                 end;
@@ -433,7 +538,8 @@ report 50007 "Vehicle Inspection CheckList"
                 trigger OnAfterGetRecord()
                 begin
                     Housekeeping_Status := false;
-                    if Housekeeping.Monday or Housekeeping.Present or Housekeeping.Fair or Housekeeping.Missing or Housekeeping.Damaged or Housekeeping.Tuesday or Housekeeping.Wednesday or Housekeeping.Thursday or Housekeeping.Friday or Housekeeping.Saturday or Housekeeping.Sunday then
+                    //if Housekeeping.Monday or 
+                    if Housekeeping.Present or Housekeeping.Fair or Housekeeping.Missing or Housekeeping.Damaged or Housekeeping.Tuesday or Housekeeping.Wednesday or Housekeeping.Thursday or Housekeeping.Friday or Housekeeping.Saturday or Housekeeping.Sunday then
                        Housekeeping_Status := true;
                     // Housekeeping_Status := true;
                 end;
@@ -452,18 +558,18 @@ report 50007 "Vehicle Inspection CheckList"
                 //DataItemTableView = where("Equipment Status" = filter("Available"));
 
                 //column(Service_Date;"Service Date") { }
-                
-
 
             }
 
             trigger OnAfterGetRecord()
             begin
-                if "Form Header"."Inspection Type" = "Form Header"."Inspection Type"::"Pre-Trip" then
-                    ReportTitle := 'PRE-TRIP VEHICLE INSPECTION CHECKLIST'
-                else if "Form Header"."Inspection Type" = "Form Header"."Inspection Type"::"Post-Trip" then
-                    ReportTitle := 'POST-TRIP VEHICLE INSPECTION CHECKLIST';
-                //else if "Form Header"."Equipment Type" = 'VEHICLES' then ReportTitle := 'GENERATOR INSPECTION CHECKLIST';
+                // if "Form Header"."Inspection Type" = "Form Header"."Inspection Type"::"Pre-Trip" then
+                //     ReportTitle := 'PRE-TRIP VEHICLE INSPECTION CHECKLIST'
+                // else if "Form Header"."Inspection Type" = "Form Header"."Inspection Type"::"Post-Trip" then
+                //     ReportTitle := 'POST-TRIP VEHICLE INSPECTION CHECKLIST';
+                 if "Form Header"."Equipment Type" = 'VEHICLES' then ReportTitle := 'VEHICLE INSPECTION CHECKLIST'
+                 else if "Form Header"."Equipment Type" = 'GENERATORS' then ReportTitle := 'GENERATOR INSPECTION CHECKLIST';
+
             end;
         }
     }

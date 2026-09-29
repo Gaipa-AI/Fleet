@@ -176,11 +176,13 @@ page 50008 "Fuel Requisition Subform"
                 field("Transfer to Item Jnl"; Rec."Transfer to Item Jnl")
                 {
                     Editable = RequisitionOpen;
+                    Caption = 'Consume from Inventory';
                 }
                 field("Qty To Transfer to Item Jnl"; Rec."Qty To Transfer to Item Jnl")
                 {
                     Editable = RequisitionOpen;
                     DecimalPlaces = 0 : 5;
+                    Caption = 'Qty to Consume (Inventory)';
 
                     trigger OnValidate();
                     begin
@@ -210,9 +212,10 @@ page 50008 "Fuel Requisition Subform"
                 }
                 field("Total Qty To Item Jnl"; Rec."Total Qty To Item Jnl")
                 {
-                    Caption = 'Total Issued To Item Jnl';
+                    Caption = 'Total Consumed from Inventory';
                     DecimalPlaces = 0 : 5;
                     Editable = false;
+
                 }
                 field("Total Qty To Job Jnl"; Rec."Total Qty To Job Jnl")
                 {
@@ -315,6 +318,12 @@ page 50008 "Fuel Requisition Subform"
                     Visible = true;
                     Editable = RequisitionOpen;
                 }
+                field(Remarks;Rec.Remarks)
+                {
+                    ToolTip = 'Approvers remarks/comments';
+                    ApplicationArea = All;
+                  
+                }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     Visible = true;
@@ -390,6 +399,7 @@ page 50008 "Fuel Requisition Subform"
                 {
                     Visible = true;
                     Editable = false;
+                    Caption = 'Consumed from Inventory';
                 }
                 field("Transferred to Job Jnl"; Rec."Transferred to Job Jnl")
                 {

@@ -420,10 +420,15 @@ table 50004 "Fleet Management Setup"
             TableRelation="No. Series".Code;
 
         }
-        field(500358;"Template Nos"; Code[20])
+        field(50358;"Template Nos"; Code[20])
         {
-             TableRelation="No. Series".Code;
+             TableRelation= "No. Series".Code;
              Caption = 'Template No.s';
+        }
+        field(50359;"Person IDs"; Code[20])
+        {
+            TableRelation = "No. Series".Code;
+            //Caption = ''
         }
     }
 

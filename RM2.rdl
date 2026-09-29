@@ -75,6 +75,15 @@
                 <TablixColumn>
                   <Width>1in</Width>
                 </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
@@ -320,7 +329,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Service Date</Value>
+                                  <Value>Prev. Service Date</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -330,6 +339,39 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox21">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Previous Service Mileage</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox21</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -396,6 +438,39 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox22">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Previous Service Hours</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox22</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -584,7 +659,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Date current mileage/hours</Value>
+                                  <Value>Date of current mileage/hours</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -660,6 +735,39 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Yellow</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Remaining Days</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -956,6 +1064,36 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Previous_Service_Mileage">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Previous_Service_Mileage.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Previous_Service_Mileage</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Service_Interval">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1001,6 +1139,36 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Service_Interval_Hours</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Previous_Service_Hours">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Previous_Service_Hours.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Previous_Service_Hours</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1214,6 +1382,7 @@
                                   <Value>=Fields!Remaining_mileage_to_service.Value</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
+                                    <Color>=IIF(Fields!Remaining_mileage_to_service.Value &lt; 0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1232,7 +1401,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1245,13 +1413,46 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Hours_to_Next_Service.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>0;(0)</Format>
+                                    <Color>=IIF(Fields!Hours_to_Next_Service.Value &lt; 0, "Red", "Black")</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Hours_to_Next_Service</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox19">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=DateDiff("d", Today(), Fields!Next_Service_Date.Value,)</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1304,10 +1505,9 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=IIF(Fields!Vehicle_Type.Value = "GENERATORS", False, True)</Hidden>
+                    <Hidden>true</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember>
@@ -1315,11 +1515,26 @@
                     <Hidden>=IIF(Fields!Vehicle_Type.Value = "GENERATORS", False, True)</Hidden>
                   </Visibility>
                 </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Fields!Vehicle_Type.Value = "GENERATORS", False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember>
                   <Visibility>
                     <Hidden>=IIF(Fields!Vehicle_Type.Value = "VEHICLES", False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Fields!Vehicle_Type.Value = "VEHICLES", False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Fields!Vehicle_Type.Value = "VEHICLES", True, False)</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember>
@@ -1357,6 +1572,11 @@
                 <TablixMember>
                   <Visibility>
                     <Hidden>=IIF(Fields!Vehicle_Type.Value = "VEHICLES", True, False)</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Fields!Vehicle_Type.Value = "GENERATORS", False, True)</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember />
@@ -1376,7 +1596,7 @@
             <Top>1.91542in</Top>
             <Left>0.16542in</Left>
             <Height>0.5in</Height>
-            <Width>18.83333in</Width>
+            <Width>21.83333in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1388,8 +1608,8 @@
             <Value>=First(Fields!CompanyImage.Value, "DataSet_Result")</Value>
             <MIMEType>image/jpeg</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>0.20708in</Top>
-            <Left>10.18625in</Left>
+            <Top>0.17583in</Top>
+            <Left>13.18625in</Left>
             <Height>0.9132in</Height>
             <Width>1.8125in</Width>
             <ZIndex>1</ZIndex>
@@ -1504,10 +1724,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.12028in</Top>
-            <Left>10.22792in</Left>
+            <Top>1.08903in</Top>
+            <Left>13.18625in</Left>
             <Height>0.25in</Height>
-            <Width>1.77083in</Width>
+            <Width>1.8125in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1537,10 +1757,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>1.39458in</Top>
-            <Left>10.22792in</Left>
-            <Height>0.25in</Height>
-            <Width>1.77083in</Width>
+            <Top>1.35292in</Top>
+            <Left>13.18625in</Left>
+            <Height>0.2375in</Height>
+            <Width>1.8125in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1591,10 +1811,10 @@
         <Height>3.19667in</Height>
         <Style />
       </Body>
-      <Width>18.99875in</Width>
+      <Width>21.99875in</Width>
       <Page>
         <PageHeight>8.5in</PageHeight>
-        <PageWidth>14in</PageWidth>
+        <PageWidth>16in</PageWidth>
         <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>
@@ -1674,6 +1894,18 @@ End Function
         </Field>
         <Field Name="Service_Date">
           <DataField>Service_Date</DataField>
+        </Field>
+        <Field Name="Previous_Service_Mileage">
+          <DataField>Previous_Service_Mileage</DataField>
+        </Field>
+        <Field Name="Previous_Service_MileageFormat">
+          <DataField>Previous_Service_MileageFormat</DataField>
+        </Field>
+        <Field Name="Previous_Service_Hours">
+          <DataField>Previous_Service_Hours</DataField>
+        </Field>
+        <Field Name="Previous_Service_HoursFormat">
+          <DataField>Previous_Service_HoursFormat</DataField>
         </Field>
         <Field Name="Vehicle_Equipment_Location">
           <DataField>Vehicle_Equipment_Location</DataField>

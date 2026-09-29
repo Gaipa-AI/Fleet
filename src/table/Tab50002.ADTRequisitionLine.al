@@ -3430,6 +3430,11 @@ table 50002 "ADT Requisition Line"
                                                                      "Location Code" = FIELD("Location Code")));
             Editable = false;
         }
+        field(50127;"Remarks"; Text[350])
+        {
+            Caption = 'Remarks';
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

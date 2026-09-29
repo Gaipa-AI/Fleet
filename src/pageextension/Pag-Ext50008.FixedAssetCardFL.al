@@ -69,6 +69,15 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                         DrillDownActionOnPage();
                     end;
                 }
+                field("Previous Service Mileage"; Rec."Previous Service Mileage")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates the previous mileage of the vehicle at time of servicing';
+                    Caption = 'Previous Service Mileage';
+                    Editable = false;
+                    //Visible = IsSeen;
+                }
+
                 field("Vehicle Mileage"; Rec."Vehicle Mileage")
                 {
                     ApplicationArea = All;
@@ -101,6 +110,22 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                     ApplicationArea = All;
                     ToolTip = 'Indicates on what date the vehicle was serviced.';
                     Editable = false;
+                    trigger OnValidate()
+                    begin
+                     //   if Rec."Service Date" <> 0D then
+                            Rec."Next Service Date" := CalcDate('<30D>', Rec."Service Date");
+                    //     else
+                    //         Clear(Rec."Next Service Date");
+                    //    // Rec."Next Service Date" := CalcDate('<30D>', Rec."Service Date");
+                    end;
+                }
+
+                field("Previous Service Hours";Rec."Previous Service Hours")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Indicates the previous service hours for non-vehicle equipment';
+                    Editable = false;
+                    Visible = IsSeen;
                 }
                 field("Service Interval Hours";Rec."Service Interval Hours")
                 {
@@ -110,6 +135,7 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                     Visible = IsSeen;
 
                 }
+                
                 field("Current Hours";Rec."Current Hours")
                 {
                     ApplicationArea = All;
@@ -258,23 +284,23 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                     ServiceVehicle();
                 end;
             }
-            action(GetMileage)
-            {
-                ApplicationArea = All;
-                Caption = 'Get Mileage';
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                Image = Refresh;
+            // action(GetMileage)
+            // {
+            //     ApplicationArea = All;
+            //     Caption = 'Get Mileage';
+            //     Promoted = true;
+            //     PromotedCategory = Process;
+            //     PromotedIsBig = true;
+            //     Image = Refresh;
 
-                trigger OnAction()
-                var
-                    myInt: Integer;
-                begin
-                    GetMileage();
-                    Message('Vehicle mileage has been updated based on the latest performance data of responsible employee');
-                end;
-            }
+            //     trigger OnAction()
+            //     var
+            //         myInt: Integer;
+            //     begin
+            //         GetMileage();
+            //         Message('Vehicle mileage has been updated based on the latest performance data of responsible employee');
+            //     end;
+            // }
             action(Use)
             {
                 ApplicationArea = All;
@@ -395,7 +421,12 @@ pageextension 50008 "Fixed Asset Card FL" extends "Fixed Asset Card"
                 // Update the Next Service At Mileage based on the Service Interval
                 Rec."Next Service At Mileage" := Rec."Vehicle Mileage" + Rec."Service Interval";
                 Rec."Next Service Hours" := Rec."Current Hours" + Rec."Service Interval Hours";
+                Rec."Hours to Next Service" := Rec."Next Service Hours" - Rec."Current Hours";
                 Rec."Service Date" := Today();
+                Rec."Previous Service Mileage" := Rec."Vehicle Mileage";
+                Rec."Previous Service Hours" := Rec."Current Hours";
+                Rec."Next Service Date" := CalcDate('<30D>', Rec."Service Date");
+                Rec.Serviced := true;
                 Rec.Modify();
                 Message('Equipment has been serviced. Next service at mileage or hours is updated to %1 km', Rec."Next Service At Mileage");
             end else

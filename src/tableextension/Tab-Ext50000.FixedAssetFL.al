@@ -124,6 +124,22 @@ tableextension 50000 "Fixed Asset FL" extends "Fixed Asset"
             Caption = 'Lifting Capacity';
             DataClassification = ToBeClassified;
         }
+
+        field(50020;"Previous Service Mileage"; Decimal)
+        {
+            Caption = 'Previous Service Mileage';
+            DataClassification = ToBeClassified;
+            DecimalPlaces = 0 : 1;
+        }
+
+        field(50021;"Previous Service Hours"; Decimal)
+        {
+            Caption = 'Previous Service Hours';
+            DataClassification = ToBeClassified;
+            DecimalPlaces = 0 : 1;
+        }
+        
+
         
 
 

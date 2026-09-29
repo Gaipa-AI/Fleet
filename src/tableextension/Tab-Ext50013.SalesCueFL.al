@@ -60,6 +60,7 @@ tableextension 50013 "Sales Cue FL" extends "Sales Cue"
         {
             FieldClass = FlowField;
             CalcFormula = count("ADT Requisition Header" where("Document Type" = filter("Store Requisition"), Status = filter("Pending Approval"), "Request Type" = filter(Fuel), "Prepared by" = field("User ID Filter")));
+            
         }
         field(50008; "Approved Fuel Requisitions"; Integer)
         {
