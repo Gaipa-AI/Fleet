@@ -37,27 +37,27 @@ table 50006 "Maintenance Line"
             //else
             //if (Type = const(Resource)) Resource;
 
-            // trigger OnValidate()
-            // var
-            //     myInt: Integer;
-            // begin
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
             //     TestField("Document No.");
             //     GetMaintenanceHeader();
             //     TestStatusOpen();
 
-            //     case Type of
-            //         Type::" ":
-            //             CopyFromStandardText();
-            //         Type::"G/L Account":
-            //             CopyFromGLAccount();
-            //         Type::Item:
-            //             CopyFromItem();
+                case Type of
+                    Type::" ":
+                        CopyFromStandardText();
+                    Type::"G/L Account":
+                        CopyFromGLAccount();
+                    Type::Item:
+                        CopyFromItem();
             //         Type::Resource:
             //             CopyFromResource();
             //         Type::"Fixed Asset":
             //             CopyFromFixedAsset();
-            //     end;
-            // end;
+                 end;
+             end;
         }
         field(6; Description; Text[200])
         {

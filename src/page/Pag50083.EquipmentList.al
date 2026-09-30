@@ -26,14 +26,7 @@ page 50083 "Equipment Driver List"
     {
         area(processing)
         {
-            // action(OpenIncident)
-            // {
-            //     Caption = 'Open Incident';
-            //     Promoted = true;
-            //     PromotedCategory = Process;
-            //     RunObject = Page "Incident Form";
-            //     RunPageLink = "Document Type" = FIELD("Document Type"), "No." = FIELD("No.");
-            // }
+            
         }
     }
     var

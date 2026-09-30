@@ -52,6 +52,9 @@ report 50025 Consumption
             column(CurrentApprover; "Current Approver")
             {
             }
+            column(Status; Status) { }
+
+            column(Transferred; Transferred) { }
 
             column(CompanyInfo_Name; CompanyInfo.Name) { }
             column(CompanyInfo_Picture; CompanyInfo.Picture) { }
@@ -68,6 +71,7 @@ report 50025 Consumption
             {
 
             }
+
 
             dataitem("Consumption Line"; "ADT Requisition Line")
             {

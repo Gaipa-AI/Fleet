@@ -47,6 +47,14 @@ pageextension 50000 "User Setup FL" extends "User setup"
             field(Admin;Rec.Admin){
                 ApplicationArea = All;
             }
+            // field("Shortcut Dimension 1 Code";Rec."Shortcut Dimension 1 Code")
+            // {
+            //     ApplicationArea = All;
+            // }
+            // field("Shortcut Dimension 3 Code";Rec."Shortcut Dimension 3 Code")
+            // {
+            //     ApplicationArea = All;
+            // }
             field("Can Authorize Job"; Rec."Can Authorize Job")
             {
                 ApplicationArea = All;

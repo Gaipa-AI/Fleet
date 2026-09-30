@@ -103,6 +103,12 @@ page 50039 "General Requisition Subform"
                 {
                     ApplicationArea = All;
                 }
+                field("Avail Qty AtCurrentLocation";Rec."Avail Qty AtCurrentLocation")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Qty available at current location';
+                    ToolTip = 'Shows quantity avaible at that location';
+                }
                 field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
